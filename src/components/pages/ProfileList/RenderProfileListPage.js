@@ -2,23 +2,34 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const RenderProfileListPage = props => (
-  <div>
-    <p>
-      <Link to="/">Home</Link>
-    </p>
-    {props.data.map(item => (
-      <figure key={item.id}>
-        <img src={item.avatarUrl} alt={item.name} />
-        <figcaption>
-          <h3>{item.name}</h3>
-        </figcaption>
-      </figure>
-    ))}
-  </div>
-);
+import { connect } from 'react-redux';
 
-export default RenderProfileListPage;
+function RenderProfileListPage(props) {
+  console.log(props.profiles);
+  return (
+    <div>
+      <p>
+        <Link to="/">Home</Link>
+      </p>
+      {props.data.map(item => (
+        <figure key={item.id}>
+          <img src={item.avatarUrl} alt={item.name} />
+          <figcaption>
+            <h3>{item.name}</h3>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  );
+}
+
+const mapStateToProps = state => {
+  return {
+    profiles: state.profiles,
+  };
+};
+
+export default connect(mapStateToProps, {})(RenderProfileListPage);
 
 // Don't forget your prop types! It will save you a lot of debugging headache as you add more features.
 RenderProfileListPage.propTypes = {
