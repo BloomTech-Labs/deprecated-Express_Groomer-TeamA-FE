@@ -1,5 +1,6 @@
 import axios from 'axios';
-
+import { setProfilesToState } from '../state/actions';
+import { store } from '../index';
 // we will define a bunch of API calls here.
 const apiUrl = `${process.env.REACT_APP_API_URI}/profiles`;
 
@@ -40,7 +41,10 @@ const apiAuthGet = authHeader => {
 
 const getProfileData = authState => {
   try {
-    return apiAuthGet(getAuthHeader(authState)).then(response => response.data);
+    return apiAuthGet(getAuthHeader(authState)).then(response => {
+      store.dispatch(setProfilesToState(response.data));
+      return response.data;
+    });
   } catch (error) {
     return new Promise(() => {
       console.log(error);
