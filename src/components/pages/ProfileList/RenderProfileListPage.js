@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-
+import SearchForm from '../Search/SearchForm';
 import { connect } from 'react-redux';
+import { Image, Card } from 'antd';
+
+const { Meta } = Card;
 
 function RenderProfileListPage(props) {
   console.log(props.profiles);
@@ -11,13 +14,12 @@ function RenderProfileListPage(props) {
       <p>
         <Link to="/">Home</Link>
       </p>
-      {props.data.map(item => (
-        <figure key={item.id}>
-          <img src={item.avatarUrl} alt={item.name} />
-          <figcaption>
-            <h3>{item.name}</h3>
-          </figcaption>
-        </figure>
+      <SearchForm />
+      {props.profiles.map(item => (
+        <Card key={item.id}>
+          <Image src={item.avatarUrl} alt={item.name} />
+          <Meta title={item.name} description={'user or groomer'}></Meta>
+        </Card>
       ))}
     </div>
   );
