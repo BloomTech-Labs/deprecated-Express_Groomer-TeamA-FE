@@ -21,7 +21,7 @@ const LoginContainer = () => {
       // add your custom logo to your signing/register widget here.
       i18n: {
         en: {
-          'primaryauth.title': 'Welcome to Labs Basic SPA Please sign in',
+          'primaryauth.title': 'Welcome to Labs Basic Spa Please sign in',
           // change title for your app
         },
       },
@@ -46,7 +46,6 @@ const LoginContainer = () => {
       }
     );
   }, []);
-
   return <div id="sign-in-widget" />;
 };
 
