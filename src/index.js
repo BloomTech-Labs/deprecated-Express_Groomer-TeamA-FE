@@ -17,14 +17,25 @@ import { ProfileListPage } from './components/pages/ProfileList';
 import { LoginPage } from './components/pages/Login';
 import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
+
 import { Profile } from './components/pages/Profile';
 
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import { Provider } from 'react-redux';
+import { appReducer } from './state/reducers/appReducer';
+
+export const store = createStore(appReducer, applyMiddleware(thunk));
+
+
 ReactDOM.render(
-  <Router>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  </Router>,
+  <Provider store={store}>
+    <Router>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </Router>
+  </Provider>,
   document.getElementById('root')
 );
 
