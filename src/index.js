@@ -18,6 +18,7 @@ import { LoginPage } from './components/pages/Login';
 import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
 import { EditCustomerProfile } from './components/pages/EditCustomerProfile';
+import { Profile } from './components/pages/Profile';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
@@ -57,6 +58,11 @@ function App() {
           path="/"
           exact
           component={() => <HomePage LoadingComponent={LoadingComponent} />}
+        />
+        <SecureRoute
+          path="/profile"
+          exact
+          component={() => <Profile LoadingComponent={LoadingComponent} />}
         />
         <SecureRoute path="/example-list" component={ExampleListPage} />
         <SecureRoute path="/edit-profile" component={EditCustomerProfile} />
