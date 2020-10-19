@@ -19,8 +19,6 @@ function RenderProfileListPage(props) {
     setFiltered(filteredChars);
   }, [searched, props.data]);
 
-  console.log(filtered);
-
   function handleChange(e) {
     e.preventDefault();
     setSearched(e.target.value);
@@ -32,7 +30,7 @@ function RenderProfileListPage(props) {
         <Link to="/">Home</Link>
       </p>
       <SearchForm value={searched} handleChange={handleChange} />
-      {props.filtered_profiles.map(item => (
+      {filtered.map(item => (
         <Card key={item.id}>
           <Image src={item.avatarUrl} alt={item.name} />
           <Meta title={item.name} description={'user or groomer'}></Meta>
@@ -45,10 +43,9 @@ function RenderProfileListPage(props) {
 const mapStateToProps = state => {
   return {
     profiles: state.profiles,
-    filtered_profiles: state.filtered_profiles,
   };
 };
-
+// Line below i believe is causing prop type errors
 export default connect(mapStateToProps, {})(RenderProfileListPage);
 
 // Don't forget your prop types! It will save you a lot of debugging headache as you add more features.
@@ -61,6 +58,16 @@ RenderProfileListPage.propTypes = {
       name: PropTypes.string,
       email: PropTypes.string,
       avatar: PropTypes.string,
+    })
+  ).isRequired,
+  profiles: PropTypes.arrayOf(
+    PropTypes.shape({
+      avatarUrl: PropTypes.string,
+      created_at: PropTypes.string,
+      email: PropTypes.string,
+      id: PropTypes.string,
+      name: PropTypes.string,
+      updated_at: PropTypes.string,
     })
   ).isRequired,
 };

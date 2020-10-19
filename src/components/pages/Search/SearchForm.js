@@ -1,11 +1,10 @@
-import Form from 'antd/lib/form/Form';
 import React from 'react';
-import { FormButton, FormInput } from '../../common';
+import { FormButton } from '../../common';
 
 function SearchForm(props) {
   return (
     <div>
-      <Form>
+      <form>
         <input
           placeholder={'Search By Name  '}
           value={props.value}
@@ -14,7 +13,7 @@ function SearchForm(props) {
         />
 
         <FormButton isDisabled={false} buttonText={'Submit'} />
-      </Form>
+      </form>
     </div>
   );
 }
