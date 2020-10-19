@@ -10,7 +10,7 @@ export const appReducer = (state = initialState, action) => {
       console.log(action.payload);
       return {
         ...state,
-        profiles: action.payload,
+        profiles: state.profiles.append(action.payload),
       };
 
     default:

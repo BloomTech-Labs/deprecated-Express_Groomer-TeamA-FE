@@ -1,29 +1,34 @@
 import React, { useEffect, useState } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
 
-// import { getProfileData } from '../../../api';
+import { getUserProfileInfo } from '../../../api';
 
 // import { List } from '../../common';
 
 // import RenderProfileListPage from './RenderProfileListPage';
 
 // Here is an example of using our reusable List component to display some list data to the UI.
-const Profile = () => {
+const Profile = props => {
   const { authState, authService } = useOktaAuth();
   const [userInfo, setUserInfo] = useState(null);
 
   useEffect(() => {
     // Pull user info from Okta
+
     if (!authState.isAuthenticated) {
       // When user isn't authenticated, forget any user info
       setUserInfo(null);
     } else {
       authService.getUser().then(info => {
-        setUserInfo(info);
+        // setUserInfo(info);
+        props.setProfilesToState(info);
       });
+      //const info = getUserProfileInfo(props.match.params.id)
+      //setUserInfo(info)
     }
   }, [authService, authState]);
-  console.log(userInfo);
+  console.log(props.profiles);
+
   //email, name, zoneinfo, pet_name, pet_type, pet_pic, pet_bio
   return (
     <div>

@@ -3,6 +3,7 @@ import { setProfilesToState } from '../state/actions';
 import { store } from '../index';
 // we will define a bunch of API calls here.
 const apiUrl = `${process.env.REACT_APP_API_URI}/profiles`;
+const beUrl = 'our url';
 
 const sleep = time =>
   new Promise(resolve => {
@@ -53,4 +54,17 @@ const getProfileData = authState => {
   }
 };
 
-export { sleep, getExampleData, getProfileData, getDSData };
+const getUserProfileInfo = id => {
+  const path = `${beUrl}/profile/${id}`;
+  try {
+    return axios.get(path).then(res => {
+      console.log(res);
+      return res;
+    });
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+};
+
+export { sleep, getExampleData, getProfileData, getDSData, getUserProfileInfo };
