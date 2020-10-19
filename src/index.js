@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import {
   BrowserRouter as Router,
@@ -23,6 +23,7 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { appReducer } from './state/reducers/appReducer';
+import { EditGroomerProfile } from './components/pages/EditGroomerProfile copy';
 
 export const store = createStore(appReducer, applyMiddleware(thunk));
 
@@ -65,8 +66,11 @@ function App() {
           component={() => <Profile LoadingComponent={LoadingComponent} />}
         />
         <SecureRoute path="/example-list" component={ExampleListPage} />
-        <SecureRoute path="/edit-profile" component={EditCustomerProfile} />
         <SecureRoute path="/profile-list" component={ProfileListPage} />
+        <SecureRoute
+          path="/edit-profile/:id"
+          render={props => <EditCustomerProfile {...props} />}
+        />
         <Route component={NotFoundPage} />
       </Switch>
     </Security>

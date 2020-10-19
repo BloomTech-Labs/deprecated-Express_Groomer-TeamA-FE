@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import FormInput from '../../common/FormInput';
 import Axios from 'axios';
 
-const RenderEditCustomerProfile = props => {
+const RenderEditGroomerProfile = props => {
   const [info, setInfo] = useState('');
 
   const handleChange = e => {
@@ -38,10 +38,10 @@ const RenderEditCustomerProfile = props => {
   );
 };
 
-export default RenderEditCustomerProfile;
+export default RenderEditGroomerProfile;
 
 // Don't forget your prop types! It will save you a lot of debugging headache as you add more features.
-RenderEditCustomerProfile.propTypes = {
+RenderEditGroomerProfile.propTypes = {
   data: PropTypes.arrayOf(
     // Here is an example of enforcing an object structure that we expect to receive in our props:
     PropTypes.shape({

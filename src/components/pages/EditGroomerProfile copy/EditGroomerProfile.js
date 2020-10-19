@@ -5,11 +5,10 @@ import { getProfileData } from '../../../api';
 
 import { List } from '../../common';
 
-import RenderEditCustomerProfile from './RenderEditCustomerProfile';
-import RenderEditGroomerProfile from '../EditGroomerProfile copy/RenderEditGroomerProfile';
+import RenderEditGroomerProfile from './RenderEditGroomerProfile';
 
 // Here is an example of using our reusable List component to display some list data to the UI.
-const EditCustomerProfile = () => {
+const EditGroomerProfile = () => {
   const { authState } = useOktaAuth();
 
   return (
@@ -20,9 +19,9 @@ const EditCustomerProfile = () => {
       // to complete.
       LoadingComponent={() => <div>Loading Profiles...</div>}
       // Here we are passing in a component that receives our new data and returns our JSX elements.
-      RenderItems={RenderEditCustomerProfile}
+      RenderItems={RenderEditGroomerProfile}
     />
   );
 };
 
-export default EditCustomerProfile;
+export default EditGroomerProfile;
