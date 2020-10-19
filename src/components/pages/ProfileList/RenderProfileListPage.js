@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import SearchForm from '../Search/SearchForm';
@@ -8,14 +8,31 @@ import { Image, Card } from 'antd';
 const { Meta } = Card;
 
 function RenderProfileListPage(props) {
-  console.log(props.profiles);
+  const [searched, setSearched] = useState('');
+  const [filtered, setFiltered] = useState([]);
+
+  useEffect(() => {
+    const filteredChars = props.data.filter(char =>
+      char.name.toLowerCase().includes(searched)
+    );
+
+    setFiltered(filteredChars);
+  }, [searched, props.data]);
+
+  console.log(filtered);
+
+  function handleChange(e) {
+    e.preventDefault();
+    setSearched(e.target.value);
+  }
+
   return (
     <div>
       <p>
         <Link to="/">Home</Link>
       </p>
-      <SearchForm />
-      {props.profiles.map(item => (
+      <SearchForm value={searched} handleChange={handleChange} />
+      {props.filtered_profiles.map(item => (
         <Card key={item.id}>
           <Image src={item.avatarUrl} alt={item.name} />
           <Meta title={item.name} description={'user or groomer'}></Meta>
@@ -28,6 +45,7 @@ function RenderProfileListPage(props) {
 const mapStateToProps = state => {
   return {
     profiles: state.profiles,
+    filtered_profiles: state.filtered_profiles,
   };
 };
 

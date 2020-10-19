@@ -2,11 +2,17 @@ import Form from 'antd/lib/form/Form';
 import React from 'react';
 import { FormButton, FormInput } from '../../common';
 
-function SearchForm() {
+function SearchForm(props) {
   return (
     <div>
       <Form>
-        <FormInput labelId={'Search By Name  '} />
+        <input
+          placeholder={'Search By Name  '}
+          value={props.value}
+          onChange={props.handleChange}
+          onSubmit={props.handleSubmit}
+        />
+
         <FormButton isDisabled={false} buttonText={'Submit'} />
       </Form>
     </div>
