@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import FormInput from '../../common/FormInput';
 import Axios from 'axios';
+import { connect } from 'react-redux';
+// import { populateGroomer } from '../../../state/actions';
 
 const RenderEditGroomerProfile = props => {
   const [info, setInfo] = useState('');
@@ -17,6 +19,8 @@ const RenderEditGroomerProfile = props => {
   //   .post('', info)
   //   .then(res => {
   //       .push(res);
+  //       props.populateGroomer(info)
+  //       props.history.push("/Profile")
   //   })
   // };
 
@@ -38,7 +42,15 @@ const RenderEditGroomerProfile = props => {
   );
 };
 
-export default RenderEditGroomerProfile;
+const mapStateToProps = state => {
+  return {
+    groomerInfo: state.groomerInfo,
+  };
+};
+
+export default connect(mapStateToProps, {
+  /*populateGroomer*/
+})(RenderEditGroomerProfile);
 
 // Don't forget your prop types! It will save you a lot of debugging headache as you add more features.
 RenderEditGroomerProfile.propTypes = {

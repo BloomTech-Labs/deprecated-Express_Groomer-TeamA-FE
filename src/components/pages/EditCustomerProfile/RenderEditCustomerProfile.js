@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import FormInput from '../../common/FormInput';
 import Axios from 'axios';
+import { connect } from 'react-redux';
+// import { populateCustomer } from '../../../state/actions';
 
 const RenderEditCustomerProfile = props => {
   const [info, setInfo] = useState('');
@@ -17,6 +19,8 @@ const RenderEditCustomerProfile = props => {
   //   .post('', info)
   //   .then(res => {
   //       .push(res);
+  //       props.populateCustomer(info)
+  //       props.history.push("/Profile")
   //   })
   // };
 
@@ -38,7 +42,15 @@ const RenderEditCustomerProfile = props => {
   );
 };
 
-export default RenderEditCustomerProfile;
+const mapStateToProps = state => {
+  return {
+    customerInfo: state.customerInfo,
+  };
+};
+
+export default connect(mapStateToProps, {
+  /*populateCustomer*/
+})(RenderEditCustomerProfile);
 
 // Don't forget your prop types! It will save you a lot of debugging headache as you add more features.
 RenderEditCustomerProfile.propTypes = {
