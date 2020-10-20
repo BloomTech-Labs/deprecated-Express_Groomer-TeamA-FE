@@ -1,7 +1,13 @@
-import { POPULATE } from '../actions/index';
+import {
+  POPULATE,
+  POPULATE_GROOMER,
+  POPULATE_CUSTOMER,
+} from '../actions/index';
 
 const initialState = {
   profiles: [],
+  customerInfo: {},
+  groomerInfo: {},
 };
 
 export const appReducer = (state = initialState, action) => {
@@ -12,7 +18,16 @@ export const appReducer = (state = initialState, action) => {
         ...state,
         profiles: state.profiles.append(action.payload),
       };
-
+    case POPULATE_GROOMER:
+      return {
+        ...state,
+        groomerInfo: action.payload,
+      };
+    case POPULATE_CUSTOMER:
+      return {
+        ...state,
+        customerInfo: action.payload,
+      };
     default:
       return state;
   }

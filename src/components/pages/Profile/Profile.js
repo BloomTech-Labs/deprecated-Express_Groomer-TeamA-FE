@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useOktaAuth } from '@okta/okta-react';
+import { connect } from 'react-redux';
+
+import RenderGroomerProfile from './RenderGroomerProfile';
+import RenderCustomerProfile from './RenderCustomerProfile';
+
+import { populateCustomer, populateGroomer } from '../../../state/actions';
 
 import { getUserProfileInfo } from '../../../api';
 
@@ -9,54 +14,51 @@ import { getUserProfileInfo } from '../../../api';
 
 // Here is an example of using our reusable List component to display some list data to the UI.
 const Profile = props => {
-  const { authState, authService } = useOktaAuth();
-  const [userInfo, setUserInfo] = useState(null);
+  const [isGroomer, setIsGroomer] = useState(null);
 
   useEffect(() => {
-    // Pull user info from Okta
-
-    if (!authState.isAuthenticated) {
-      // When user isn't authenticated, forget any user info
-      setUserInfo(null);
+    // Make get request for user profile to api
+    const userInfo = getUserProfileInfo(props.match.params.id);
+    if (userInfo.user_type === 'groomer') {
+      props.populateGroomer(userInfo);
+      setIsGroomer(true);
     } else {
-      authService.getUser().then(info => {
-        // setUserInfo(info);
-        props.setProfilesToState(info);
-      });
-      //const info = getUserProfileInfo(props.match.params.id)
-      //setUserInfo(info)
+      props.populateCustomer(userInfo);
+      setIsGroomer(false);
     }
-  }, [authService, authState]);
-  console.log(props.profiles);
+    // check if user is customer or groomer
+    // call appropriate action
+    // set isGroomer
+  }, [props]);
 
   //email, name, zoneinfo, pet_name, pet_type, pet_pic, pet_bio
   return (
     <div>
-      {userInfo && (
-        <div>
-          <h1>{userInfo.name}</h1>
-          <h2>{userInfo.preferred_username}</h2>
-          <h3>{userInfo.zoneinfo}</h3>
-          <p>Boris</p>
-          <p>Guinea Pig</p>
-          <img
-            src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.petco.com%2Fshop%2Fen%2Fpetcostore%2Fproduct%2Fguinea-pig-5004527--1&psig=AOvVaw0axb1LWhZaGC9d2PD18cXH&ust=1602811053423000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCJDVx862tewCFQAAAAAdAAAAABAF"
-            alt="guinea pig"
-          />
-          <p>Fun loving pig</p>
-        </div>
+      {isGroomer ? (
+        <RenderGroomerProfile userInfo={props.groomerInfo} />
+      ) : (
+        <RenderCustomerProfile userInfo={props.customerInfo} />
       )}
     </div>
     // <List
     //   // Here we are passing our Axios request helper function as a callback.
-    //   getItemsData={() => getProfileData(authState)}
+    //   getItemsData={() => getUserProfileInfo(props.match.params.id)}
     //   // Here we are passing in a component we want to show whilst waiting for our API request
     //   // to complete.
     //   LoadingComponent={() => <div>Loading Profiles...</div>}
     //   // Here we are passing in a component that receives our new data and returns our JSX elements.
-    //   RenderItems={RenderProfileListPage}
+    //   RenderItems={isGroomer ? <RenderGroomerProfile userInfo={props.groomerInfo}/> : <RenderCustomerProfile userInfo={props.customerInfo}/>}
     // />
   );
 };
 
-export default Profile;
+const mapStateToProps = state => {
+  return {
+    customerInfo: state.customerInfo,
+    groomerInfo: state.groomerInfo,
+  };
+};
+
+export default connect(mapStateToProps, { populateCustomer, populateGroomer })(
+  Profile
+);
