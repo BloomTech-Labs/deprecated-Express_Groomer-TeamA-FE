@@ -1,23 +1,40 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-
+import SearchForm from '../Search/SearchForm';
 import { connect } from 'react-redux';
+import { Image, Card } from 'antd';
+
+const { Meta } = Card;
 
 function RenderProfileListPage(props) {
-  console.log(props.profiles);
+  const [searched, setSearched] = useState('');
+  const [filtered, setFiltered] = useState([]);
+
+  useEffect(() => {
+    const filteredChars = props.data.filter(char =>
+      char.name.toLowerCase().includes(searched)
+    );
+
+    setFiltered(filteredChars);
+  }, [searched, props.data]);
+
+  function handleChange(e) {
+    e.preventDefault();
+    setSearched(e.target.value);
+  }
+
   return (
     <div>
       <p>
         <Link to="/">Home</Link>
       </p>
-      {props.data.map(item => (
-        <figure key={item.id}>
-          <img src={item.avatarUrl} alt={item.name} />
-          <figcaption>
-            <h3>{item.name}</h3>
-          </figcaption>
-        </figure>
+      <SearchForm value={searched} handleChange={handleChange} />
+      {filtered.map(item => (
+        <Card key={item.id}>
+          <Image src={item.avatarUrl} alt={item.name} />
+          <Meta title={item.name} description={'user or groomer'}></Meta>
+        </Card>
       ))}
     </div>
   );
@@ -28,7 +45,7 @@ const mapStateToProps = state => {
     profiles: state.profiles,
   };
 };
-
+// Line below i believe is causing prop type errors
 export default connect(mapStateToProps, {})(RenderProfileListPage);
 
 // Don't forget your prop types! It will save you a lot of debugging headache as you add more features.
@@ -41,6 +58,16 @@ RenderProfileListPage.propTypes = {
       name: PropTypes.string,
       email: PropTypes.string,
       avatar: PropTypes.string,
+    })
+  ).isRequired,
+  profiles: PropTypes.arrayOf(
+    PropTypes.shape({
+      avatarUrl: PropTypes.string,
+      created_at: PropTypes.string,
+      email: PropTypes.string,
+      id: PropTypes.string,
+      name: PropTypes.string,
+      updated_at: PropTypes.string,
     })
   ).isRequired,
 };
