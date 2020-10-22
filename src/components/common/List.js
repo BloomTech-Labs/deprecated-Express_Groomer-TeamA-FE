@@ -35,6 +35,7 @@ export default List;
 
 List.propTypes = {
   LoadingComponent: PropTypes.func.isRequired,
-  RenderItems: PropTypes.func.isRequired,
+  RenderItems: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
+    .isRequired,
   getItemsData: PropTypes.func.isRequired,
 };
