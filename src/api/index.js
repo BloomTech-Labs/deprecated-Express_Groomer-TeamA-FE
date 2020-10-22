@@ -1,9 +1,8 @@
 import axios from 'axios';
-import { setProfilesToState } from '../state/actions';
+import { setProfilesToState, populateUser } from '../state/actions';
 import { store } from '../index';
 // we will define a bunch of API calls here.
 const apiUrl = `${process.env.REACT_APP_API_URI}/profiles`;
-const beUrl = 'our url';
 
 const sleep = time =>
   new Promise(resolve => {
@@ -40,6 +39,11 @@ const apiAuthGet = authHeader => {
   return axios.get(apiUrl, { headers: authHeader });
 };
 
+const apiAuthGetUser = (authHeader, id) => {
+  const path = `${apiUrl}/${id}`;
+  return axios.get(path, { headers: authHeader });
+};
+
 const getProfileData = authState => {
   try {
     return apiAuthGet(getAuthHeader(authState)).then(response => {
@@ -54,17 +58,18 @@ const getProfileData = authState => {
   }
 };
 
-const getUserProfileInfo = id => {
-  const path = `${beUrl}/profile/${id}`;
+const getUserProfileData = (authState, id) => {
   try {
-    return axios.get(path).then(res => {
-      console.log(res);
-      return res;
+    return apiAuthGetUser(getAuthHeader(authState), id).then(response => {
+      store.dispatch(populateUser(response.data));
+      console.log(response.data);
     });
   } catch (error) {
-    console.log(error);
-    return null;
+    return new Promise(() => {
+      console.log(error);
+      return [];
+    });
   }
 };
 
-export { sleep, getExampleData, getProfileData, getDSData, getUserProfileInfo };
+export { sleep, getExampleData, getProfileData, getDSData, getUserProfileData };
