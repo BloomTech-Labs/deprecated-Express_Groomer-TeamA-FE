@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { setProfilesToState } from '../state/actions';
 import { store } from '../index';
+import { populateUser } from '../state/actions';
 // we will define a bunch of API calls here.
 const apiUrl = `${process.env.REACT_APP_API_URI}/profiles`;
 
@@ -39,6 +40,10 @@ const apiAuthGet = authHeader => {
   return axios.get(apiUrl, { headers: authHeader });
 };
 
+const apiAuthEdit = (authHeader, data) => {
+  return axios.put(apiUrl, data, { headers: authHeader });
+};
+
 const getProfileData = authState => {
   try {
     return apiAuthGet(getAuthHeader(authState)).then(response => {
@@ -53,4 +58,17 @@ const getProfileData = authState => {
   }
 };
 
-export { sleep, getExampleData, getProfileData, getDSData };
+const editProfileData = (authState, data) => {
+  try {
+    return apiAuthEdit(getAuthHeader(authState), data).then(response => {
+      store.dispatch(populateUser(response.profile));
+    });
+  } catch (error) {
+    return new Promise(() => {
+      console.log(error);
+      return [];
+    });
+  }
+};
+
+export { sleep, getExampleData, getProfileData, getDSData, editProfileData };

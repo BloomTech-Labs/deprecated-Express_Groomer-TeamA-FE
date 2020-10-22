@@ -1,28 +1,20 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import FormInput from '../../common/FormInput';
-import Axios from 'axios';
 import { connect } from 'react-redux';
-// import { populateCustomer } from '../../../state/actions';
+import { editProfileData } from '../../../api';
 
 const RenderEditCustomerProfile = props => {
   const [info, setInfo] = useState('');
 
-  const handleChange = e => {
-    e.preventDefault();
-    setInfo({ ...info, [e.target.name]: e.target.value });
-  };
+  // const handleChange = e => {
+  //   e.preventDefault();
+  //   setInfo({ ...info, [e.target.name]: e.target.value });
+  // };
 
   // const submitHandler = () => {
-  //   Axios
-  //   .post('', info)
-  //   .then(res => {
-  //       .push(res);
-  //       props.populateCustomer(info)
-  //       props.history.push("/Profile")
-  //   })
-  // };
+  // editProfileData(authState, info)
+  // }
 
   return (
     <div>
@@ -48,9 +40,7 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, {
-  /*populateCustomer*/
-})(RenderEditCustomerProfile);
+export default connect(mapStateToProps, {})(RenderEditCustomerProfile);
 
 // Don't forget your prop types! It will save you a lot of debugging headache as you add more features.
 RenderEditCustomerProfile.propTypes = {

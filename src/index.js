@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import {
   BrowserRouter as Router,
@@ -23,7 +23,6 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { appReducer } from './state/reducers/appReducer';
-import { EditGroomerProfile } from './components/pages/EditGroomerProfile copy';
 
 export const store = createStore(appReducer, applyMiddleware(thunk));
 

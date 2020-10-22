@@ -1,28 +1,22 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import FormInput from '../../common/FormInput';
-import Axios from 'axios';
 import { connect } from 'react-redux';
-// import { populateGroomer } from '../../../state/actions';
+// import { editProfileData } from '../../../api';
+// import { useOktaAuth } from '@okta/okta-react';
 
 const RenderEditGroomerProfile = props => {
-  const [info, setInfo] = useState('');
+  // const [info, setInfo] = useState('');
+  // const { authState } = useOktaAuth();
 
-  const handleChange = e => {
-    e.preventDefault();
-    setInfo({ ...info, [e.target.name]: e.target.value });
-  };
+  // const handleChange = e => {
+  //   e.preventDefault();
+  //   setInfo({ ...info, [e.target.name]: e.target.value });
+  // };
 
   // const submitHandler = () => {
-  //   Axios
-  //   .post('', info)
-  //   .then(res => {
-  //       .push(res);
-  //       props.populateGroomer(info)
-  //       props.history.push("/Profile")
-  //   })
-  // };
+  //   editProfileData(authState, info)
+  // }
 
   return (
     <div>
@@ -44,13 +38,11 @@ const RenderEditGroomerProfile = props => {
 
 const mapStateToProps = state => {
   return {
-    groomerInfo: state.groomerInfo,
+    currentUser: state.currentUser,
   };
 };
 
-export default connect(mapStateToProps, {
-  /*populateGroomer*/
-})(RenderEditGroomerProfile);
+export default connect(mapStateToProps, {})(RenderEditGroomerProfile);
 
 // Don't forget your prop types! It will save you a lot of debugging headache as you add more features.
 RenderEditGroomerProfile.propTypes = {

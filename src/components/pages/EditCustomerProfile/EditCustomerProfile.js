@@ -6,7 +6,7 @@ import { getProfileData } from '../../../api';
 import { List } from '../../common';
 
 import RenderEditCustomerProfile from './RenderEditCustomerProfile';
-import RenderEditGroomerProfile from '../EditGroomerProfile copy/RenderEditGroomerProfile';
+import RenderEditGroomerProfile from '../EditGroomerProfile/RenderEditGroomerProfile';
 
 // Here is an example of using our reusable List component to display some list data to the UI.
 const EditCustomerProfile = () => {
