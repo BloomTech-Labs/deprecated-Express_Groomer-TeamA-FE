@@ -1,0 +1,25 @@
+.profile-list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+
+    .profile-card{
+        margin:150px auto;
+        width:250px;
+        position: relative;
+        box-shadow: 5px 5px 15px black;
+        border-radius: 15%;
+
+        transition: transform 1s;
+        transform-style: preserve-3d;
+        .card-image{
+            border-top-left-radius:15%;
+            border-top-right-radius:15%;
+        }
+
+       
+      
+    }
+   
+}
