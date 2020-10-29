@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import SearchForm from '../Search/SearchForm';
 import { connect } from 'react-redux';
-import { Image, Card, Avatar, Rate } from 'antd';
+import { Card, Rate } from 'antd';
 import './profileList.scss';
 import { ScissorOutlined } from '@ant-design/icons';
+import ProfileCard from './ProfileCard';
 const { Meta } = Card;
 
 function RenderProfileListPage(props) {
@@ -26,39 +27,14 @@ function RenderProfileListPage(props) {
   }
 
   return (
-    <div>
+    <div className="profile-container">
       <p>
         <Link to="/">Home</Link>
       </p>
       <SearchForm value={searched} handleChange={handleChange} />
       <div className="profile-list">
         {filtered.map(item => (
-          <Card
-            className="profile-card spin"
-            key={item.id}
-            cover={
-              <img
-                className="card-image"
-                src={item.avatarUrl}
-                alt={item.name}
-              />
-            }
-          >
-            <Meta
-              className="card-data"
-              title={item.name}
-              description={'user or groomer'}
-            ></Meta>
-            <br />
-            Rating:
-            <br />
-            <Rate
-              character={<ScissorOutlined />}
-              style={{ 'margin-top': '5%', color: 'black' }}
-              disabled
-              defaultValue={5}
-            />
-          </Card>
+          <ProfileCard item={item} />
         ))}
       </div>
     </div>
