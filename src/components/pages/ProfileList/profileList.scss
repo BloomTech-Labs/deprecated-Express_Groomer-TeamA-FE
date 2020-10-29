@@ -1,27 +1,50 @@
-.profile-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+.profile-container {
+    background-image: url("https://i.pinimg.com/originals/a3/00/48/a300488ab0270733e98fec22965cf9ed.jpg");
+    height:150vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+  .profile-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 
-  .profile-card {
-    margin: 100px auto;
-    width: 250px;
-    position: relative;
-    box-shadow: 5px 5px 15px black;
-    border-radius: 15%;
-    transform-style: preserve-3d;
-    transition: all 0.7s linear;
-    z-index: 1;
+    .profile-card {
+      
+      width: 250px;
+      position: relative;
+      box-shadow: 5px 5px 15px black;
+      border-radius: 15%;
+      transform-style: preserve-3d;
+      transition: all 0.7s linear;
+      z-index: 1;
+      backface-visibility: hidden;
 
-    perspective: 1000px;
+      perspective: 1000px;
 
-    &:hover {
-      transform: rotateY(180deg);
-    }
+      
 
-    .card-image {
-      border-top-left-radius: 15%;
-      border-top-right-radius: 15%;
+      .card-image {
+        border-top-left-radius: 15%;
+        border-top-right-radius: 15%;
+      }
     }
   }
+}
+
+
+.card-container{
+    margin-top: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    button{
+        margin-top:7%;
+    }
+}
+
+.hidden{
+    display: none;
 }

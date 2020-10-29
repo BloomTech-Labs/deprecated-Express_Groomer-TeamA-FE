@@ -3,11 +3,8 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import SearchForm from '../Search/SearchForm';
 import { connect } from 'react-redux';
-import { Card, Rate } from 'antd';
 import './profileList.scss';
-import { ScissorOutlined } from '@ant-design/icons';
 import ProfileCard from './ProfileCard';
-const { Meta } = Card;
 
 function RenderProfileListPage(props) {
   const [searched, setSearched] = useState('');
@@ -32,6 +29,7 @@ function RenderProfileListPage(props) {
         <Link to="/">Home</Link>
       </p>
       <SearchForm value={searched} handleChange={handleChange} />
+      <h1>Meet our Groomers</h1>
       <div className="profile-list">
         {filtered.map(item => (
           <ProfileCard item={item} />
