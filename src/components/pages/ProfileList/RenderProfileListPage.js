@@ -28,8 +28,15 @@ function RenderProfileListPage(props) {
       <p>
         <Link to="/">Home</Link>
       </p>
-      <SearchForm value={searched} handleChange={handleChange} />
-      <h1>Meet our Groomers</h1>
+
+      <div className="middle-content">
+        <h1>Meet our Groomers</h1>
+        <SearchForm value={searched} handleChange={handleChange} />
+        <Link exact to="/map-view">
+          <div className="map-link">Switch to map view</div>
+        </Link>
+      </div>
+
       <div className="profile-list">
         {filtered.map(item => (
           <ProfileCard item={item} />

@@ -2,6 +2,7 @@ import React from 'react';
 import './profileList.scss';
 import { Card, Rate, Button } from 'antd';
 import { ScissorOutlined } from '@ant-design/icons';
+import { Tooltip } from 'antd';
 const { Meta } = Card;
 
 function CardFront(props) {
@@ -32,8 +33,12 @@ function CardFront(props) {
         defaultValue={5}
       />
       <br />
-      <Button>View Profile</Button>
-      <button onClick={() => props.handleClick()}>click to flip</button>
+      <Tooltip title={`View ${props.item.name}'s Profile`}>
+        <Button>View Profile</Button>
+      </Tooltip>
+      <button className="curl-bottom-left" onClick={() => props.handleClick()}>
+        click to flip
+      </button>
     </Card>
   );
 }
