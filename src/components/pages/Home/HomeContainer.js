@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
 
 import RenderHomePage from './RenderHomePage';
+import { getUserProfileData } from '../../../api';
 
 function HomeContainer({ LoadingComponent }) {
   const { authState, authService } = useOktaAuth();
@@ -25,6 +26,8 @@ function HomeContainer({ LoadingComponent }) {
         isSubscribed = false;
         return setUserInfo(null);
       });
+    const id = userInfo.id;
+    getUserProfileData(authState, id);
     return () => (isSubscribed = false);
   }, [memoAuthService]);
 

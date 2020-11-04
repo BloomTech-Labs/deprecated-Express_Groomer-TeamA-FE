@@ -8,8 +8,8 @@ function MapBox() {
   const [viewport, setViewport] = useState({
     latitude: 0,
     longitude: 0,
-    width: '30vw',
-    height: '30vh',
+    width: '50vw',
+    height: '50vh',
     zoom: 10,
   });
 
@@ -29,9 +29,9 @@ function MapBox() {
   console.log(viewport);
 
   return (
-    <div>
+    <div className="map-container">
       <h1>MAPBOX component</h1>
-      <div className="map-container">
+      <div className="map-box">
         <ReactMapGL
           {...viewport}
           mapboxApiAccessToken={process.env.REACT_APP_API_KEY}

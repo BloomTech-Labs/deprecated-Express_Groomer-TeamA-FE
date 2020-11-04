@@ -1,18 +1,25 @@
-
-.map-container{
-    position: relative;
-    left: 20%;
+.map-container {
+  background-image: url('https://i.pinimg.com/originals/a3/00/48/a300488ab0270733e98fec22965cf9ed.jpg');
+  height: 150vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}
+.map-box {
+  position: relative;
+  left: 25%;
+  top:15%;
+  width:40%;
 }
 
+.marker-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
 
-.marker-btn{
-    background: none;
-    border: none;
-    cursor:pointer;
-  }
-  
-  
-.marker-btn img{
-    width:45px;
-    height:45px;
-  }
+.marker-btn img {
+  width: 45px;
+  height: 45px;
+}
