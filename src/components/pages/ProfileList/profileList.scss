@@ -62,3 +62,35 @@
 .hidden {
   display: none;
 }
+
+
+@keyframes pulse-grow {
+	to {
+		transform: scale(1.1);
+	}
+}
+
+i{
+  font-size: 3rem;
+  color:cyan;
+  text-shadow: 2px 1px 1px black;
+  &:hover {
+		animation-name: pulse-grow;
+		animation-duration: .3s;
+		animation-timing-function: linear;
+		animation-iteration-count: infinite;
+		animation-direction: alternate;
+	}
+}
+
+
+.map-link-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  p{
+    color:black;
+  }
+}

@@ -32,8 +32,9 @@ function RenderProfileListPage(props) {
       <div className="middle-content">
         <h1>Meet our Groomers</h1>
         <SearchForm value={searched} handleChange={handleChange} />
-        <Link exact to="/map-view">
-          <div className="map-link">Switch to map view</div>
+        <Link className="map-link-container" to="/map-view">
+          <i className="fas fa-map-marked-alt"></i>
+          <p>Map View</p>
         </Link>
       </div>
 
