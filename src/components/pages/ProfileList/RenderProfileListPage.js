@@ -26,11 +26,15 @@ function RenderProfileListPage(props) {
   return (
     <div className="profile-container">
       <p>
-        <Link to="/">Home</Link>
+        <Link to="/">
+          <i className="fas fa-house-user home-icon"></i>
+        </Link>
       </p>
 
       <div className="middle-content">
-        <h1>Meet our Groomers</h1>
+        <div className="sandbox sandbox-hello-people">
+          <h1 className="profile-list-header">Meet Our Groomers</h1>
+        </div>
         <SearchForm value={searched} handleChange={handleChange} />
         <Link className="map-link-container" to="/map-view">
           <i className="fas fa-map-marked-alt"></i>

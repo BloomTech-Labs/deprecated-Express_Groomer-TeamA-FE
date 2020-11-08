@@ -9,17 +9,39 @@
 .map-box {
   position: relative;
   left: 25%;
-  top:15%;
-  width:40%;
+  top: 15%;
+  width: 40%;
 }
 
 .marker-btn {
   background: none;
   border: none;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .marker-btn img {
   width: 45px;
   height: 45px;
+}
+
+@keyframes pulse {
+	25% {
+		transform: scale(1.1);
+	}
+
+	75% {
+		transform: scale(.9);
+	}
+}
+
+.fa-cut {
+  font-size: 2.5rem;
+  color: white;
+  animation-name: pulse;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }

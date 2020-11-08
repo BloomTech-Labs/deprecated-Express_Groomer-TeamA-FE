@@ -5,6 +5,8 @@
   box-sizing: border-box;
 }
 
+@import url(https://fonts.googleapis.com/css?family=Amatic+SC:700);
+
 .profile-container {
   background-image: url('https://i.pinimg.com/originals/a3/00/48/a300488ab0270733e98fec22965cf9ed.jpg');
   height: 150vh;
@@ -41,7 +43,7 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
-
+    margin-bottom: 3%;
     .map-link {
       border: 2px solid red;
     }
@@ -49,7 +51,7 @@
 }
 
 .card-container {
-  margin-top: 6%;
+  margin-top: 3%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -63,34 +65,71 @@
   display: none;
 }
 
-
 @keyframes pulse-grow {
-	to {
-		transform: scale(1.1);
-	}
+  to {
+    transform: scale(1.1);
+  }
 }
 
-i{
+i {
   font-size: 3rem;
-  color:cyan;
+  color: rgba(0, 174, 255, 0.829);
   text-shadow: 2px 1px 1px black;
   &:hover {
-		animation-name: pulse-grow;
-		animation-duration: .3s;
-		animation-timing-function: linear;
-		animation-iteration-count: infinite;
-		animation-direction: alternate;
-	}
+    animation-name: pulse-grow;
+    animation-duration: 0.3s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+  }
 }
 
-
-.map-link-container{
+.map-link-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
-  p{
-    color:black;
+  p {
+    color: black;
   }
+}
+
+.profile-list-header {
+  font-family: 'Amatic SC', cursive;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 6em;
+  color: #fff;
+
+  text-shadow: 0.05em 0.05em 0 rgba(0, 0, 0, 0.1);
+  
+  &::before {
+    height: 0.05em;
+    width: 100%;
+    content: '';
+    background-color: #fff;
+    display: block;
+    border-radius: 0.5em;
+    margin-bottom: 0.1em;
+    box-shadow: 0.05em 0.05em 0 rgba(0, 0, 0, 0.1);
+
+   
+  }
+  &::after {
+    height: 0.05em;
+    width: 100%;
+    content: '';
+    background-color: #fff;
+    display: block;
+    border-radius: 0.5em;
+    margin-top: 0.1em;
+    box-shadow: 0.05em 0.05em 0 rgba(0, 0, 0, 0.1);
+   
+  }
+}
+
+.home-icon{
+  margin-left:1%;
+  margin-top:1%;
 }

@@ -3,6 +3,7 @@ import ReactMapGL, { Marker } from 'react-map-gl';
 import './mapBox.scss';
 import Geocoder from 'react-map-gl-geocoder';
 import { Link } from 'react-router-dom';
+import MapModal from './MapModal';
 const groomers = [{ name: 'groomer1', lat: 42.7478, lon: -73.7605 }];
 
 function MapBox() {
@@ -61,12 +62,7 @@ function MapBox() {
         >
           {groomers.map(groomer => (
             <Marker latitude={groomer.lat} longitude={groomer.lon}>
-              <button className="marker-btn">
-                <img
-                  src="https://www.pinclipart.com/picdir/middle/45-451842_black-small-dog-silhouette-svg-png-icon-free.png"
-                  alt="dog icon"
-                />
-              </button>
+              <MapModal groomer={groomer} />
             </Marker>
           ))}
           <Geocoder
