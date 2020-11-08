@@ -4,7 +4,14 @@ import './mapBox.scss';
 import Geocoder from 'react-map-gl-geocoder';
 import { Link } from 'react-router-dom';
 import MapModal from './MapModal';
-const groomers = [{ name: 'groomer1', lat: 42.7478, lon: -73.7605 }];
+import { Tooltip } from 'antd';
+
+const groomers = [
+  { name: 'groomer1', lat: 42.7478, lon: -73.7605 },
+  { name: 'groomer2', lat: 42.6478, lon: -73.6605 },
+  { name: 'groomer3', lat: 42.8478, lon: -73.8605 },
+  { name: 'groomer4', lat: 42.9478, lon: -73.9605 },
+];
 
 function MapBox() {
   const [viewport, setViewport] = useState({
@@ -48,10 +55,18 @@ function MapBox() {
 
   return (
     <div className="map-container">
-      <h1>MAPBOX component</h1>
-      <Link to="/profile-list">
-        <i class="fas fa-clipboard-list"></i>
-      </Link>
+      <div className="map-top-content">
+        <h1 className="map-header">Search For Groomers</h1>
+        <Tooltip title="List-View">
+          <span>
+            {' '}
+            <Link to="/profile-list">
+              <i class="fas fa-clipboard-list"></i>
+            </Link>
+          </span>
+        </Tooltip>
+      </div>
+
       <div className="map-box">
         <ReactMapGL
           {...viewport}
@@ -69,7 +84,7 @@ function MapBox() {
             mapRef={mapRef}
             onViewportChange={handleGeocoderViewportChange}
             mapboxApiAccessToken={process.env.REACT_APP_API_KEY}
-            position="top-left"
+            position="top-right"
           />
         </ReactMapGL>
       </div>

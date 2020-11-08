@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Modal, Button } from 'antd';
 import './mapBox.scss';
 import { Link } from 'react-router-dom';
+import { Tooltip } from 'antd';
+import ProfileCard from '../pages/ProfileList/ProfileCard';
 
 function MapModal(props) {
   const [visible, setVisible] = useState(false);
@@ -16,20 +18,16 @@ function MapModal(props) {
 
   return (
     <>
-      <Link>
-        <i onClick={() => showModal()} className="fas fa-cut"></i>
-      </Link>
-
-      <Modal
-        title={props.groomer.name}
-        visible={visible}
-        onOk={handleSubmit}
-        onCancel={handleSubmit}
-      >
-        <h3>Groomer/Business info</h3>
-        <p>Business</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
+      <Tooltip title={props.groomer.name}>
+        <span>
+          <Link>
+            <i onClick={() => showModal()} className="fas fa-cut"></i>
+          </Link>
+        </span>
+      </Tooltip>
+      ,
+      <Modal visible={visible} onOk={handleSubmit} onCancel={handleSubmit}>
+        <ProfileCard item={props.groomer} />
       </Modal>
     </>
   );

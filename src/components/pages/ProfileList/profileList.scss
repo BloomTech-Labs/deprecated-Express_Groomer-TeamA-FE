@@ -14,6 +14,7 @@
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
+  
   .profile-list {
     display: flex;
     flex-wrap: wrap;
@@ -103,33 +104,14 @@ i {
   color: #fff;
 
   text-shadow: 0.05em 0.05em 0 rgba(0, 0, 0, 0.1);
-  
-  &::before {
-    height: 0.05em;
-    width: 100%;
-    content: '';
-    background-color: #fff;
-    display: block;
-    border-radius: 0.5em;
-    margin-bottom: 0.1em;
-    box-shadow: 0.05em 0.05em 0 rgba(0, 0, 0, 0.1);
-
-   
-  }
-  &::after {
-    height: 0.05em;
-    width: 100%;
-    content: '';
-    background-color: #fff;
-    display: block;
-    border-radius: 0.5em;
-    margin-top: 0.1em;
-    box-shadow: 0.05em 0.05em 0 rgba(0, 0, 0, 0.1);
-   
-  }
 }
 
-.home-icon{
-  margin-left:1%;
-  margin-top:1%;
+.home-icon {
+  margin-left: 1%;
+  margin-top: 1%;
+  width:10%;
+}
+
+a{
+  display: inline;
 }
