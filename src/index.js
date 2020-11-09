@@ -61,9 +61,11 @@ function App() {
           component={() => <HomePage LoadingComponent={LoadingComponent} />}
         />
         <SecureRoute
-          path="/profile"
+          path="/profile/:id"
           exact
-          component={() => <Profile LoadingComponent={LoadingComponent} />}
+          render={props => (
+            <Profile {...props} LoadingComponent={LoadingComponent} />
+          )}
         />
         <SecureRoute path="/example-list" component={ExampleListPage} />
 

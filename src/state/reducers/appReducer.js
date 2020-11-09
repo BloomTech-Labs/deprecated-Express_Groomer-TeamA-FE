@@ -1,7 +1,8 @@
-import { POPULATE } from '../actions/index';
+import { POPULATE, POPULATE_USER } from '../actions/index';
 
 const initialState = {
   profiles: [],
+  currentUser: {},
 };
 
 export const appReducer = (state = initialState, action) => {
@@ -10,10 +11,12 @@ export const appReducer = (state = initialState, action) => {
       console.log(action.payload);
       return {
         ...state,
-        profiles: action.payload,
+        profiles: state.profiles.append(action.payload),
       };
-
-    default:
-      return state;
+    case POPULATE_USER:
+      return {
+        ...state,
+        currentUser: action.payload,
+      };
   }
 };
