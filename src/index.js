@@ -20,11 +20,11 @@ import { LoadingComponent } from './components/common';
 import { EditCustomerProfile } from './components/pages/EditCustomerProfile';
 import { Profile } from './components/pages/Profile';
 import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
+
 import { Provider } from 'react-redux';
 import { appReducer } from './state/reducers/appReducer';
 
-export const store = createStore(appReducer, applyMiddleware(thunk));
+export const store = createStore(appReducer);
 
 ReactDOM.render(
   <Provider store={store}>
