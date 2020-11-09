@@ -3,9 +3,8 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import SearchForm from '../Search/SearchForm';
 import { connect } from 'react-redux';
-import { Image, Card } from 'antd';
-
-const { Meta } = Card;
+import './profileList.scss';
+import ProfileCard from './ProfileCard';
 
 function RenderProfileListPage(props) {
   const [searched, setSearched] = useState('');
@@ -25,17 +24,17 @@ function RenderProfileListPage(props) {
   }
 
   return (
-    <div>
+    <div className="profile-container">
       <p>
         <Link to="/">Home</Link>
       </p>
       <SearchForm value={searched} handleChange={handleChange} />
-      {filtered.map(item => (
-        <Card key={item.id}>
-          <Image src={item.avatarUrl} alt={item.name} />
-          <Meta title={item.name} description={'user or groomer'}></Meta>
-        </Card>
-      ))}
+      <h1>Meet our Groomers</h1>
+      <div className="profile-list">
+        {filtered.map(item => (
+          <ProfileCard item={item} />
+        ))}
+      </div>
     </div>
   );
 }
@@ -45,7 +44,7 @@ const mapStateToProps = state => {
     profiles: state.profiles,
   };
 };
-// Line below i believe is causing prop type errors
+
 export default connect(mapStateToProps, {})(RenderProfileListPage);
 
 // Don't forget your prop types! It will save you a lot of debugging headache as you add more features.
