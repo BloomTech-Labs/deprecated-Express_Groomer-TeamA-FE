@@ -15,6 +15,7 @@ function RenderProfileListPage(props) {
     const filteredChars = props.data.filter(char =>
       char.name.toLowerCase().includes(searched)
     );
+    console.log(props.profiles);
 
     setFiltered(filteredChars);
   }, [searched, props.data]);
@@ -46,7 +47,7 @@ function RenderProfileListPage(props) {
 
       <div className="profile-list">
         {filtered.map(item => (
-          <ProfileCard item={item} />
+          <ProfileCard key={item.id} item={item} />
         ))}
       </div>
     </div>

@@ -9,7 +9,7 @@
 
 .profile-container {
   background-image: url('https://i.pinimg.com/originals/a3/00/48/a300488ab0270733e98fec22965cf9ed.jpg');
-  height: 150vh;
+  height: 100%;
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -23,6 +23,7 @@
     .profile-card {
       width: 250px;
       position: relative;
+      margin-bottom:10%;
       box-shadow: 10px 10px 15px rgb(0, 0, 0);
       border-radius: 15%;
       transform-style: preserve-3d;
