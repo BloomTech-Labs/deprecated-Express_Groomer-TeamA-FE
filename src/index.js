@@ -75,6 +75,7 @@ function App() {
         <SecureRoute path="/map-view" component={MapBox} />
         <Route component={NotFoundPage} />
       </Switch>
+
       <Footer />
     </Security>
   );

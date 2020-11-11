@@ -1,7 +1,17 @@
 .footer-container {
-  background-color: #db6400;
+  background-color: #f39233;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
+  .footer-icons {
+    display: flex;
+    justify-content: space-around;
+    border:2px solid red;
+    width:80%;
+    .footer-icon {
+      margin-top: 17px;
+      
+    }
+  }
 
   img {
     widows: 100px;

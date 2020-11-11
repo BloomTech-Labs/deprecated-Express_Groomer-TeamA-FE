@@ -6,6 +6,10 @@ function Footer() {
   return (
     <div className="footer-container">
       <img src={logo} />
+      <div className="footer-icons">
+        <i className="fab fa-facebook footer-icon"></i>
+        <i className="fab fa-twitter footer-icon"></i>
+      </div>
     </div>
   );
 }
