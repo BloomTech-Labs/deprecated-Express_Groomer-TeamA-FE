@@ -116,3 +116,14 @@ i {
 a{
   display: inline;
 }
+
+.conditional{
+  height:47vh;
+  display: flex;
+  justify-content: center;
+  .conditional-header{
+    font-size: 4rem;
+    color:#f1e189;
+    text-shadow: 1px 1px 0 black;
+  }
+}

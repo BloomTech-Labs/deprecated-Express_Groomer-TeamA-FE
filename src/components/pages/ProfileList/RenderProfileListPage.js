@@ -44,12 +44,17 @@ function RenderProfileListPage(props) {
           </span>
         </Tooltip>
       </div>
-
-      <div className="profile-list">
-        {filtered.map(item => (
-          <ProfileCard key={item.id} item={item} />
-        ))}
-      </div>
+      {filtered.length <= 0 ? (
+        <div className="conditional">
+          <h1 className="conditional-header">No Matches! </h1>
+        </div>
+      ) : (
+        <div className="profile-list">
+          {filtered.map(item => (
+            <ProfileCard key={item.id} item={item} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
