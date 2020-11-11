@@ -8,15 +8,17 @@ function RenderHomePage(props) {
   const { userInfo, authService } = props;
   return (
     <div className="home-container">
-      <img src={logo} />
-      <h1 className="home-header">Hi {userInfo.name} Welcome to Pet-XPRess!</h1>
+      <img src={logo} alt="dog and cat together" />
+      <h1 className="home-header">Hi {userInfo.name} Welcome to Pet-XPress!</h1>
       <div className="home-middle">
         <p>
           Pet-Xpress gives customers a way to link with groomers in their area!
           Get started Below
         </p>
         <p>
-          <Link to="/profile-list">Profiles Example</Link>
+          <Link to="/profile-list">
+            <i className="fas fa-user-circle">Profiles</i>
+          </Link>
         </p>
         <p>
           <Link to="/example-list">Example List of Items</Link>
