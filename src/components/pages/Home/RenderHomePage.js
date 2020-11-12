@@ -1,19 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '../../common';
+import logo from '../../../assets/9f5a8b6a-18d6-4a28-9e98-1eee8c05b05a_200x200.png';
+import './homepage.scss';
 
 function RenderHomePage(props) {
   const { userInfo, authService } = props;
   return (
-    <div>
-      <h1>Hi {userInfo.name} Welcome to Labs Basic SPA</h1>
-      <div>
+    <div className="home-container">
+      <img src={logo} alt="dog and cat together" />
+      <h1 className="home-header">Hi {userInfo.name} Welcome to Pet-XPress!</h1>
+      <div className="home-middle">
         <p>
-          This is an example of a common example of how we'd like for you to
-          approach components.
+          Pet-Xpress gives customers a way to link with groomers in their area!
+          Get started Below
         </p>
         <p>
-          <Link to="/profile-list">Profiles Example</Link>
+          <Link to="/profile-list">
+            <i className="fas fa-user-circle">Profiles</i>
+          </Link>
         </p>
         <p>
           <Link to="/example-list">Example List of Items</Link>

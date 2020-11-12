@@ -5,12 +5,16 @@
   .footer-icons {
     display: flex;
     justify-content: flex-end;
-    margin-right:4%;
+    margin-right:5%;
     width:30%;
+    
     .footer-icon {
-      margin-top: 17px;
-      margin-left:3%;
-      
+      margin-top: 35px;
+      margin-left:7%;
+      font-size: 2rem;
+      &:hover {
+        color:white;
+      }
     }
   }
   .footer-name{
