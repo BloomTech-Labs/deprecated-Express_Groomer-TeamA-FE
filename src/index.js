@@ -24,6 +24,7 @@ import { createStore, applyMiddleware } from 'redux';
 
 import { Provider } from 'react-redux';
 import { appReducer } from './state/reducers/appReducer';
+import MapBox from './components/Map/MapBox';
 
 export const store = createStore(appReducer);
 
@@ -70,6 +71,7 @@ function App() {
         <SecureRoute path="/example-list" component={ExampleListPage} />
 
         <SecureRoute path="/profile-list" component={ProfileListPage} />
+        <SecureRoute path="/map-view" component={MapBox} />
         <Route component={NotFoundPage} />
       </Switch>
     </Security>

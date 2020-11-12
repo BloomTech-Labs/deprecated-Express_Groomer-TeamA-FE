@@ -11,12 +11,14 @@ export const appReducer = (state = initialState, action) => {
       console.log(action.payload);
       return {
         ...state,
-        profiles: state.profiles.append(action.payload),
+        profiles: action.payload,
       };
     case POPULATE_USER:
       return {
         ...state,
         currentUser: action.payload,
       };
+    default:
+      return state;
   }
 };

@@ -1,0 +1,65 @@
+.map-container {
+  background-image: url('https://i.pinimg.com/originals/a3/00/48/a300488ab0270733e98fec22965cf9ed.jpg');
+  height: 150vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}
+.map-box {
+  position: relative;
+  left: 25%;
+  top: 15%;
+  width: 40%;
+}
+
+.marker-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.marker-btn img {
+  width: 45px;
+  height: 45px;
+}
+
+@keyframes pulse {
+	25% {
+		transform: scale(1.1);
+	}
+
+	75% {
+		transform: scale(.9);
+	}
+}
+
+.fa-cut {
+  font-size: 2.5rem;
+  color: white;
+  animation-name: pulse;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+
+.map-header {
+  font-family: 'Amatic SC', cursive;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 5em;
+  color: #fff;
+
+  text-shadow: 0.05em 0.05em 0 rgba(0, 0, 0, 0.1);
+ 
+}
+
+.map-top-content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

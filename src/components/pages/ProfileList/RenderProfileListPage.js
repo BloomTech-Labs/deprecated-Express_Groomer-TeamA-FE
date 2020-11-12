@@ -5,6 +5,7 @@ import SearchForm from '../Search/SearchForm';
 import { connect } from 'react-redux';
 import './profileList.scss';
 import ProfileCard from './ProfileCard';
+import { Tooltip } from 'antd';
 
 function RenderProfileListPage(props) {
   const [searched, setSearched] = useState('');
@@ -25,11 +26,24 @@ function RenderProfileListPage(props) {
 
   return (
     <div className="profile-container">
-      <p>
-        <Link to="/">Home</Link>
-      </p>
-      <SearchForm value={searched} handleChange={handleChange} />
-      <h1>Meet our Groomers</h1>
+      <Link to="/">
+        <i className="fas fa-house-user home-icon"></i>
+      </Link>
+
+      <div className="middle-content">
+        <div className="sandbox sandbox-hello-people">
+          <h1 className="profile-list-header">Meet Our Groomers</h1>
+        </div>
+        <SearchForm value={searched} handleChange={handleChange} />
+        <Tooltip title="Map-View">
+          <span>
+            <Link to="/map-view">
+              <i className="fas fa-globe-americas"></i>
+            </Link>
+          </span>
+        </Tooltip>
+      </div>
+
       <div className="profile-list">
         {filtered.map(item => (
           <ProfileCard item={item} />
