@@ -5,3 +5,4 @@ Object.defineProperty(window, 'backingStorePixelRatio', {
     },
   }),
 });
+

@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import SearchForm from '../Search/SearchForm';
 import { connect } from 'react-redux';
-import { Image, Card } from 'antd';
-
-const { Meta } = Card;
+import './profileList.scss';
+import ProfileCard from './ProfileCard';
+import { Tooltip } from 'antd';
 
 function RenderProfileListPage(props) {
   const [searched, setSearched] = useState('');
@@ -15,6 +15,7 @@ function RenderProfileListPage(props) {
     const filteredChars = props.data.filter(char =>
       char.name.toLowerCase().includes(searched)
     );
+    console.log(props.profiles);
 
     setFiltered(filteredChars);
   }, [searched, props.data]);
@@ -25,17 +26,35 @@ function RenderProfileListPage(props) {
   }
 
   return (
-    <div>
-      <p>
-        <Link to="/">Home</Link>
-      </p>
-      <SearchForm value={searched} handleChange={handleChange} />
-      {filtered.map(item => (
-        <Card key={item.id}>
-          <Image src={item.avatarUrl} alt={item.name} />
-          <Meta title={item.name} description={'user or groomer'}></Meta>
-        </Card>
-      ))}
+    <div className="profile-container">
+      <Link to="/">
+        <i className="fas fa-house-user home-icon"></i>
+      </Link>
+
+      <div className="middle-content">
+        <div className="sandbox sandbox-hello-people">
+          <h1 className="profile-list-header">Meet Our Groomers</h1>
+        </div>
+        <SearchForm value={searched} handleChange={handleChange} />
+        <Tooltip title="Map-View">
+          <span>
+            <Link to="/map-view">
+              <i className="fas fa-globe-americas"></i>
+            </Link>
+          </span>
+        </Tooltip>
+      </div>
+      {filtered.length <= 0 ? (
+        <div className="conditional">
+          <h1 className="conditional-header">No Matches! </h1>
+        </div>
+      ) : (
+        <div className="profile-list">
+          {filtered.map(item => (
+            <ProfileCard key={item.id} item={item} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
@@ -45,7 +64,7 @@ const mapStateToProps = state => {
     profiles: state.profiles,
   };
 };
-// Line below i believe is causing prop type errors
+
 export default connect(mapStateToProps, {})(RenderProfileListPage);
 
 // Don't forget your prop types! It will save you a lot of debugging headache as you add more features.

@@ -1,0 +1,28 @@
+.footer-container {
+  background-color: #f39233;
+  display: flex;
+  justify-content: space-between;
+  .footer-icons {
+    display: flex;
+    justify-content: flex-end;
+    margin-right:5%;
+    width:30%;
+    
+    .footer-icon {
+      margin-top: 35px;
+      margin-left:7%;
+      font-size: 2rem;
+      &:hover {
+        color:white;
+      }
+    }
+  }
+  .footer-name{
+      margin-left:25%;
+      margin-top:3%;
+  }
+  img {
+    widows: 100px;
+    height: 100px;
+  }
+}
