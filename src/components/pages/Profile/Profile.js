@@ -10,7 +10,7 @@ const Profile = props => {
   useEffect(() => {
     // Check current user type to see if groomer or not
 
-    if (props.currentUser.user_type === 'groomer') {
+    if (props.currentUser.is_groomer) {
       setIsGroomer(true);
     } else {
       setIsGroomer(false);

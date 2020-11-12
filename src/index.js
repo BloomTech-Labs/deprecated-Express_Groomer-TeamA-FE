@@ -23,6 +23,8 @@ import { createStore, applyMiddleware } from 'redux';
 
 import { Provider } from 'react-redux';
 import { appReducer } from './state/reducers/appReducer';
+import MapBox from './components/Map/MapBox';
+import Footer from './components/Footer/Footer';
 
 export const store = createStore(appReducer);
 
@@ -72,8 +74,11 @@ function App() {
           path="/edit-profile/:id"
           render={props => <EditCustomerProfile {...props} />}
         />
+        <SecureRoute path="/map-view" component={MapBox} />
         <Route component={NotFoundPage} />
       </Switch>
+
+      <Footer />
     </Security>
   );
 }
