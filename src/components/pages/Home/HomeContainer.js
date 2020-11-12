@@ -26,9 +26,6 @@ function HomeContainer({ LoadingComponent }) {
         isSubscribed = false;
         return setUserInfo(null);
       });
-    const id = userInfo.id;
-    getUserProfileData(authState, id);
-    return () => (isSubscribed = false);
   }, [memoAuthService]);
 
   return (
