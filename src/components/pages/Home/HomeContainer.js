@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
+import { store } from '../../../index';
 
 import RenderHomePage from './RenderHomePage';
-import { getUserProfileData } from '../../../api';
 
 function HomeContainer({ LoadingComponent }) {
   const { authState, authService } = useOktaAuth();
   const [userInfo, setUserInfo] = useState(null);
-  // eslint-disable-next-line
+  // // eslint-disable-next-line
   const [memoAuthService] = useMemo(() => [authService], []);
 
   useEffect(() => {
@@ -26,9 +26,6 @@ function HomeContainer({ LoadingComponent }) {
         isSubscribed = false;
         return setUserInfo(null);
       });
-    const id = userInfo.id;
-    getUserProfileData(authState, id);
-    return () => (isSubscribed = false);
   }, [memoAuthService]);
 
   return (
@@ -37,7 +34,11 @@ function HomeContainer({ LoadingComponent }) {
         <LoadingComponent message="Fetching user profile..." />
       )}
       {authState.isAuthenticated && userInfo && (
-        <RenderHomePage userInfo={userInfo} authService={authService} />
+        <RenderHomePage
+          userInfo={userInfo}
+          authService={authService}
+          authState={authState}
+        />
       )}
     </>
   );
