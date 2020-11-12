@@ -28,7 +28,7 @@ function CardFront(props) {
       <br />
       <Rate
         character={<ScissorOutlined />}
-        style={{ 'margin-top': '5%', color: 'cyan' }}
+        style={{ marginTop: '5%', color: 'cyan' }}
         disabled
         defaultValue={5}
       />
