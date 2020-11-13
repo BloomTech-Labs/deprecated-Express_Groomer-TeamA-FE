@@ -21,11 +21,13 @@ import { LoadingComponent } from './components/common';
 import { Profile } from './components/pages/Profile';
 
 import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
+
 import { Provider } from 'react-redux';
 import { appReducer } from './state/reducers/appReducer';
+import MapBox from './components/Map/MapBox';
+import Footer from './components/Footer/Footer';
 
-export const store = createStore(appReducer, applyMiddleware(thunk));
+export const store = createStore(appReducer);
 
 ReactDOM.render(
   <Provider store={store}>
@@ -72,8 +74,11 @@ function App() {
         <SecureRoute path="/example-list" component={ExampleListPage} />
 
         <SecureRoute path="/profile-list" component={ProfileListPage} />
+        <SecureRoute path="/map-view" component={MapBox} />
         <Route component={NotFoundPage} />
       </Switch>
+
+      <Footer />
     </Security>
   );
 }

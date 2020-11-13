@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
-import { store } from '../../../index';
 
 import RenderHomePage from './RenderHomePage';
 

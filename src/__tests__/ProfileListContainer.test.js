@@ -7,8 +7,9 @@ import {
   getByTestId,
 } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
-
+import { Provider } from 'react-redux';
 import { ProfileListPage } from '../components/pages/ProfileList';
+
 jest.mock('../api', () => {
   return { getProfileData: () => Promise.resolve([]) };
 });

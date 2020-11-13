@@ -18,11 +18,6 @@ export const appReducer = (state = initialState, action) => {
         ...state,
         currentUser: action.payload,
       };
-    case POPULATE_EMAIL:
-      return {
-        ...state,
-        currentUserEmail: action.payload,
-      };
     default:
       return state;
   }

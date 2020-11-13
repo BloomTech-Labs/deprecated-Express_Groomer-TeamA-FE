@@ -31,12 +31,12 @@ const Profile = props => {
         console.log(err);
       });
 
-    // if (props.currentUser.user_type === 'groomer') {
-    //   setIsGroomer(true);
-    // } else {
-    //   setIsGroomer(false);
-    // }
-  }, []);
+    if (props.currentUser.is_groomer) {
+      setIsGroomer(true);
+    } else {
+      setIsGroomer(false);
+    }
+  }, [props]);
 
   // console.log(res)
   // console.log(err)

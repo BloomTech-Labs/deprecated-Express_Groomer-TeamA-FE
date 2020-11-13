@@ -1,0 +1,29 @@
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url('https://png.pngtree.com/thumb_back/fw800/back_our/20190621/ourmid/pngtree-light-blue-pet-dog-poster-background-image_197821.jpg');
+ 
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+.home-middle {
+  height: 48vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top:2%;
+}
+
+.home-header {
+    font-family: 'Amatic SC', cursive;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 6em;
+    color: #01c5c4;
+  
+    text-shadow: 1px 1px 1px black;
+}
