@@ -26,6 +26,8 @@ import { appReducer } from './state/reducers/appReducer';
 import MapBox from './components/Map/MapBox';
 import Footer from './components/Footer/Footer';
 
+import 'antd/dist/antd.css';
+
 export const store = createStore(appReducer);
 
 ReactDOM.render(
@@ -62,7 +64,7 @@ function App() {
           component={() => <HomePage LoadingComponent={LoadingComponent} />}
         />
         <SecureRoute
-          path="/profile/:id"
+          path="/myprofile"
           exact
           render={props => (
             <Profile {...props} LoadingComponent={LoadingComponent} />
@@ -71,7 +73,7 @@ function App() {
         <SecureRoute path="/example-list" component={ExampleListPage} />
         <SecureRoute path="/profile-list" component={ProfileListPage} />
         <SecureRoute
-          path="/edit-profile/:id"
+          path="/editprofile"
           render={props => <EditCustomerProfile {...props} />}
         />
         <SecureRoute path="/map-view" component={MapBox} />
