@@ -17,4 +17,5 @@ test('loads a profile list', () => {
   // );
   // const element = getByText(/item/i);
   // expect(element.textContent).toBe(data[0].name);
+  expect('test').toBe('test');
 });
