@@ -8,12 +8,12 @@ function SearchForm(props) {
     <form>
       <Tooltip title="Search by Groomer Name">
         <input
-          data-testid="buttonText"
           placeholder={'Search By Name  '}
           value={props.value}
           onChange={props.handleChange}
           onSubmit={props.handleSubmit}
         />
+        <button data-testid="buttonText">Submit</button>
       </Tooltip>
     </form>
   );
