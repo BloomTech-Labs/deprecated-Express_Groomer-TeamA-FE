@@ -6,5 +6,5 @@ afterEach(cleanup);
 
 it('Should take a snapshot', () => {
   const { getByTestId } = render(<SearchForm />);
-  expect(getByTestId('buttonText')).toHaveTextContent('Submit');
+  expect(getByTestId('tip-text')).toHaveTextContent('Search by Groomer Name');
 });

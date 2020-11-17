@@ -6,9 +6,8 @@ import './searchForm.scss';
 function SearchForm(props) {
   return (
     <form>
-      <Tooltip title="Search by Groomer Name">
+      <Tooltip data-testid="tip-text" title="Search by Groomer Name">
         <input
-          data-testid="buttonText"
           placeholder={'Search By Name  '}
           value={props.value}
           onChange={props.handleChange}
