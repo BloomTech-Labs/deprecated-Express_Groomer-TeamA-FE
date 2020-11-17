@@ -5,6 +5,7 @@ import Geocoder from 'react-map-gl-geocoder';
 import { Link } from 'react-router-dom';
 import MapModal from './MapModal';
 import { Tooltip } from 'antd';
+import NavBar from '../../Navigation/NavBar';
 
 const groomers = [
   { name: 'groomer1', lat: 42.7478, lon: -73.7605 },
@@ -55,6 +56,7 @@ function MapBox() {
 
   return (
     <div className="map-container">
+      <NavBar />
       <div className="map-top-content">
         <h1 className="map-header">Search For Groomers</h1>
         <Tooltip title="List-View">
