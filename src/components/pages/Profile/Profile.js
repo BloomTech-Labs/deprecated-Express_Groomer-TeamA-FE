@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useMemo } from 'react';
-
+import { connect } from 'react-redux';
 import { useOktaAuth } from '@okta/okta-react';
 
 import RenderGroomerProfile from './RenderGroomerProfile';
@@ -11,6 +11,7 @@ const Profile = props => {
   const { authState, authService } = useOktaAuth();
   const [memoAuthService] = useMemo(() => [authService], []);
   const [isGroomer, setIsGroomer] = useState(true);
+  const [user, isUser] = useState(null);
 
   useEffect(() => {
     // Check current user type to see if groomer or not
@@ -30,25 +31,30 @@ const Profile = props => {
       .catch(err => {
         console.log(err);
       });
-
-    if (props.currentUser.is_groomer) {
+    if (props.currentUser.user_type === 'Groomer') {
       setIsGroomer(true);
     } else {
       setIsGroomer(false);
     }
-  }, [props]);
+  }, []);
 
-  // console.log(res)
-  // console.log(err)
+  console.log('state', props.currentUser);
+
   return (
     <div>
       {isGroomer ? (
-        <RenderGroomerProfile userInfo={props.groomerInfo} />
+        <RenderGroomerProfile userInfo={props.currentUser} />
       ) : (
-        <RenderCustomerProfile userInfo={props.customerInfo} />
+        <RenderCustomerProfile userInfo={props.currentUser} />
       )}
     </div>
   );
 };
 
-export default Profile;
+const mapStateToProps = state => {
+  return {
+    currentUser: state.currentUser,
+  };
+};
+
+export default connect(mapStateToProps, {})(Profile);

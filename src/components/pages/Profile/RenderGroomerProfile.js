@@ -1,6 +1,6 @@
 import React from 'react';
 
-const RenderGroomerProfile = props => {
+const RenderGroomerProfile = ({ userInfo }) => {
   return (
     <div>
       {/* {userInfo && (

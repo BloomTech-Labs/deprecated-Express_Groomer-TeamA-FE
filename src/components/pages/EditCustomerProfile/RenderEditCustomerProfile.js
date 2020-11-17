@@ -5,15 +5,11 @@ import { connect } from 'react-redux';
 import { editProfileData } from '../../../api';
 import { Form, Input, InputNumber, Button } from 'antd';
 import { useOktaAuth } from '@okta/okta-react';
+import './edit-profile.css';
 
 const RenderEditCustomerProfile = props => {
   const [info, setInfo] = useState('');
   const { authState } = useOktaAuth();
-
-  const handleChange = e => {
-    e.preventDefault();
-    setInfo({ ...info, [e.target.name]: e.target.value });
-  };
 
   const submitHandler = values => {
     editProfileData(authState, values);
@@ -24,26 +20,37 @@ const RenderEditCustomerProfile = props => {
       <p>
         <Link to="/">Home</Link>
       </p>
-      <Form onFinish={submitHandler}>
-        <Form.Item
-          rules={[
-            {
-              required: true,
-              message: 'Please input your name!',
-            },
-          ]}
-          name="name"
-          label="name"
-        >
-          <Input />
-        </Form.Item>
-        {/* <Form.Item placeholder={user && user.email} name={info.email} labelId="Email:" />
-          <Form.Item placeholder={user && user.zone} name={info.zone} labelId="Zone:" />
-          <Form.Item placeholder={user && user.pet_name} name={info.pet_name} labelId="Pet Name:" /> */}
-        <Button type="primary" htmlType="submit">
-          Submit
-        </Button>
-      </Form>
+      <div className="form-container">
+        <Form onFinish={submitHandler}>
+          <Form.Item
+            rules={[
+              {
+                required: true,
+                message: 'Please input your name!',
+              },
+            ]}
+            name="name"
+            label="Name"
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            rules={[
+              {
+                required: true,
+                message: 'Please input your email!',
+              },
+            ]}
+            name="name"
+            label="Email"
+          >
+            <Input />
+          </Form.Item>
+          <Button type="primary" htmlType="submit">
+            Submit
+          </Button>
+        </Form>
+      </div>
     </div>
   );
 };

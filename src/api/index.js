@@ -82,7 +82,7 @@ const getUserProfileData = (authState, id) => {
   try {
     return apiAuthGetUser(header, id)
       .then(response => {
-        store.dispatch(populateUser(response));
+        store.dispatch(populateUser(response.data));
         return response.data;
       })
       .catch(err => {
