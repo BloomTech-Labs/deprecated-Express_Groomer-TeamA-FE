@@ -1,14 +1,14 @@
-import { POPULATE, POPULATE_USER } from '../actions/index';
+import { POPULATE, POPULATE_USER, POPULATE_EMAIL } from '../actions/index';
 
 const initialState = {
   profiles: [],
+  currentUserEmail: null,
   currentUser: {},
 };
 
 export const appReducer = (state = initialState, action) => {
   switch (action.type) {
     case POPULATE:
-      console.log(action.payload);
       return {
         ...state,
         profiles: action.payload,

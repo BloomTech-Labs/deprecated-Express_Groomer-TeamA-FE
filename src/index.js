@@ -60,10 +60,12 @@ function App() {
         <SecureRoute
           path="/"
           exact
-          component={() => <HomePage LoadingComponent={LoadingComponent} />}
+          render={props => (
+            <HomePage {...props} LoadingComponent={LoadingComponent} />
+          )}
         />
         <SecureRoute
-          path="/profile/:id"
+          path="/myprofile"
           exact
           render={props => (
             <Profile {...props} LoadingComponent={LoadingComponent} />

@@ -39,9 +39,10 @@ const apiAuthGet = authHeader => {
   return axios.get(apiUrl, { headers: authHeader });
 };
 
-const apiAuthGetUser = (authHeader, id) => {
-  const path = `${apiUrl}/${id}`;
-  return axios.get(path, { headers: authHeader });
+const apiAuthGetUser = async (authHeader, id) => {
+  // const path = `${apiUrl}/${id}`;
+  const response = await axios.get(`${apiUrl}/${id}`, { headers: authHeader });
+  return response;
 };
 
 const getProfileData = authState => {
@@ -59,17 +60,30 @@ const getProfileData = authState => {
 };
 
 const getUserProfileData = (authState, id) => {
+  const header = getAuthHeader(authState);
+
   try {
-    return apiAuthGetUser(getAuthHeader(authState), id).then(response => {
-      store.dispatch(populateUser(response.data));
-      console.log(response.data);
-    });
+    return apiAuthGetUser(header, id)
+      .then(response => {
+        store.dispatch(populateUser(response));
+        return response.data;
+      })
+      .catch(err => {
+        console.log(err);
+      });
   } catch (error) {
     return new Promise(() => {
-      console.log(error);
+      console.log(`Error: ${error}`);
       return [];
     });
   }
 };
 
-export { sleep, getExampleData, getProfileData, getDSData, getUserProfileData };
+export {
+  sleep,
+  getExampleData,
+  getProfileData,
+  getDSData,
+  getUserProfileData,
+  getAuthHeader,
+};
