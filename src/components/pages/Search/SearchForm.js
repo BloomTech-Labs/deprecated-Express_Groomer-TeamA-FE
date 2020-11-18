@@ -13,6 +13,7 @@ function SearchForm(props) {
           onChange={props.handleChange}
           onSubmit={props.handleSubmit}
         />
+        <button data-testid="buttonText">Submit</button>
       </Tooltip>
     </form>
   );

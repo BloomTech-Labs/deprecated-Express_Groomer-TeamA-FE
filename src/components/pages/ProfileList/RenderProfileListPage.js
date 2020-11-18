@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Router, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import SearchForm from '../Search/SearchForm';
 import { connect } from 'react-redux';
@@ -88,5 +88,5 @@ RenderProfileListPage.propTypes = {
       name: PropTypes.string,
       updated_at: PropTypes.string,
     })
-  ).isRequired,
+  ),
 };
