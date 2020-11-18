@@ -8,6 +8,7 @@ import ProfileCard from './ProfileCard';
 import { Tooltip } from 'antd';
 
 function RenderProfileListPage(props) {
+  //Used local state hooks to handle search funtionality as to not manipulate our Redux state
   const [searched, setSearched] = useState('');
   const [filtered, setFiltered] = useState([]);
 

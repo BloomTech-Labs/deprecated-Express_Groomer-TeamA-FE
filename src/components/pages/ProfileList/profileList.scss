@@ -14,7 +14,7 @@
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
-  
+
   .profiles-list {
     display: flex;
     flex-wrap: wrap;
@@ -23,7 +23,7 @@
     .profiles-card {
       width: 250px;
       position: relative;
-      margin-bottom:10%;
+      margin-bottom: 10%;
       box-shadow: 10px 10px 15px rgb(0, 0, 0);
       border-radius: 15%;
       transform-style: preserve-3d;
@@ -75,7 +75,7 @@
 
 i {
   font-size: 3rem;
-  color:#01c5c4;
+  color: #01c5c4;
   text-shadow: 2px 1px 1px black;
   &:hover {
     animation-name: pulse-grow;
@@ -110,20 +110,20 @@ i {
 .home-icon {
   margin-left: 1%;
   margin-top: 1%;
-  width:10%;
+  width: 10%;
 }
 
-a{
+a {
   display: inline;
 }
 
-.conditional{
-  height:47vh;
+.conditional {
+  height: 47vh;
   display: flex;
   justify-content: center;
-  .conditional-header{
+  .conditional-header {
     font-size: 4rem;
-    color:#f1e189;
+    color: #f1e189;
     text-shadow: 1px 1px 0 black;
   }
 }

@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import MapModal from './MapModal';
 import { Tooltip } from 'antd';
 
+/*Dummy data used to test functionality of the map...should be switched to user information 
+either by connecting to Redux or by prop drilling*/
 const groomers = [
   { name: 'groomer1', lat: 42.7478, lon: -73.7605 },
   { name: 'groomer2', lat: 42.6478, lon: -73.6605 },
@@ -14,6 +16,7 @@ const groomers = [
 ];
 
 function MapBox() {
+  // initial map viewport state
   const [viewport, setViewport] = useState({
     latitude: 0,
     longitude: 0,
@@ -39,6 +42,7 @@ function MapBox() {
   }, []);
 
   useEffect(() => {
+    // gets users location through browser window and sets viewport to users local area
     window.navigator.geolocation.getCurrentPosition(
       position => {
         setViewport({
