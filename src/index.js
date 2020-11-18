@@ -17,9 +17,9 @@ import { ProfileListPage } from './components/pages/ProfileList';
 import { LoginPage } from './components/pages/Login';
 import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
-import { EditCustomerProfile } from './components/pages/EditCustomerProfile';
+import { EditProfile } from './components/pages/EditProfile';
 import { Profile } from './components/pages/Profile';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore } from 'redux';
 
 import { Provider } from 'react-redux';
 import { appReducer } from './state/reducers/appReducer';
@@ -76,7 +76,7 @@ function App() {
         <SecureRoute path="/profile-list" component={ProfileListPage} />
         <SecureRoute
           path="/editprofile"
-          render={props => <EditCustomerProfile {...props} />}
+          render={props => <EditProfile {...props} />}
         />
         <SecureRoute path="/map-view" component={MapBox} />
         <Route component={NotFoundPage} />

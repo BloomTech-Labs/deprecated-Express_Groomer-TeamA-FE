@@ -1,8 +1,7 @@
-import { POPULATE, POPULATE_USER, POPULATE_EMAIL } from '../actions/index';
+import { POPULATE, POPULATE_USER } from '../actions/index';
 
 const initialState = {
   profiles: [],
-  currentUserEmail: null,
   currentUser: {},
 };
 

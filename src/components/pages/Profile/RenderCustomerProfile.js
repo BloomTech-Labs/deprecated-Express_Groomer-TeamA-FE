@@ -13,7 +13,7 @@ const RenderCustomerProfile = ({ userInfo }) => {
         <div className="profile-container">
           <h1>{userInfo.name}</h1>
           <h2>{userInfo.email}</h2>
-          <img id="profile-img" src={userInfo.avatarUrl} alt="image" />
+          <img id="profile-img" src={userInfo.avatarUrl} alt="awesome photo" />
         </div>
       )}
     </div>
