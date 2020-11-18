@@ -13,7 +13,8 @@ function SearchForm(props) {
           onChange={props.handleChange}
           onSubmit={props.handleSubmit}
         />
-        <button data-testid="buttonText">Submit</button>
+        {/* button below is for testing purposes only and has no functionality  */}
+        <button data-testid="tip-text">Submit</button>
       </Tooltip>
     </form>
   );
