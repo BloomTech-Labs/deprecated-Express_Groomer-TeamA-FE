@@ -56,7 +56,6 @@ function MapBox() {
 
   return (
     <div className="map-container">
-      <NavBar />
       <div className="map-top-content">
         <h1 className="map-header">Search For Groomers</h1>
         <Tooltip title="List-View">
