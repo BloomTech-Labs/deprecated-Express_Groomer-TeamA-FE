@@ -21,12 +21,6 @@ function RenderHomePage(props) {
           </Link>
         </p>
         <p>
-          <Link to="/example-list">Example List of Items</Link>
-        </p>
-        <p>
-          <Link to="/datavis">Data Visualizations Example</Link>
-        </p>
-        <p>
           <Link to="/myprofile">My Profile</Link>
         </p>
         <p>

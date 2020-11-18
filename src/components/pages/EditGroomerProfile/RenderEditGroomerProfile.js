@@ -2,36 +2,53 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-// import { editProfileData } from '../../../api';
-// import { useOktaAuth } from '@okta/okta-react';
+import { Form, Input, InputNumber, Button } from 'antd';
+import { editProfileData } from '../../../api';
+import { useOktaAuth } from '@okta/okta-react';
 
 const RenderEditGroomerProfile = props => {
-  // const [info, setInfo] = useState('');
-  // const { authState } = useOktaAuth();
+  const { authState } = useOktaAuth();
 
-  // const handleChange = e => {
-  //   e.preventDefault();
-  //   setInfo({ ...info, [e.target.name]: e.target.value });
-  // };
-
-  // const submitHandler = () => {
-  //   editProfileData(authState, info)
-  // }
+  const submitHandler = values => {
+    editProfileData(authState, values);
+  };
 
   return (
     <div>
       <p>
         <Link to="/">Home</Link>
       </p>
-      {/* <form onSubmit={submitHandler}> */}
-      {/* <FormInput placeholder={user && user.name} name={info.name} labelId="Name:" />
-          <FormInput placeholder={user && user.email} name={info.email} labelId="Email:" />
-          <FormInput placeholder={user && user.zone} name={info.zone} labelId="Zone:" />
-          <FormInput placeholder={user && user.pet_name} name={info.pet_name} labelId="Pet Name:" />
-          <FormInput placeholder={user && user.pet_type} name={info.pet_type} labelId="Pet Type:" />
-          <FormInput placeholder={user && user.pet_bio} name={info.pet_bio} labelId="Pet Bio:" />
-          <FormInput placeholder={user && user.pet_pic} name={info.pet_pic} labelId="Pet Pic:" /> */}
-      {/* </form> */}
+      <div className="form-container">
+        <Form onFinish={submitHandler}>
+          <Form.Item
+            rules={[
+              {
+                required: true,
+                message: 'Please input your name!',
+              },
+            ]}
+            name="name"
+            label="Name"
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            rules={[
+              {
+                required: true,
+                message: 'Please input your email!',
+              },
+            ]}
+            name="name"
+            label="Email"
+          >
+            <Input />
+          </Form.Item>
+          <Button type="primary" htmlType="submit">
+            Submit
+          </Button>
+        </Form>
+      </div>
     </div>
   );
 };

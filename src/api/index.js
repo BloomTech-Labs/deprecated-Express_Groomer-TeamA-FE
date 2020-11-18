@@ -63,11 +63,13 @@ const getProfileData = authState => {
   }
 };
 
-const editProfileData = (authState, data) => {
+const editProfileData = (authState, profile_data) => {
   try {
-    return apiAuthEdit(getAuthHeader(authState), data).then(response => {
-      store.dispatch(populateUser(response.profile));
-    });
+    return apiAuthEdit(getAuthHeader(authState), profile_data).then(
+      response => {
+        store.dispatch(populateUser(response.data));
+      }
+    );
   } catch (error) {
     return new Promise(() => {
       console.log(error);

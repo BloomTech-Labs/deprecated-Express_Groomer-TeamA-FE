@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { connect } from 'react-redux';
 import { useOktaAuth } from '@okta/okta-react';
-
 import RenderGroomerProfile from './RenderGroomerProfile';
 import RenderCustomerProfile from './RenderCustomerProfile';
 

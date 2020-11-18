@@ -1,14 +1,19 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import './profile.css';
 
 const RenderCustomerProfile = ({ userInfo }) => {
   return (
     <div>
-      Welcome, customer!
+      <span className="welcome">
+        <Link to="/">Home</Link>
+        <p>Welcome, customer!</p>
+      </span>
       {userInfo && (
-        <div>
+        <div className="profile-container">
           <h1>{userInfo.name}</h1>
           <h2>{userInfo.email}</h2>
-          <img src={userInfo.avatarUrl} alt="image" />
+          <img id="profile-img" src={userInfo.avatarUrl} alt="image" />
         </div>
       )}
     </div>
