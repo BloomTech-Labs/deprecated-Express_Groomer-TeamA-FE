@@ -39,6 +39,10 @@ const apiAuthGet = authHeader => {
   return axios.get(apiUrl, { headers: authHeader });
 };
 
+const apiAuthEdit = (authHeader, data) => {
+  return axios.put(apiUrl, data, { headers: authHeader });
+};
+
 const apiAuthGetUser = async (authHeader, id) => {
   // const path = `${apiUrl}/${id}`;
   const response = await axios.get(`${apiUrl}/${id}`, { headers: authHeader });
@@ -59,13 +63,28 @@ const getProfileData = authState => {
   }
 };
 
+const editProfileData = (authState, profile_data) => {
+  try {
+    return apiAuthEdit(getAuthHeader(authState), profile_data).then(
+      response => {
+        store.dispatch(populateUser(response.data.profile));
+      }
+    );
+  } catch (error) {
+    return new Promise(() => {
+      console.log(error);
+      return [];
+    });
+  }
+};
+
 const getUserProfileData = (authState, id) => {
   const header = getAuthHeader(authState);
 
   try {
     return apiAuthGetUser(header, id)
       .then(response => {
-        store.dispatch(populateUser(response));
+        store.dispatch(populateUser(response.data));
         return response.data;
       })
       .catch(err => {
@@ -84,6 +103,7 @@ export {
   getExampleData,
   getProfileData,
   getDSData,
+  editProfileData,
   getUserProfileData,
   getAuthHeader,
 };

@@ -17,15 +17,16 @@ import { ProfileListPage } from './components/pages/ProfileList';
 import { LoginPage } from './components/pages/Login';
 import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
-
+import { EditProfile } from './components/pages/EditProfile';
 import { Profile } from './components/pages/Profile';
-
-import { createStore, applyMiddleware } from 'redux';
+import { createStore } from 'redux';
 
 import { Provider } from 'react-redux';
 import { appReducer } from './state/reducers/appReducer';
 import MapBox from './components/Map/MapBox';
 import Footer from './components/Footer/Footer';
+
+import 'antd/dist/antd.css';
 
 export const store = createStore(appReducer);
 
@@ -72,8 +73,11 @@ function App() {
           )}
         />
         <SecureRoute path="/example-list" component={ExampleListPage} />
-
         <SecureRoute path="/profile-list" component={ProfileListPage} />
+        <SecureRoute
+          path="/editprofile"
+          render={props => <EditProfile {...props} />}
+        />
         <SecureRoute path="/map-view" component={MapBox} />
         <Route component={NotFoundPage} />
       </Switch>

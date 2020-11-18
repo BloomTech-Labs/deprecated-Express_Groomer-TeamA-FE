@@ -1,0 +1,33 @@
+.profile-container {
+    margin: 50px;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-container h1 {
+    font-size: 40px;
+    padding: 15px;
+}
+
+.profile-container h2 {
+    font-size: 30px;
+    padding: 15px;
+}
+
+#profile-img {
+    height: 300px;
+    width: 300px;
+    margin: 150px;
+    border: 2px solid white;
+}
+
+.welcome {
+    font-size: 20px;
+    margin-left: 50px;
+}
+
+.welcome p {
+    margin-left: 50px;
+}
