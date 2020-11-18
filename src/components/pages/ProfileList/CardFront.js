@@ -8,7 +8,7 @@ const { Meta } = Card;
 function CardFront(props) {
   return (
     <Card
-      className={'profile-card'}
+      className={'profiles-card'}
       key={props.item.id}
       cover={
         <img

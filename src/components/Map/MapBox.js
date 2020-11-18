@@ -5,7 +5,6 @@ import Geocoder from 'react-map-gl-geocoder';
 import { Link } from 'react-router-dom';
 import MapModal from './MapModal';
 import { Tooltip } from 'antd';
-import NavBar from '../../Navigation/NavBar';
 
 const groomers = [
   { name: 'groomer1', lat: 42.7478, lon: -73.7605 },
