@@ -12,7 +12,7 @@ function ProfileCard(props) {
   };
 
   return (
-    <div className="card-container">
+    <div className="cards-container">
       <ReactCardFlip isFlipped={isFlipped} flipDirection={'horizontal'}>
         <CardFront item={props.item} handleClick={handleClick} />
         <CardBack handleClick={handleClick} />

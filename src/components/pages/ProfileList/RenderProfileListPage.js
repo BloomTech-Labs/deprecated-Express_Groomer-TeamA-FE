@@ -8,6 +8,7 @@ import ProfileCard from './ProfileCard';
 import { Tooltip } from 'antd';
 
 function RenderProfileListPage(props) {
+  //Used local state hooks to handle search funtionality as to not manipulate our Redux state
   const [searched, setSearched] = useState('');
   const [filtered, setFiltered] = useState([]);
 
@@ -26,7 +27,7 @@ function RenderProfileListPage(props) {
   }
 
   return (
-    <div className="profile-container">
+    <div className="profiles-container">
       <Link to="/">
         <i className="fas fa-house-user home-icon"></i>
       </Link>
@@ -49,7 +50,7 @@ function RenderProfileListPage(props) {
           <h1 className="conditional-header">No Matches! </h1>
         </div>
       ) : (
-        <div className="profile-list">
+        <div className="profiles-list">
           {filtered.map(item => (
             <ProfileCard key={item.id} item={item} />
           ))}

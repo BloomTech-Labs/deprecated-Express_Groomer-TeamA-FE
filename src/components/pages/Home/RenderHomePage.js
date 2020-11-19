@@ -17,7 +17,7 @@ function RenderHomePage(props) {
         </p>
         <p>
           <Link to="/profile-list">
-            <i className="fas fa-user-circle">Profiles</i>
+            <i className="fas fa-user-circle profile-icon"> Profiles </i>
           </Link>
         </p>
         <p>

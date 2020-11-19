@@ -8,7 +8,7 @@ const { Meta } = Card;
 function CardFront(props) {
   return (
     <Card
-      className={'profile-card'}
+      className={'profiles-card'}
       key={props.item.id}
       cover={
         <img
@@ -33,6 +33,7 @@ function CardFront(props) {
         defaultValue={5}
       />
       <br />
+      {/* Button below should be made into a link that takes users to individual groomer pages */}
       <Tooltip title={`View ${props.item.name}'s Profile`}>
         <Button>View Profile</Button>
       </Tooltip>

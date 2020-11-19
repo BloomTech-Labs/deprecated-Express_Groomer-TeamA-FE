@@ -7,23 +7,23 @@
 
 @import url(https://fonts.googleapis.com/css?family=Amatic+SC:700);
 
-.profile-container {
+.profiles-container {
   background-image: url('https://i.pinimg.com/originals/a3/00/48/a300488ab0270733e98fec22965cf9ed.jpg');
   height: 100%;
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
-  
-  .profile-list {
+
+  .profiles-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
 
-    .profile-card {
+    .profiles-card {
       width: 250px;
       position: relative;
-      margin-bottom:10%;
+      margin-bottom: 10%;
       box-shadow: 10px 10px 15px rgb(0, 0, 0);
       border-radius: 15%;
       transform-style: preserve-3d;
@@ -52,7 +52,7 @@
   }
 }
 
-.card-container {
+.cards-container {
   margin-top: 3%;
   display: flex;
   flex-direction: column;
@@ -75,7 +75,7 @@
 
 i {
   font-size: 3rem;
-  color:#01c5c4;
+  color: #01c5c4;
   text-shadow: 2px 1px 1px black;
   &:hover {
     animation-name: pulse-grow;
@@ -110,20 +110,20 @@ i {
 .home-icon {
   margin-left: 1%;
   margin-top: 1%;
-  width:10%;
+  width: 10%;
 }
 
-a{
+a {
   display: inline;
 }
 
-.conditional{
-  height:47vh;
+.conditional {
+  height: 47vh;
   display: flex;
   justify-content: center;
-  .conditional-header{
+  .conditional-header {
     font-size: 4rem;
-    color:#f1e189;
+    color: #f1e189;
     text-shadow: 1px 1px 0 black;
   }
 }
