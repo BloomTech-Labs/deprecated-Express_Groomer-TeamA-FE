@@ -1,33 +1,65 @@
+p {
+  margin-bottom: 0px;
+}
 .profile-container {
-    margin: 50px;
-    padding: 50px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  padding: 50px;
+  align-items: center;
+  border: 1px red solid;
 }
 
 .profile-container h1 {
-    font-size: 40px;
-    padding: 15px;
+  font-size: 40px;
+  padding: 15px;
 }
 
 .profile-container h2 {
-    font-size: 30px;
-    padding: 15px;
+  font-size: 30px;
+  padding: 15px;
 }
 
 #profile-img {
-    height: 300px;
-    width: 300px;
-    margin: 150px;
-    border: 2px solid white;
+  height: 300px;
+  width: 300px;
+  margin: 150px;
+  border: 2px solid white;
 }
 
 .welcome {
-    font-size: 20px;
-    margin-left: 50px;
+  font-size: 20px;
+  margin-left: 50px;
 }
 
 .welcome p {
-    margin-left: 50px;
+  margin-left: 50px;
 }
+
+.top-profile-container {
+  margin: 2rem;
+  width: 100%;
+}
+
+/* Forms */
+.form {
+  margin-left: 1%;
+}
+
+.form input[type='text'],
+.form input[type='email'],
+.form input[type='password'],
+.form input[type='date'],
+.form select,
+.form textarea {
+  display: block;
+  width: 100%;
+  padding: 0.4rem;
+  font-size: 1.2rem;
+  border: 1px solid #ccc;
+  background: none;
+  color: black;
+}
+/* input {
+  width: 100%;
+  padding: 0.4rem;
+  font-size: 1.2rem;
+  border: 1px solid #ccc;
+} */
