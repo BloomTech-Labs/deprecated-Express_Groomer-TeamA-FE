@@ -10,7 +10,8 @@ import {
 import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
 import 'antd/dist/antd.less';
 
-import { NotFoundPage } from './components/pages/NotFound';
+import { LandingPage } from './components/pages/Landing';
+// import { NotFoundPage } from './components/pages/NotFound';
 import { ExampleListPage } from './components/pages/ExampleList';
 import { HomePage } from './components/pages/Home';
 import { ProfileListPage } from './components/pages/ProfileList';
@@ -79,7 +80,7 @@ function App() {
           render={props => <EditProfile {...props} />}
         />
         <SecureRoute path="/map-view" component={MapBox} />
-        <Route component={NotFoundPage} />
+        <Route path="/home" component={LandingPage} />
       </Switch>
 
       <Footer />

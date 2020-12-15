@@ -4,9 +4,12 @@ import React from 'react';
 
 function NavBar() {
   return (
-    <div>
-      <h1>NavBar</h1>
-    </div>
+    <nav>
+      <h1>Express Groomer</h1>
+      <li>
+        <a></a>
+      </li>
+    </nav>
   );
 }
 
