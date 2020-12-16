@@ -14,7 +14,12 @@
   padding: 15px;
 }
 
-.profile-container .customer-info {
+.customer-edit-form {
+  width: 100%;
+}
+
+.profile-container .customer-info,
+.customer-edit-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -74,6 +79,7 @@
   height: 100%;
   background-color: #1890ff;
   cursor: pointer;
+  opacity: 0.7;
 }
 
 .add-pets .fa-plus {
