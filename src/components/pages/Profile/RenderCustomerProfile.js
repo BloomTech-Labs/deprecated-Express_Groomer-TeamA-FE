@@ -19,6 +19,9 @@ const RenderCustomerProfile = ({ userInfo }) => {
     });
   }, [userInfo]);
 
+  // Destructure State
+  const { name, email } = userFormData;
+  
   const onChange = e => {
     setUserFormData({ ...userFormData, [e.target.name]: e.target.value });
   };
@@ -28,8 +31,6 @@ const RenderCustomerProfile = ({ userInfo }) => {
     e.preventDefault();
     setUserFormData(userFormData);
   };
-
-  const { name, email } = userFormData;
 
   return (
     <div>
