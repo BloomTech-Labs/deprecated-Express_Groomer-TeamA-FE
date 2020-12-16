@@ -69,7 +69,7 @@ const RenderCustomerProfile = ({ userInfo }) => {
                     <form className="form" onSubmit={e => onSubmit(e)}>
                       <p>
                         Username:{' '}
-                        <FormInput
+                        <input
                           onChange={e => onChange(e)}
                           type="text"
                           value={name}
@@ -78,7 +78,7 @@ const RenderCustomerProfile = ({ userInfo }) => {
                       </p>
                       <p>
                         Email:{' '}
-                        <FormInput
+                        <input
                           onChange={e => onChange(e)}
                           type="text"
                           value={email}
