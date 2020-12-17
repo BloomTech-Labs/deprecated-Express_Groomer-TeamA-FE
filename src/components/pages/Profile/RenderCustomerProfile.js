@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Row, Col, Avatar, Button } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import CustomerInfo from './CustomerInfo';
 import CustomerEditInfo from './CustomerEditInfo';
+import PetCard from './PetCard';
 import './profile.css';
+
+// Ant Design
+import { Menu, Dropdown } from 'antd';
+import { DownOutlined } from '@ant-design/icons';
 
 const RenderCustomerProfile = ({ userInfo }) => {
   const [displayUserInfoInputs, toggleUserInfoInputs] = useState(false);
@@ -21,7 +27,7 @@ const RenderCustomerProfile = ({ userInfo }) => {
 
   // Destructure State
   const { name, email } = userFormData;
-  
+
   const onChange = e => {
     setUserFormData({ ...userFormData, [e.target.name]: e.target.value });
   };
@@ -82,30 +88,8 @@ const RenderCustomerProfile = ({ userInfo }) => {
           </Row>
           <div className="pet-container">
             <Row gutter={[16, 16]}>
-              <Col xs={{ span: 24 }} sm={{ span: 8 }} md={{ span: 8 }}>
-                <div className="customer-pet">
-                  <Avatar size={48} icon={<UserOutlined />} />
-                  <div className="pet-info">
-                    <p>Name: Rusty</p>
-                    <p>Type: Dog</p>
-                    <Button type="primary" size={'medium'}>
-                      More Options
-                    </Button>
-                  </div>
-                </div>
-              </Col>
-              <Col xs={{ span: 24 }} sm={{ span: 8 }} md={{ span: 8 }}>
-                <div className="customer-pet">
-                  <Avatar size={48} icon={<UserOutlined />} />
-                  <div className="pet-info">
-                    <p>Name: Rusty</p>
-                    <p>Type: Dog</p>
-                    <Button type="primary" size={'medium'}>
-                      More Options
-                    </Button>
-                  </div>
-                </div>
-              </Col>
+              <PetCard />
+              <PetCard />
               <Col xs={{ span: 24 }} sm={{ span: 8 }} md={{ span: 8 }}>
                 <div className="add-pets">
                   <i className="fas fa-plus"></i>

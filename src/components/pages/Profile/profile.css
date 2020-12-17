@@ -68,7 +68,7 @@
 .customer-pet {
   display: flex;
   border: 1px solid gray;
-  padding: 20px;
+  padding: 30px;
 }
 
 .add-pets {
