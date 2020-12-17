@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom';
 
 import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
+import { Layout } from 'antd';
 import 'antd/dist/antd.less';
 
 import { LandingPage } from './components/pages/Landing';
@@ -28,6 +29,8 @@ import MapBox from './components/Map/MapBox';
 import Footer from './components/Footer/Footer';
 
 import 'antd/dist/antd.css';
+
+const { Header, Content, Footer: AntFooter } = Layout;
 
 export const store = createStore(appReducer);
 
@@ -55,35 +58,40 @@ function App() {
 
   return (
     <Security {...config} onAuthRequired={authHandler}>
-      <Switch>
-        <Route path="/login" component={LoginPage} />
-        <Route path="/implicit/callback" component={LoginCallback} />
-        {/* any of the routes you need secured should be registered as SecureRoutes */}
-        <SecureRoute
-          path="/"
-          exact
-          render={props => (
-            <HomePage {...props} LoadingComponent={LoadingComponent} />
-          )}
-        />
-        <SecureRoute
-          path="/myprofile"
-          exact
-          render={props => (
-            <Profile {...props} LoadingComponent={LoadingComponent} />
-          )}
-        />
-        <SecureRoute path="/example-list" component={ExampleListPage} />
-        <SecureRoute path="/profile-list" component={ProfileListPage} />
-        <SecureRoute
-          path="/editprofile"
-          render={props => <EditProfile {...props} />}
-        />
-        <SecureRoute path="/map-view" component={MapBox} />
-        <Route path="/home" component={LandingPage} />
-      </Switch>
-
-      <Footer />
+      <Layout>
+        <Content>
+          <Switch>
+            <Route path="/login" component={LoginPage} />
+            <Route path="/implicit/callback" component={LoginCallback} />
+            {/* any of the routes you need secured should be registered as SecureRoutes */}
+            <SecureRoute
+              path="/"
+              exact
+              render={props => (
+                <HomePage {...props} LoadingComponent={LoadingComponent} />
+              )}
+            />
+            <SecureRoute
+              path="/myprofile"
+              exact
+              render={props => (
+                <Profile {...props} LoadingComponent={LoadingComponent} />
+              )}
+            />
+            <SecureRoute path="/example-list" component={ExampleListPage} />
+            <SecureRoute path="/profile-list" component={ProfileListPage} />
+            <SecureRoute
+              path="/editprofile"
+              render={props => <EditProfile {...props} />}
+            />
+            <SecureRoute path="/map-view" component={MapBox} />
+            <Route path="/home" component={LandingPage} />
+          </Switch>
+        </Content>
+        <AntFooter>
+          <Footer />
+        </AntFooter>
+      </Layout>
     </Security>
   );
 }

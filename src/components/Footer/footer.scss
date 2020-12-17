@@ -6,24 +6,30 @@
   .footer-icons {
     display: flex;
     justify-content: flex-end;
-    margin-right:5%;
-    width:30%;
-    
+    margin-right: 5%;
+    width: 30%;
+
     .footer-icon {
       margin-top: 35px;
-      margin-left:7%;
+      margin-left: 7%;
       font-size: 2rem;
       &:hover {
-        color:white;
+        color: white;
       }
     }
   }
-  .footer-name{
-      margin-left:25%;
-      margin-top:3%;
+  .footer-name {
+    margin-left: 25%;
+    margin-top: 3%;
   }
   img {
     widows: 100px;
     height: 100px;
   }
+}
+
+.ant-layout-footer {
+  background: #f39233 !important;
+  color: #f39233 !important;
+  text-align: center;
 }
