@@ -1,10 +1,7 @@
-p {
-  margin-bottom: 0px;
-}
 .profile-container {
-  padding: 50px;
-  align-items: center;
-  border: 1px red solid;
+  margin: 0 auto;
+  max-width: 1140px;
+  padding: 0 15px;
 }
 
 .profile-container h1 {
@@ -17,11 +14,83 @@ p {
   padding: 15px;
 }
 
+.customer-edit-form {
+  width: 100%;
+}
+
+.profile-container .customer-info,
+.customer-edit-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid gray;
+  padding: 30px;
+  height: 100%;
+}
+
+.profile-container .upcoming-appointments-content {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.profile-container .upcoming-appointments {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid gray;
+  padding: 30px;
+}
+
+.current-appointments {
+  margin-right: 20px;
+  padding: 20px;
+  text-align: center;
+  border: 1px solid gray;
+}
+
 #profile-img {
   height: 300px;
   width: 300px;
   margin: 150px;
   border: 2px solid white;
+}
+
+.pet-container {
+  width: 100%;
+  padding: 40px;
+  border: 1px solid gray;
+  margin-bottom: 10px;
+}
+
+.customer-pet {
+  display: flex;
+  border: 1px solid gray;
+  padding: 20px;
+}
+
+.add-pets {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 100%;
+  background-color: #1890ff;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.add-pets .fa-plus {
+  color: #ffffff;
+  font-size: 18px;
+  text-shadow: none;
+  animation: none !important;
+}
+
+.pet-info {
+  margin-left: 20px;
 }
 
 .welcome {
@@ -32,34 +101,3 @@ p {
 .welcome p {
   margin-left: 50px;
 }
-
-.top-profile-container {
-  margin: 2rem;
-  width: 100%;
-}
-
-/* Forms */
-.form {
-  margin-left: 1%;
-}
-
-.form input[type='text'],
-.form input[type='email'],
-.form input[type='password'],
-.form input[type='date'],
-.form select,
-.form textarea {
-  display: block;
-  width: 100%;
-  padding: 0.4rem;
-  font-size: 1.2rem;
-  border: 1px solid #ccc;
-  background: none;
-  color: black;
-}
-/* input {
-  width: 100%;
-  padding: 0.4rem;
-  font-size: 1.2rem;
-  border: 1px solid #ccc;
-} */
