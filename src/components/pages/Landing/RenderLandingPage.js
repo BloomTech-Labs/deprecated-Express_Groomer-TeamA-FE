@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import NavBar from '../../Navigation/NavBar';
 
 function RenderLandingPage(props) {
   return (
     <div>
-      <h1>Welcome to Labs Basic SPA</h1>
+      <NavBar></NavBar>
       <div>
         <p>
           This is an example of how we'd like for you to approach page/routable
