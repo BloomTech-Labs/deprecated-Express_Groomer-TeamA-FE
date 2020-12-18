@@ -11,6 +11,7 @@ import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
 import 'antd/dist/antd.less';
 
 import { LandingPage } from './components/pages/Landing';
+import { LandingPageForGroomers } from './components/pages/LandingForGroomers';
 // import { NotFoundPage } from './components/pages/NotFound';
 import { ExampleListPage } from './components/pages/ExampleList';
 import { HomePage } from './components/pages/Home';
@@ -81,6 +82,7 @@ function App() {
         />
         <SecureRoute path="/map-view" component={MapBox} />
         <Route path="/home" component={LandingPage} />
+        <Route path="/groomers" component={LandingPageForGroomers} />
       </Switch>
 
       <Footer />
