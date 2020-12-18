@@ -82,7 +82,6 @@ function App() {
         <SecureRoute path="/map-view" component={MapBox} />
         <Route path="/home" component={LandingPage} />
       </Switch>
-
       <Footer />
     </Security>
   );

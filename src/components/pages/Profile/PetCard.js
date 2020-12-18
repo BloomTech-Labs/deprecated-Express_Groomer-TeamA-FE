@@ -6,9 +6,41 @@ import { DownOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import { Row, Col, Avatar, Button } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
+// Form
+import VerticalForm from '../../common/VerticalForm';
 
-const PetCard = () => {
+const PetCard = ({ pet }) => {
+  // Dummy Data
+  const PetFormFields = [
+    {
+      data: 'pet_name',
+      displayName: 'Name',
+    },
+    {
+      data: 'color',
+      displayName: 'Color',
+    },
+    {
+      data: 'date_of_birth',
+      displayName: 'DOB',
+    },
+    {
+      data: 'phone_number',
+      displayName: 'Contact',
+    },
+    {
+      data: 'image_url',
+      displayName: 'Image',
+    },
+  ];
+
   // ANT DESIGN //
+  // Vertical Pet Form //
+  const verticalFormSetup = {
+    layout: 'vertical',
+    data: pet,
+  };
+  // Menu
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const showModal = () => {
@@ -22,12 +54,14 @@ const PetCard = () => {
   const handleCancel = () => {
     setIsModalVisible(false);
   };
-  // Menu
   const menu = (
     <Menu>
-      <Menu.Item onClick={showModal}>
+      <Menu.Item>
         <a
-          onClick={e => e.preventDefault()}
+          onClick={e => {
+            e.preventDefault();
+            showModal();
+          }}
           target="_blank"
           rel="noopener noreferrer"
           href="http://www.alipay.com/"
@@ -35,14 +69,16 @@ const PetCard = () => {
           Edit
         </a>
         <Modal
-          title="Basic Modal"
+          title="Edit Pet Information"
           visible={isModalVisible}
           onOk={handleOk}
           onCancel={handleCancel}
         >
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-          <p>Some contents...</p>
+          <VerticalForm
+            setup={verticalFormSetup}
+            data={pet}
+            fields={PetFormFields}
+          ></VerticalForm>
         </Modal>
       </Menu.Item>
       <Menu.Item danger>
@@ -56,20 +92,18 @@ const PetCard = () => {
       </Menu.Item>
     </Menu>
   );
+
   return (
     <Col xs={{ span: 24 }} sm={{ span: 8 }} md={{ span: 8 }}>
       <div className="customer-pet">
         <Avatar size={48} icon={<UserOutlined />} />
         <div className="pet-info">
-          <p>Name: Rusty</p>
-          <p>Type: Dog</p>
+          <p>Name: {pet.pet_name}</p>
+          <p>Color: {pet.color}</p>
           <Dropdown overlay={menu}>
-            <Link
-              className="ant-dropdown-link"
-              onClick={e => e.preventDefault()}
-            >
+            <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
               More Options <DownOutlined />
-            </Link>
+            </a>
           </Dropdown>
         </div>
       </div>

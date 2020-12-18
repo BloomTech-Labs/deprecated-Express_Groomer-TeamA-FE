@@ -12,6 +12,26 @@ import { Menu, Dropdown } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 
 const RenderCustomerProfile = ({ userInfo }) => {
+  // Dummy Data
+  const pets = [
+    {
+      pet_name: 'Rabby',
+      color: 'Red',
+      date_of_birth: '2020-11-02',
+      phone_number: '123456789',
+      image_url:
+        'https://i.pinimg.com/originals/29/29/62/292962d64cdc42f9e8295f5ca56ba1ce.jpg',
+    },
+    {
+      pet_name: 'Doggy',
+      color: 'Beige',
+      date_of_birth: '2010-11-02',
+      phone_number: '123456789',
+      image_url:
+        'https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/other/dog_cool_summer_slideshow/1800x1200_dog_cool_summer_other.jpg',
+    },
+  ];
+
   const [displayUserInfoInputs, toggleUserInfoInputs] = useState(false);
   const [userFormData, setUserFormData] = useState({
     name: '',
@@ -88,8 +108,9 @@ const RenderCustomerProfile = ({ userInfo }) => {
           </Row>
           <div className="pet-container">
             <Row gutter={[16, 16]}>
-              <PetCard />
-              <PetCard />
+              {pets.map(pet => (
+                <PetCard key={pet.pet_name} pet={pet} />
+              ))}
               <Col xs={{ span: 24 }} sm={{ span: 8 }} md={{ span: 8 }}>
                 <div className="add-pets">
                   <i className="fas fa-plus"></i>
