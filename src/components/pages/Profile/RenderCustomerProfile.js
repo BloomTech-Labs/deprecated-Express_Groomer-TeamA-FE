@@ -15,6 +15,7 @@ const RenderCustomerProfile = ({ userInfo }) => {
   // Dummy Data
   const pets = [
     {
+      id: 1,
       pet_name: 'Rabby',
       color: 'Red',
       date_of_birth: '2020-11-02',
@@ -23,6 +24,7 @@ const RenderCustomerProfile = ({ userInfo }) => {
         'https://i.pinimg.com/originals/29/29/62/292962d64cdc42f9e8295f5ca56ba1ce.jpg',
     },
     {
+      id: 2,
       pet_name: 'Doggy',
       color: 'Beige',
       date_of_birth: '2010-11-02',
@@ -31,6 +33,8 @@ const RenderCustomerProfile = ({ userInfo }) => {
         'https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/other/dog_cool_summer_slideshow/1800x1200_dog_cool_summer_other.jpg',
     },
   ];
+
+  const [petData, setPetData] = useState(pets);
 
   const [displayUserInfoInputs, toggleUserInfoInputs] = useState(false);
   const [userFormData, setUserFormData] = useState({
@@ -56,6 +60,24 @@ const RenderCustomerProfile = ({ userInfo }) => {
   const onSubmit = e => {
     e.preventDefault();
     setUserFormData(userFormData);
+  };
+
+  const handleSave = formData => {
+    const newPets = petData.map(newpet => {
+      if (newpet.id === formData.id) {
+        return {
+          id: formData.id,
+          pet_name: formData.pet_name,
+          color: formData.color,
+          date_of_birth: formData.date_of_birth,
+          image_url: formData.image_url,
+          phone_number: formData.phone_number,
+        };
+      } else {
+        return newpet;
+      }
+    });
+    setPetData(newPets);
   };
 
   return (
@@ -108,8 +130,14 @@ const RenderCustomerProfile = ({ userInfo }) => {
           </Row>
           <div className="pet-container">
             <Row gutter={[16, 16]}>
-              {pets.map(pet => (
-                <PetCard key={pet.pet_name} pet={pet} />
+              {petData.map(pet => (
+                <PetCard
+                  key={pet.pet_name}
+                  pet={pet}
+                  handleSave={handleSave}
+                  petData={petData}
+                  setPetData={setPetData}
+                />
               ))}
               <Col xs={{ span: 24 }} sm={{ span: 8 }} md={{ span: 8 }}>
                 <div className="add-pets">

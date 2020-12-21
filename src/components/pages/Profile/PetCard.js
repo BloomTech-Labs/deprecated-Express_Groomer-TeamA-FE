@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 /// Ant Design ///
 // Dropdown ///
 import { Menu, Dropdown, Modal } from 'antd';
@@ -9,7 +9,7 @@ import { UserOutlined } from '@ant-design/icons';
 // Form
 import VerticalForm from '../../common/VerticalForm';
 
-const PetCard = ({ pet }) => {
+const PetCard = ({ pet, petData, handleSave, setPetData }) => {
   // Dummy Data
   const PetFormFields = [
     {
@@ -71,6 +71,8 @@ const PetCard = ({ pet }) => {
         <Modal
           title="Edit Pet Information"
           visible={isModalVisible}
+          cancelText="Cancel"
+          okText="Save"
           onOk={handleOk}
           onCancel={handleCancel}
         >
@@ -78,6 +80,10 @@ const PetCard = ({ pet }) => {
             setup={verticalFormSetup}
             data={pet}
             fields={PetFormFields}
+            handleSave={handleSave}
+            handleOk={handleOk}
+            petData={petData}
+            setPetData={setPetData}
           ></VerticalForm>
         </Modal>
       </Menu.Item>
