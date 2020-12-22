@@ -16,7 +16,6 @@ const PetCard = ({
   handleDelete,
   setPetData,
   showPetModal,
-  closePetModal,
 }) => {
   // Dummy Data
   const PetFormFields = [
@@ -70,7 +69,6 @@ const PetCard = ({
             e.preventDefault();
             e.stopPropagation();
             showModal();
-            closePetModal();
           }}
           target="_blank"
           rel="noopener noreferrer"
@@ -115,7 +113,14 @@ const PetCard = ({
 
   return (
     <Col xs={{ span: 24 }} sm={{ span: 8 }} md={{ span: 8 }}>
-      <div onClick={showPetModal} className="customer-pet">
+      <div
+        onClick={e => {
+          if (!isModalVisible) {
+            showPetModal();
+          }
+        }}
+        className="customer-pet"
+      >
         <Avatar size={48} icon={<UserOutlined />} />
         <div className="pet-info">
           <p>Name: {pet.pet_name}</p>

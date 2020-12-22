@@ -37,7 +37,7 @@ const RenderCustomerProfile = ({ userInfo }) => {
   const [petData, setPetData] = useState(pets);
 
   const [displayUserInfoInputs, toggleUserInfoInputs] = useState(false);
-  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isModalVisible1, setIsModalVisible1] = useState(false);
   const [userFormData, setUserFormData] = useState({
     name: '',
     email: '',
@@ -63,16 +63,16 @@ const RenderCustomerProfile = ({ userInfo }) => {
     setUserFormData(userFormData);
   };
 
-  const showModal = () => {
-    setIsModalVisible(true);
+  const showModal1 = () => {
+    setIsModalVisible1(true);
   };
 
-  const handleOk = () => {
-    setIsModalVisible(false);
+  const handleOk1 = () => {
+    setIsModalVisible1(false);
   };
 
-  const handleCancel = () => {
-    setIsModalVisible(false);
+  const handleCancel1 = () => {
+    setIsModalVisible1(false);
   };
 
   const handleSave = formData => {
@@ -151,8 +151,8 @@ const RenderCustomerProfile = ({ userInfo }) => {
             <Row gutter={[16, 16]}>
               {petData.map(pet => (
                 <PetCard
-                  showPetModal={showModal}
-                  closePetModal={handleCancel}
+                  showPetModal={showModal1}
+                  closePetModal={setIsModalVisible1}
                   key={pet.pet_name}
                   pet={pet}
                   handleSave={handleSave}
@@ -163,9 +163,9 @@ const RenderCustomerProfile = ({ userInfo }) => {
               ))}
               <Modal
                 title="Pet Info"
-                visible={isModalVisible}
-                onOk={handleOk}
-                onCancel={handleCancel}
+                visible={isModalVisible1}
+                onOk={handleOk1}
+                onCancel={handleCancel1}
               >
                 <p>Some contents...</p>
                 <p>Some contents...</p>
