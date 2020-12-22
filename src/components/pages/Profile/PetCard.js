@@ -9,7 +9,7 @@ import { UserOutlined } from '@ant-design/icons';
 // Form
 import VerticalForm from '../../common/VerticalForm';
 
-const PetCard = ({ pet, petData, handleSave, setPetData }) => {
+const PetCard = ({ pet, petData, handleSave, handleDelete, setPetData }) => {
   // Dummy Data
   const PetFormFields = [
     {
@@ -75,6 +75,7 @@ const PetCard = ({ pet, petData, handleSave, setPetData }) => {
           okText="Save"
           onOk={handleOk}
           onCancel={handleCancel}
+          footer={null}
         >
           <VerticalForm
             setup={verticalFormSetup}
@@ -88,13 +89,9 @@ const PetCard = ({ pet, petData, handleSave, setPetData }) => {
         </Modal>
       </Menu.Item>
       <Menu.Item danger>
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="http://www.taobao.com/"
-        >
+        <Link to={`myprofile`} onClick={() => handleDelete(pet.id)}>
           Delete
-        </a>
+        </Link>
       </Menu.Item>
     </Menu>
   );

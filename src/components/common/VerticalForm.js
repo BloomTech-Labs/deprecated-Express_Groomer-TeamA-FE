@@ -1,14 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Input, Button } from 'antd';
 
-const VerticalForm = ({
-  fields,
-  layout,
-  data,
-  handleSave,
-  petData,
-  setPetData,
-}) => {
+const VerticalForm = ({ fields, layout, data, handleSave }) => {
   const [form] = Form.useForm();
   const [formLayout, setFormLayout] = useState(layout);
   const [formData, setFormData] = useState(data);

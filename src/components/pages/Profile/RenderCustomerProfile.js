@@ -80,6 +80,12 @@ const RenderCustomerProfile = ({ userInfo }) => {
     setPetData(newPets);
   };
 
+  const handleDelete = id => {
+    console.log('ID', id);
+    const newPets = petData.filter(pet => pet.id !== id);
+    setPetData(newPets);
+  };
+
   return (
     <div>
       {userInfo && (
@@ -137,6 +143,7 @@ const RenderCustomerProfile = ({ userInfo }) => {
                   handleSave={handleSave}
                   petData={petData}
                   setPetData={setPetData}
+                  handleDelete={handleDelete}
                 />
               ))}
               <Col xs={{ span: 24 }} sm={{ span: 8 }} md={{ span: 8 }}>
