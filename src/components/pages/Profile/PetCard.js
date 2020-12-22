@@ -9,7 +9,15 @@ import { UserOutlined } from '@ant-design/icons';
 // Form
 import VerticalForm from '../../common/VerticalForm';
 
-const PetCard = ({ pet, petData, handleSave, handleDelete, setPetData }) => {
+const PetCard = ({
+  pet,
+  petData,
+  handleSave,
+  handleDelete,
+  setPetData,
+  showPetModal,
+  closePetModal,
+}) => {
   // Dummy Data
   const PetFormFields = [
     {
@@ -60,7 +68,9 @@ const PetCard = ({ pet, petData, handleSave, handleDelete, setPetData }) => {
         <a
           onClick={e => {
             e.preventDefault();
+            e.stopPropagation();
             showModal();
+            closePetModal();
           }}
           target="_blank"
           rel="noopener noreferrer"
@@ -89,22 +99,40 @@ const PetCard = ({ pet, petData, handleSave, handleDelete, setPetData }) => {
         </Modal>
       </Menu.Item>
       <Menu.Item danger>
-        <Link to={`myprofile`} onClick={() => handleDelete(pet.id)}>
+        <a
+          to={`myprofile`}
+          onClick={e => {
+            e.preventDefault();
+            e.stopPropagation();
+            handleDelete(pet.id);
+          }}
+        >
           Delete
-        </Link>
+        </a>
       </Menu.Item>
     </Menu>
   );
 
   return (
     <Col xs={{ span: 24 }} sm={{ span: 8 }} md={{ span: 8 }}>
-      <div className="customer-pet">
+      <div onClick={showPetModal} className="customer-pet">
         <Avatar size={48} icon={<UserOutlined />} />
         <div className="pet-info">
           <p>Name: {pet.pet_name}</p>
           <p>Color: {pet.color}</p>
-          <Dropdown overlay={menu}>
-            <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+          <Dropdown
+            onClick={e => {
+              e.stopPropagation();
+            }}
+            overlay={menu}
+          >
+            <a
+              className="ant-dropdown-link"
+              onClick={e => {
+                e.preventDefault();
+                e.stopPropagation();
+              }}
+            >
               More Options <DownOutlined />
             </a>
           </Dropdown>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Row, Col, Avatar, Button } from 'antd';
+import { Row, Col, Avatar, Button, Modal } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import CustomerInfo from './CustomerInfo';
 import CustomerEditInfo from './CustomerEditInfo';
@@ -37,6 +37,7 @@ const RenderCustomerProfile = ({ userInfo }) => {
   const [petData, setPetData] = useState(pets);
 
   const [displayUserInfoInputs, toggleUserInfoInputs] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const [userFormData, setUserFormData] = useState({
     name: '',
     email: '',
@@ -60,6 +61,18 @@ const RenderCustomerProfile = ({ userInfo }) => {
   const onSubmit = e => {
     e.preventDefault();
     setUserFormData(userFormData);
+  };
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
   };
 
   const handleSave = formData => {
@@ -138,6 +151,8 @@ const RenderCustomerProfile = ({ userInfo }) => {
             <Row gutter={[16, 16]}>
               {petData.map(pet => (
                 <PetCard
+                  showPetModal={showModal}
+                  closePetModal={handleCancel}
                   key={pet.pet_name}
                   pet={pet}
                   handleSave={handleSave}
@@ -146,6 +161,16 @@ const RenderCustomerProfile = ({ userInfo }) => {
                   handleDelete={handleDelete}
                 />
               ))}
+              <Modal
+                title="Pet Info"
+                visible={isModalVisible}
+                onOk={handleOk}
+                onCancel={handleCancel}
+              >
+                <p>Some contents...</p>
+                <p>Some contents...</p>
+                <p>Some contents...</p>
+              </Modal>
               <Col xs={{ span: 24 }} sm={{ span: 8 }} md={{ span: 8 }}>
                 <div className="add-pets">
                   <i className="fas fa-plus"></i>
