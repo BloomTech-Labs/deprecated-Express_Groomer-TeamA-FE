@@ -16,6 +16,8 @@ const PetCard = ({
   handleDelete,
   setPetData,
   showPetModal,
+  petIndex,
+  setCurrentPetSelected,
 }) => {
   // Dummy Data
   const PetFormFields = [
@@ -116,6 +118,7 @@ const PetCard = ({
       <div
         onClick={e => {
           if (!isModalVisible) {
+            setCurrentPetSelected(petIndex);
             showPetModal();
           }
         }}

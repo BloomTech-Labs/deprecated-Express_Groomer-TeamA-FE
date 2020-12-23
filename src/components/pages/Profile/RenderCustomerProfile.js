@@ -42,6 +42,7 @@ const RenderCustomerProfile = ({ userInfo }) => {
     name: '',
     email: '',
   });
+  const [currentPetSelected, setCurrentPetSelected] = useState(0);
 
   useEffect(() => {
     setUserFormData({
@@ -149,7 +150,7 @@ const RenderCustomerProfile = ({ userInfo }) => {
           </Row>
           <div className="pet-container">
             <Row gutter={[16, 16]}>
-              {petData.map(pet => (
+              {petData.map((pet, index) => (
                 <PetCard
                   showPetModal={showModal1}
                   closePetModal={setIsModalVisible1}
@@ -159,6 +160,8 @@ const RenderCustomerProfile = ({ userInfo }) => {
                   petData={petData}
                   setPetData={setPetData}
                   handleDelete={handleDelete}
+                  petIndex={index}
+                  setCurrentPetSelected={setCurrentPetSelected}
                 />
               ))}
               <Modal
@@ -167,9 +170,10 @@ const RenderCustomerProfile = ({ userInfo }) => {
                 onOk={handleOk1}
                 onCancel={handleCancel1}
               >
-                <p>Some contents...</p>
-                <p>Some contents...</p>
-                <p>Some contents...</p>
+                <p>Name: {petData[currentPetSelected].pet_name}</p>
+                <p>Color: {petData[currentPetSelected].color}</p>
+                <p>DOB: {petData[currentPetSelected].date_of_birth}</p>
+                <p>Contact: {petData[currentPetSelected].phone_number}</p>
               </Modal>
               <Col xs={{ span: 24 }} sm={{ span: 8 }} md={{ span: 8 }}>
                 <div className="add-pets">
