@@ -72,6 +72,7 @@ const RenderCustomerProfile = ({ userInfo }) => {
           date_of_birth: formData.date_of_birth,
           image_url: formData.image_url,
           phone_number: formData.phone_number,
+          image_url: formData.image_url,
         };
       } else {
         return newpet;
@@ -138,7 +139,7 @@ const RenderCustomerProfile = ({ userInfo }) => {
             <Row gutter={[16, 16]}>
               {petData.map(pet => (
                 <PetCard
-                  key={pet.pet_name}
+                  key={pet.id}
                   pet={pet}
                   handleSave={handleSave}
                   petData={petData}

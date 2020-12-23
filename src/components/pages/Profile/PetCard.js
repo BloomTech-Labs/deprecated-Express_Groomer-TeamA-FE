@@ -28,10 +28,10 @@ const PetCard = ({ pet, petData, handleSave, handleDelete, setPetData }) => {
       data: 'phone_number',
       displayName: 'Contact',
     },
-    {
-      data: 'image_url',
-      displayName: 'Image',
-    },
+    // {
+    //   data: 'image_url',
+    //   displayName: 'Image',
+    // },
   ];
 
   // ANT DESIGN //
@@ -85,6 +85,7 @@ const PetCard = ({ pet, petData, handleSave, handleDelete, setPetData }) => {
             handleOk={handleOk}
             petData={petData}
             setPetData={setPetData}
+            setIsModalVisible={setIsModalVisible}
           ></VerticalForm>
         </Modal>
       </Menu.Item>
@@ -99,7 +100,7 @@ const PetCard = ({ pet, petData, handleSave, handleDelete, setPetData }) => {
   return (
     <Col xs={{ span: 24 }} sm={{ span: 8 }} md={{ span: 8 }}>
       <div className="customer-pet">
-        <Avatar size={48} icon={<UserOutlined />} />
+        <Avatar size={48} src={pet.image_url} icon={<UserOutlined />} />
         <div className="pet-info">
           <p>Name: {pet.pet_name}</p>
           <p>Color: {pet.color}</p>
