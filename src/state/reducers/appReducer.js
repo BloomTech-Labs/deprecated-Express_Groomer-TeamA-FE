@@ -1,7 +1,8 @@
-import { POPULATE, POPULATE_USER } from '../actions/index';
+import { POPULATE, POPULATE_USER, POPULATE_PET } from '../actions/index';
 
 const initialState = {
   profiles: [],
+  pets: [],
   currentUser: {},
 };
 
@@ -16,6 +17,11 @@ export const appReducer = (state = initialState, action) => {
       return {
         ...state,
         currentUser: action.payload,
+      };
+    case POPULATE_PET:
+      return {
+        ...state,
+        pets: action.payload,
       };
     default:
       return state;

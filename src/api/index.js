@@ -1,8 +1,16 @@
 import axios from 'axios';
-import { setProfilesToState, populateUser } from '../state/actions';
+import {
+  setProfilesToState,
+  populateUser,
+  populatePet,
+} from '../state/actions';
 import { store } from '../index';
+
 // we will define a bunch of API calls here.
-const apiUrl = `${process.env.REACT_APP_API_URI}/profiles`;
+const apiUrl =
+  process.env.NODE_ENV === 'development'
+    ? 'http://localhost:8000'
+    : `${process.env.REACT_APP_API_URI}`;
 
 const sleep = time =>
   new Promise(resolve => {
@@ -35,18 +43,28 @@ const getDSData = (url, authState) => {
     .catch(err => err);
 };
 
+// get user profile
 const apiAuthGet = authHeader => {
-  return axios.get(apiUrl, { headers: authHeader });
+  return axios.get(`${apiUrl}/profiles`, { headers: authHeader });
 };
 
+// edit user profile
 const apiAuthEdit = (authHeader, data) => {
-  return axios.put(apiUrl, data, { headers: authHeader });
+  return axios.put(`${apiUrl}/profiles`, data, { headers: authHeader });
 };
 
+// get specific profile
 const apiAuthGetUser = async (authHeader, id) => {
   // const path = `${apiUrl}/${id}`;
-  const response = await axios.get(`${apiUrl}/${id}`, { headers: authHeader });
+  const response = await axios.get(`${apiUrl}/profiles/${id}`, {
+    headers: authHeader,
+  });
   return response;
+};
+
+// get customer pets
+const apiAuthCustomerPets = authHeader => {
+  return axios.get(`${apiUrl}/customerPet`, { headers: authHeader });
 };
 
 const getProfileData = authState => {
@@ -98,6 +116,30 @@ const getUserProfileData = (authState, id) => {
   }
 };
 
+const getCustomerPetsData = authState => {
+  const header = getAuthHeader(authState);
+
+  try {
+    return apiAuthCustomerPets(header)
+      .then(response => {
+        if (Array.isArray(response.data.pets)) {
+          store.dispatch(populatePet(response.data.pets));
+        } else {
+          store.dispatch(populatePet([]));
+        }
+        return response.data;
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  } catch (error) {
+    return new Promise(() => {
+      console.log(`Error: ${error}`);
+      return [];
+    });
+  }
+};
+
 export {
   sleep,
   getExampleData,
@@ -105,5 +147,6 @@ export {
   getDSData,
   editProfileData,
   getUserProfileData,
+  getCustomerPetsData,
   getAuthHeader,
 };

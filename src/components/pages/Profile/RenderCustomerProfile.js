@@ -11,7 +11,8 @@ import './profile.css';
 import { Menu, Dropdown } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 
-const RenderCustomerProfile = ({ userInfo }) => {
+const RenderCustomerProfile = ({ userInfo, pets: petInfo }) => {
+  console.log(petInfo);
   // Dummy Data
   const pets = [
     {
