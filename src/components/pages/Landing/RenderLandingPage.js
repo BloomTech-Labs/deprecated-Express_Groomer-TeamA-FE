@@ -3,48 +3,33 @@ import husky from '../../../assets/husky.jpg';
 import map from '../../../assets/sample-map.png';
 import mediumdog from '../../../assets/mediumdog.jpg';
 import NavBar from '../../Navigation/NavBar';
-import { Card, Col, Row, Layout } from 'antd';
+import { Layout } from 'antd';
 import {
-  ImgSize,
-  SecondImgDimension,
-  data,
-  data2,
-  solid,
-  MapFormater,
-  SpaceAddition,
-  ParagraphOneFormater,
+  HeaderImg,
+  FirstParagraphContent,
+  SecondParagraphContent,
+  MapImg,
   ParagraphTwoFormater,
-  Word,
+  HeaderDiv,
+  BodyDiv,
+  ContentDiv,
+  ContentP,
 } from './landingPageStyledComponents';
 
-function RenderLandingPage(props) {
+function RenderLandingPage() {
   return (
     <Layout>
       <NavBar />
       <div>
-        <div>
-          <ImgSize>
-            <img src={husky} />
-          </ImgSize>
-        </div>
-        <Row>
-          <Col span={6}>
-            <SecondImgDimension>
-              <img src={mediumdog} />
-            </SecondImgDimension>
-          </Col>
-          <Col span={6}>
-            <p>{data[0]}</p>
-          </Col>
-        </Row>
+        <HeaderImg src={husky} />
+        <ContentDiv>
+          <BodyDiv src={mediumdog} />
+          <ContentP>{FirstParagraphContent[0]}</ContentP>
+        </ContentDiv>
         <hr></hr>
-        <Word>How it works</Word>
-        <MapFormater>
-          <img src={map} />
-        </MapFormater>
-        <ParagraphTwoFormater>
-          <p>{data2[0]}</p>
-        </ParagraphTwoFormater>
+        <HeaderDiv>How it works</HeaderDiv>
+        <MapImg src={map} />
+        <ParagraphTwoFormater>{SecondParagraphContent[0]}</ParagraphTwoFormater>
       </div>
     </Layout>
   );

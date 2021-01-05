@@ -1,28 +1,29 @@
 import styled from 'styled-components';
-import { Layout } from 'antd';
 
-const { Content } = Layout;
-
-export const ImgSize = styled(Content)`
-  height: 400px;
+export const HeaderImg = styled.img`
   width: 100%;
-  padding-bottom: 52%;
+  height: 500px;
 `;
 
-export const MapFormater = styled(Content)`
+export const MapImg = styled.img`
+  padding-top: 1%;
   width: 100%;
   padding-bottom: 2%;
 `;
 
-export const SecondImgDimension = styled(Content)`
+export const BodyDiv = styled.img`
+  width: 20%;
+  height: 20%;
+`;
+
+export const ContentDiv = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: 40%;
-  width: 50px;
-  height: 50px;
-  margin-right: 20%;
-  padding-top: 18%;
+  padding: 2% 0 2% 0;
+  justify-content: space-evenly;
+`;
+
+export const ContentP = styled.p`
+  width: 450px;
 `;
 
 export const ParagraphOneFormater = styled.div`
@@ -33,7 +34,7 @@ export const ParagraphOneFormater = styled.div`
   text-align: center;
 `;
 
-export const Word = styled.div`
+export const HeaderDiv = styled.p`
   font-size: 1.7rem;
   text-align: center;
 `;
@@ -43,11 +44,7 @@ export const ParagraphTwoFormater = styled.div`
   padding-bottom: 4%;
 `;
 
-export const solid = styled.div`
-  border-top: 3px solid #bbb;
-`;
-
-export const data = [
+export const FirstParagraphContent = [
   `Lorem Ipsum is simply dummy text of the printing and typesetting industry.
 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
 when an unknown printer took a galley of type and scrambled it to make a type specimen book.
@@ -56,7 +53,7 @@ It was popularised in the 1960s with the release of Letraset sheets containing L
 desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`,
 ];
 
-export const data2 = [
+export const SecondParagraphContent = [
   `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nisl eros, 
 pulvinar facilisis justo mollis, auctor consequat urna. Morbi a bibendum metus. 
 Donec scelerisque sollicitudin enim eu venenatis. Duis tincidunt laoreet ex, 
