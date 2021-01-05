@@ -8,6 +8,7 @@ import { Row, Col, Avatar, Button } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 // Form
 import VerticalForm from '../../common/VerticalForm';
+// import FormModal from '../../common/FormModal'
 
 const PetCard = ({ pet, petData, handleSave, handleDelete, setPetData }) => {
   // Dummy Data
@@ -40,7 +41,7 @@ const PetCard = ({ pet, petData, handleSave, handleDelete, setPetData }) => {
     layout: 'vertical',
     data: pet,
   };
-  // Menu
+  // Modal
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const showModal = () => {
@@ -90,9 +91,7 @@ const PetCard = ({ pet, petData, handleSave, handleDelete, setPetData }) => {
         </Modal>
       </Menu.Item>
       <Menu.Item danger>
-        <Link to={`myprofile`} onClick={() => handleDelete(pet.id)}>
-          Delete
-        </Link>
+        <Link onClick={() => handleDelete(pet.id)}>Delete</Link>
       </Menu.Item>
     </Menu>
   );

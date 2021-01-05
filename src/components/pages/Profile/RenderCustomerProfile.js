@@ -4,6 +4,7 @@ import { Row, Col, Avatar, Button } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import CustomerInfo from './CustomerInfo';
 import CustomerEditInfo from './CustomerEditInfo';
+import AddPet from './AddPet';
 import PetCard from './PetCard';
 import './profile.css';
 
@@ -12,6 +13,8 @@ import { Menu, Dropdown } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 
 const RenderCustomerProfile = ({ userInfo }) => {
+  console.log('USER INFO', userInfo);
+
   // Dummy Data
   const pets = [
     {
@@ -148,7 +151,7 @@ const RenderCustomerProfile = ({ userInfo }) => {
                 />
               ))}
               <Col xs={{ span: 24 }} sm={{ span: 8 }} md={{ span: 8 }}>
-                <div className="add-pets">
+                <div className="add-pets" onClick={AddPet()}>
                   <i className="fas fa-plus"></i>
                 </div>
               </Col>
