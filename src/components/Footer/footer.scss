@@ -2,25 +2,36 @@
   background-color: #f39233;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   border-radius: 2%;
+
+  height: 10%;
+
   .footer-icons {
+    //margin-right: 5%;
+    height: 20%;
+
     display: flex;
-    justify-content: flex-end;
-    margin-right:5%;
-    width:30%;
-    
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+
     .footer-icon {
-      margin-top: 35px;
-      margin-left:7%;
+      //margin-top: 35px;
+      padding-left: 10%;
+      //margin-left: 7%;
       font-size: 2rem;
       &:hover {
-        color:white;
+        color: white;
       }
     }
   }
-  .footer-name{
-      margin-left:25%;
-      margin-top:3%;
+  .footer-name {
+    width: 30%;
+    margin-left: 25%;
+    // margin-top: 3%;
+    display: flex;
+    align-items: center;
   }
   img {
     widows: 100px;

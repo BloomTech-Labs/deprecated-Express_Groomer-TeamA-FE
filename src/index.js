@@ -27,6 +27,7 @@ import MapBox from './components/Map/MapBox';
 import Footer from './components/Footer/Footer';
 
 import 'antd/dist/antd.css';
+import './index.scss';
 
 export const store = createStore(appReducer);
 
