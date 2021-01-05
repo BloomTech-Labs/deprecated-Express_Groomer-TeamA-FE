@@ -12,7 +12,6 @@ function NavBar() {
   const history = useHistory();
 
   const handleClick = e => {
-    console.log('Click!');
     setCurrent({ current: e.key });
     history.push(e.key);
   };

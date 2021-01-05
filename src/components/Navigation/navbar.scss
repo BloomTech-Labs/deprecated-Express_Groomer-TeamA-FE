@@ -1,9 +1,22 @@
-.title{
-    margin-left: 1%;
-    // width: 33%;
-    float: left;
+.nav-container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
-menu {
+
+.title{
+    padding: 0% 1%;
+    width: 33%;
+    justify-content: flex-start;
+}
+
+.ant-menu{
+    padding: 0% 1%;
+    width: 33%;
     float: right;
+    display: flex;
+    justify-content: flex-end;
+    align-content: right;
 }
