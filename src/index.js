@@ -83,7 +83,6 @@ function App() {
         <Route path="/home" component={LandingPage} />
         <Route path="/groomers" component={LandingPageForGroomers} />
       </Switch>
-
       <Footer />
     </Security>
   );

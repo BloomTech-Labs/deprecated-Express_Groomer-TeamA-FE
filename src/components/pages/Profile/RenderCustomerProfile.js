@@ -1,11 +1,41 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Row, Col, Avatar, Button } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import CustomerInfo from './CustomerInfo';
 import CustomerEditInfo from './CustomerEditInfo';
+import PetCard from './PetCard';
 import './profile.css';
 
+// Ant Design
+import { Menu, Dropdown } from 'antd';
+import { DownOutlined } from '@ant-design/icons';
+
 const RenderCustomerProfile = ({ userInfo }) => {
+  // Dummy Data
+  const pets = [
+    {
+      id: 1,
+      pet_name: 'Rabby',
+      color: 'Red',
+      date_of_birth: '2020-11-02',
+      phone_number: '123456789',
+      image_url:
+        'https://i.pinimg.com/originals/29/29/62/292962d64cdc42f9e8295f5ca56ba1ce.jpg',
+    },
+    {
+      id: 2,
+      pet_name: 'Doggy',
+      color: 'Beige',
+      date_of_birth: '2010-11-02',
+      phone_number: '123456789',
+      image_url:
+        'https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/other/dog_cool_summer_slideshow/1800x1200_dog_cool_summer_other.jpg',
+    },
+  ];
+
+  const [petData, setPetData] = useState(pets);
+
   const [displayUserInfoInputs, toggleUserInfoInputs] = useState(false);
   const [userFormData, setUserFormData] = useState({
     name: '',
@@ -30,6 +60,31 @@ const RenderCustomerProfile = ({ userInfo }) => {
   const onSubmit = e => {
     e.preventDefault();
     setUserFormData(userFormData);
+  };
+
+  const handleSave = formData => {
+    const newPets = petData.map(newpet => {
+      if (newpet.id === formData.id) {
+        return {
+          id: formData.id,
+          pet_name: formData.pet_name,
+          color: formData.color,
+          date_of_birth: formData.date_of_birth,
+          image_url: formData.image_url,
+          phone_number: formData.phone_number,
+          image_url: formData.image_url,
+        };
+      } else {
+        return newpet;
+      }
+    });
+    setPetData(newPets);
+  };
+
+  const handleDelete = id => {
+    console.log('ID', id);
+    const newPets = petData.filter(pet => pet.id !== id);
+    setPetData(newPets);
   };
 
   return (
@@ -82,30 +137,16 @@ const RenderCustomerProfile = ({ userInfo }) => {
           </Row>
           <div className="pet-container">
             <Row gutter={[16, 16]}>
-              <Col xs={{ span: 24 }} sm={{ span: 8 }} md={{ span: 8 }}>
-                <div className="customer-pet">
-                  <Avatar size={48} icon={<UserOutlined />} />
-                  <div className="pet-info">
-                    <p>Name: Rusty</p>
-                    <p>Type: Dog</p>
-                    <Button type="primary" size={'medium'}>
-                      More Options
-                    </Button>
-                  </div>
-                </div>
-              </Col>
-              <Col xs={{ span: 24 }} sm={{ span: 8 }} md={{ span: 8 }}>
-                <div className="customer-pet">
-                  <Avatar size={48} icon={<UserOutlined />} />
-                  <div className="pet-info">
-                    <p>Name: Rusty</p>
-                    <p>Type: Dog</p>
-                    <Button type="primary" size={'medium'}>
-                      More Options
-                    </Button>
-                  </div>
-                </div>
-              </Col>
+              {petData.map(pet => (
+                <PetCard
+                  key={pet.id}
+                  pet={pet}
+                  handleSave={handleSave}
+                  petData={petData}
+                  setPetData={setPetData}
+                  handleDelete={handleDelete}
+                />
+              ))}
               <Col xs={{ span: 24 }} sm={{ span: 8 }} md={{ span: 8 }}>
                 <div className="add-pets">
                   <i className="fas fa-plus"></i>
