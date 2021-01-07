@@ -125,7 +125,7 @@ const PetCard = ({
         }}
         className="customer-pet"
       >
-        <Avatar size={48} icon={<UserOutlined />} />
+        <Avatar size={48} src={pet.image_url} icon={<UserOutlined />} />
 
         <div className="pet-info">
           <p>Name: {pet.pet_name}</p>
