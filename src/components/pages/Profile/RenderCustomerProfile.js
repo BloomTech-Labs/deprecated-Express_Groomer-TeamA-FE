@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Row, Col, Avatar, Button } from 'antd';
+import { Row, Col, Avatar, Button, Modal } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import CustomerInfo from './CustomerInfo';
 import CustomerEditInfo from './CustomerEditInfo';
@@ -52,10 +52,12 @@ const RenderCustomerProfile = ({ userInfo }) => {
   const [petData, setPetData] = useState(pets);
 
   const [displayUserInfoInputs, toggleUserInfoInputs] = useState(false);
+  const [isModalVisible1, setIsModalVisible1] = useState(false);
   const [userFormData, setUserFormData] = useState({
     name: '',
     email: '',
   });
+  const [currentPetSelected, setCurrentPetSelected] = useState(0);
 
   useEffect(() => {
     setUserFormData({
@@ -75,6 +77,18 @@ const RenderCustomerProfile = ({ userInfo }) => {
   const onSubmit = e => {
     e.preventDefault();
     setUserFormData(userFormData);
+  };
+
+  const showModal1 = () => {
+    setIsModalVisible1(true);
+  };
+
+  const handleOk1 = () => {
+    setIsModalVisible1(false);
+  };
+
+  const handleCancel1 = () => {
+    setIsModalVisible1(false);
   };
 
   const handleSave = formData => {
@@ -101,6 +115,8 @@ const RenderCustomerProfile = ({ userInfo }) => {
     const newPets = petData.filter(pet => pet.id !== id);
     setPetData(newPets);
   };
+
+  console.log('PETDATA', petData);
 
   return (
     <div>
@@ -175,16 +191,31 @@ const RenderCustomerProfile = ({ userInfo }) => {
           </Row>
           <div className="pet-container">
             <Row gutter={[16, 16]}>
-              {petData.map(pet => (
+              {petData.map((pet, index) => (
                 <PetCard
                   key={pet.id}
+                  showPetModal={showModal1}
+                  closePetModal={setIsModalVisible1}
                   pet={pet}
                   handleSave={handleSave}
                   petData={petData}
                   setPetData={setPetData}
                   handleDelete={handleDelete}
+                  petIndex={index}
+                  setCurrentPetSelected={setCurrentPetSelected}
                 />
               ))}
+              <Modal
+                title="Pet Info"
+                visible={isModalVisible1}
+                onOk={handleOk1}
+                onCancel={handleCancel1}
+              >
+                <p>Name: {petData[currentPetSelected].pet_name}</p>
+                <p>Color: {petData[currentPetSelected].color}</p>
+                <p>DOB: {petData[currentPetSelected].date_of_birth}</p>
+                <p>Contact: {petData[currentPetSelected].phone_number}</p>
+              </Modal>
               <Col xs={{ span: 24 }} sm={{ span: 8 }} md={{ span: 8 }}>
                 <div className="add-pets">
                   <i className="fas fa-plus"></i>

@@ -14,6 +14,7 @@ const VerticalForm = ({
   const [formData, setFormData] = useState(data);
   const [loading, setLoading] = useState({ loading: false, image_url: '' });
 
+  console.log('formData', formData);
   const onSubmit = e => {
     e.preventDefault();
     handleSave(formData);
