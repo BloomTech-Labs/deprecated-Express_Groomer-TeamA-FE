@@ -87,6 +87,7 @@ const RenderCustomerProfile = ({ userInfo, pets: petInfo }) => {
           date_of_birth: formData.date_of_birth,
           image_url: formData.image_url,
           phone_number: formData.phone_number,
+          image_url: formData.image_url,
         };
       } else {
         return newpet;
@@ -100,6 +101,8 @@ const RenderCustomerProfile = ({ userInfo, pets: petInfo }) => {
     const newPets = petData.filter(pet => pet.id !== id);
     setPetData(newPets);
   };
+
+  console.log('PETDATA', petData);
 
   return (
     <div>
@@ -153,9 +156,9 @@ const RenderCustomerProfile = ({ userInfo, pets: petInfo }) => {
             <Row gutter={[16, 16]}>
               {petData.map((pet, index) => (
                 <PetCard
+                  key={pet.id}
                   showPetModal={showModal1}
                   closePetModal={setIsModalVisible1}
-                  key={pet.pet_name}
                   pet={pet}
                   handleSave={handleSave}
                   petData={petData}

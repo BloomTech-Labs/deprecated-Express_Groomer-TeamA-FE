@@ -37,10 +37,10 @@ const PetCard = ({
       data: 'phone_number',
       displayName: 'Contact',
     },
-    {
-      data: 'image_url',
-      displayName: 'Image',
-    },
+    // {
+    //   data: 'image_url',
+    //   displayName: 'Image',
+    // },
   ];
 
   // ANT DESIGN //
@@ -95,6 +95,7 @@ const PetCard = ({
             handleOk={handleOk}
             petData={petData}
             setPetData={setPetData}
+            setIsModalVisible={setIsModalVisible}
           ></VerticalForm>
         </Modal>
       </Menu.Item>
@@ -125,6 +126,7 @@ const PetCard = ({
         className="customer-pet"
       >
         <Avatar size={48} src={pet.image_url} icon={<UserOutlined />} />
+          
         <div className="pet-info">
           <p>Name: {pet.pet_name}</p>
           <p>Color: {pet.color}</p>
