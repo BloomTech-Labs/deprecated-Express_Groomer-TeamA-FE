@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { BurgerMenu } from './BurgerMenu';
 import { Nav, Title } from './navStyles';
+import RightNav from './RightNav';
 
 function NavBar() {
   return (
@@ -9,7 +9,7 @@ function NavBar() {
       <Link to="/home">
         <Title>Express Groomer</Title>
       </Link>
-      <BurgerMenu />
+      <RightNav />
     </Nav>
   );
 }
