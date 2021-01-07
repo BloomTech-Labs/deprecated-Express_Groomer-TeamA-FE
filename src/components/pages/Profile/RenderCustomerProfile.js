@@ -130,7 +130,25 @@ const RenderCustomerProfile = ({ userInfo }) => {
               <div className="upcoming-appointments">
                 <h2>Upcoming Appointments</h2>
                 <div className="upcoming-appointments-content">
-                  <div>
+                  <Row gutter={[16, 16]}>
+                    {dates.map(date => {
+                      return (
+                        <Col
+                          xs={{ span: 24 }}
+                          sm={{ span: 24 }}
+                          md={{ span: 8 }}
+                        >
+                          <AppointmentCard
+                            key={date.id}
+                            date={date.date}
+                            location={date.location}
+                            pet={date.pet}
+                          />
+                        </Col>
+                      );
+                    })}
+                  </Row>
+                  {/*<div>
                     {dates.map(date => (
                       <AppointmentCard
                         key={date.id}
@@ -139,7 +157,7 @@ const RenderCustomerProfile = ({ userInfo }) => {
                         pet={date.pet}
                       />
                     ))}
-                  </div>
+                  </div>*/}
 
                   {/* <div className="current-appointments">
                     {dates.map(date => (
