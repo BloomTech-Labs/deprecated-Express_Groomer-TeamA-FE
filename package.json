@@ -12,6 +12,7 @@
     "axios": "^0.19.2",
     "commitizen": "^4.2.2",
     "craco-less": "^1.17.0",
+    "dotenv": "^8.2.0",
     "node-sass": "^4.14.1",
     "react": "^16.14.0",
     "react-card-flip": "^1.0.11",

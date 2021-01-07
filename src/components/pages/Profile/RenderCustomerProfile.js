@@ -101,6 +101,8 @@ const RenderCustomerProfile = ({ userInfo }) => {
     setPetData(newPets);
   };
 
+  console.log('PETDATA', petData);
+
   return (
     <div>
       {userInfo && (
