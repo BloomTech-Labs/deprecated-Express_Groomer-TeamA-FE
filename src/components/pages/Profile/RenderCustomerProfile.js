@@ -164,27 +164,6 @@ const RenderCustomerProfile = ({ userInfo }) => {
                       );
                     })}
                   </Row>
-                  {/*<div>
-                    {dates.map(date => (
-                      <AppointmentCard
-                        key={date.id}
-                        date={date.date}
-                        location={date.location}
-                        pet={date.pet}
-                      />
-                    ))}
-                  </div>*/}
-
-                  {/* <div className="current-appointments">
-                    {dates.map(date => (
-                      <AppointmentCard
-                        key={date.id}
-                        date={date.date}
-                        location={date.location}
-                        pet={date.pet}
-                      />
-                    ))}
-                  </div> */}
                 </div>
               </div>
             </Col>
