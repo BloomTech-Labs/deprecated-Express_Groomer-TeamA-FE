@@ -5,6 +5,7 @@ import { UserOutlined } from '@ant-design/icons';
 import CustomerInfo from './CustomerInfo';
 import CustomerEditInfo from './CustomerEditInfo';
 import PetCard from './PetCard';
+import AppointmentCard from './AppointmentCard';
 import './profile.css';
 
 // Ant Design
@@ -13,6 +14,20 @@ import { DownOutlined } from '@ant-design/icons';
 
 const RenderCustomerProfile = ({ userInfo }) => {
   // Dummy Data
+  const dates = [
+    {
+      id: 1,
+      date: '12-4-2020',
+      location: '123 SW Air LN 12345',
+      pet: 'Molly',
+    },
+    {
+      id: 2,
+      date: '12-5-2020',
+      location: '36 Airport Rd',
+      pet: 'Rocky',
+    },
+  ];
   const pets = [
     {
       id: 1,
@@ -131,22 +146,27 @@ const RenderCustomerProfile = ({ userInfo }) => {
               <div className="upcoming-appointments">
                 <h2>Upcoming Appointments</h2>
                 <div className="upcoming-appointments-content">
-                  <div className="current-appointments">
-                    <p>Date:</p>
-                    <p>12/4/2020</p>
-                    <p>Location:</p>
-                    <p>123 SW Air LN 12345</p>
-                    <p>Pet:</p>
-                    <p>Molly</p>
+                  <div>
+                    {dates.map(date => (
+                      <AppointmentCard
+                        key={date.id}
+                        date={date.date}
+                        location={date.location}
+                        pet={date.pet}
+                      />
+                    ))}
                   </div>
-                  <div className="current-appointments">
-                    <p>Date:</p>
-                    <p>12/4/2020</p>
-                    <p>Location:</p>
-                    <p>123 SW Air LN 12345</p>
-                    <p>Pet:</p>
-                    <p>Rusty</p>
-                  </div>
+
+                  {/* <div className="current-appointments">
+                    {dates.map(date => (
+                      <AppointmentCard
+                        key={date.id}
+                        date={date.date}
+                        location={date.location}
+                        pet={date.pet}
+                      />
+                    ))}
+                  </div> */}
                 </div>
               </div>
             </Col>
