@@ -11,6 +11,7 @@
     "antd": "^4.8.2",
     "axios": "^0.19.2",
     "craco-less": "^1.17.0",
+    "dotenv": "^8.2.0",
     "node-sass": "^4.14.1",
     "react": "^16.14.0",
     "react-card-flip": "^1.0.11",
@@ -21,7 +22,8 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "redux": "^4.0.5",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "styled-components": "^5.2.1"
   },
   "scripts": {
     "start": "craco start",

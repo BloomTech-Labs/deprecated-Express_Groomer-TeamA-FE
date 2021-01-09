@@ -1,33 +1,102 @@
 .profile-container {
-    margin: 50px;
-    padding: 50px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  margin: 0 auto;
+  max-width: 1140px;
+  padding: 0 15px;
 }
 
 .profile-container h1 {
-    font-size: 40px;
-    padding: 15px;
+  font-size: 40px;
+  padding: 15px;
 }
 
 .profile-container h2 {
-    font-size: 30px;
-    padding: 15px;
+  font-size: 30px;
+  padding: 15px;
+}
+
+.customer-edit-form {
+  width: 100%;
+}
+
+.profile-container .customer-info,
+.customer-edit-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid gray;
+  padding: 30px;
+  height: 100%;
+}
+
+.profile-container .upcoming-appointments-content {
+  width: 100%;
+}
+
+.profile-container .upcoming-appointments {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid gray;
+  padding: 30px;
+}
+
+.current-appointments {
+  padding: 20px;
+  text-align: center;
+  border: 1px solid gray;
+  height: 100%;
 }
 
 #profile-img {
-    height: 300px;
-    width: 300px;
-    margin: 150px;
-    border: 2px solid white;
+  height: 300px;
+  width: 300px;
+  margin: 150px;
+  border: 2px solid white;
+}
+
+.pet-container {
+  width: 100%;
+  padding: 40px;
+  border: 1px solid gray;
+  margin-bottom: 10px;
+}
+
+.customer-pet {
+  display: flex;
+  border: 1px solid gray;
+  padding: 30px;
+  cursor: pointer;
+}
+
+.add-pets {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 100%;
+  background-color: #1890ff;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.add-pets .fa-plus {
+  color: #ffffff;
+  font-size: 18px;
+  text-shadow: none;
+  animation: none !important;
+}
+
+.pet-info {
+  margin-left: 20px;
 }
 
 .welcome {
-    font-size: 20px;
-    margin-left: 50px;
+  font-size: 20px;
+  margin-left: 50px;
 }
 
 .welcome p {
-    margin-left: 50px;
+  margin-left: 50px;
 }
