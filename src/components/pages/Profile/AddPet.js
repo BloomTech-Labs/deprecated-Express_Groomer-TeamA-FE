@@ -1,12 +1,10 @@
-import React, { useState, Fragment, useEFfect } from 'react';
+import React, { useState, Fragment, useEffect } from 'react';
 import { Menu, Dropdown, Modal } from 'antd';
 import VerticalForm from '../../common/VerticalForm';
 
-const AddPet = () => {
-  // console.log("USER INFO", userInfo)
-  // console.log("petData", petData)
-
-  const [addPet, setAddPet] = useState({
+const AddPet = ({ handleSavePet }) => {
+  const [newPet, setNewPet] = useState({
+    id: 3,
     pet_name: '',
     color: '',
     date_of_birth: '',
@@ -47,9 +45,9 @@ const AddPet = () => {
   // Modal
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-  const showModal = () => {
+  useEffect(() => {
     setIsModalVisible(true);
-  };
+  }, []);
 
   const handleOk = () => {
     setIsModalVisible(false);
@@ -62,7 +60,7 @@ const AddPet = () => {
   return (
     <div>
       <Modal
-        title="Edit Pet Information"
+        title="Add a Pet"
         visible={isModalVisible}
         cancelText="Cancel"
         okText="Save"
@@ -72,12 +70,12 @@ const AddPet = () => {
       >
         <VerticalForm
           setup={verticalFormSetup}
-          // data={pet}
+          data={newPet}
           fields={PetFormFields}
-          // handleSave={handleSave}
+          handleSave={handleSavePet}
           handleOk={handleOk}
-          // petData={petData}
-          // setPetData={setPetData}
+          petData={newPet}
+          setPetData={setNewPet}
           setIsModalVisible={setIsModalVisible}
         ></VerticalForm>
       </Modal>

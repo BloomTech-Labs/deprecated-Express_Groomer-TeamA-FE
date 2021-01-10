@@ -13,8 +13,6 @@ import { Menu, Dropdown } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 
 const RenderCustomerProfile = ({ userInfo }) => {
-  console.log('USER INFO', userInfo);
-
   // Dummy Data
   const pets = [
     {
@@ -45,6 +43,14 @@ const RenderCustomerProfile = ({ userInfo }) => {
     email: '',
   });
 
+  const [triggerAddPet, setTriggerAddPet] = useState(false);
+
+  const handleAddPet = e => {
+    e.preventDefault();
+
+    setTriggerAddPet(true);
+  };
+
   useEffect(() => {
     setUserFormData({
       name: userInfo.name,
@@ -63,6 +69,10 @@ const RenderCustomerProfile = ({ userInfo }) => {
   const onSubmit = e => {
     e.preventDefault();
     setUserFormData(userFormData);
+  };
+
+  const handleSavePet = formData => {
+    setPetData([...petData, formData]);
   };
 
   const handleSave = formData => {
@@ -85,7 +95,6 @@ const RenderCustomerProfile = ({ userInfo }) => {
   };
 
   const handleDelete = id => {
-    console.log('ID', id);
     const newPets = petData.filter(pet => pet.id !== id);
     setPetData(newPets);
   };
@@ -151,10 +160,15 @@ const RenderCustomerProfile = ({ userInfo }) => {
                 />
               ))}
               <Col xs={{ span: 24 }} sm={{ span: 8 }} md={{ span: 8 }}>
-                <div className="add-pets" onClick={AddPet()}>
-                  <i className="fas fa-plus"></i>
+                <div className="add-pets">
+                  <a type="submit" onClick={handleAddPet}>
+                    <i className="fas fa-plus"></i>
+                  </a>
                 </div>
               </Col>
+              {triggerAddPet && (
+                <AddPet data={petData} handleSavePet={handleSavePet} />
+              )}
             </Row>
           </div>
         </div>

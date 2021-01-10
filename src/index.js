@@ -20,7 +20,7 @@ import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
 import { EditProfile } from './components/pages/EditProfile';
 import { Profile } from './components/pages/Profile';
-import { AddPet } from './components/pages/Profile/AddPet';
+import AddPet from './components/pages/Profile/AddPet';
 import { createStore } from 'redux';
 
 import { Provider } from 'react-redux';
@@ -80,7 +80,6 @@ function App() {
           path="/editprofile"
           render={props => <EditProfile {...props} />}
         />
-        <SecureRoute exact path="/add-pet" component={AddPet} />
         <SecureRoute path="/map-view" component={MapBox} />
         <Route path="/home" component={LandingPage} />
       </Switch>
