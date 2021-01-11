@@ -23,6 +23,7 @@ const CustomerAddPet = ({ createPet }) => {
         visible={isModalVisible}
         onOk={handleOk}
         onCancel={handleCancel}
+        destroyOnClose={true}
         footer={null}
       >
         <CustomerPetForm

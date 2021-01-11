@@ -8,6 +8,7 @@ const CustomerPetForm = ({ createPet, setIsModalVisible }) => {
     color: '',
     date_of_birth: '',
     phone_number: '',
+    image_url: '',
   });
 
   const onFormChange = e => {
@@ -107,8 +108,8 @@ const CustomerPetForm = ({ createPet, setIsModalVisible }) => {
               color: '',
               date_of_birth: '',
               phone_number: '',
+              image_url: '',
             });
-            form.resetFields();
             setIsModalVisible(false);
           }}
         >
