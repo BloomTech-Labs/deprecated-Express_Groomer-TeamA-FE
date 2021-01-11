@@ -8,6 +8,8 @@ const VerticalForm = ({
   data,
   handleSave,
   setIsModalVisible,
+  triggerAddPet,
+  setTriggerAddPet,
 }) => {
   const [form] = Form.useForm();
   const [formLayout, setFormLayout] = useState(layout);
@@ -94,6 +96,9 @@ const VerticalForm = ({
             onClick={() => {
               setIsModalVisible(false);
               handleSave(formData);
+              {
+                triggerAddPet && setTriggerAddPet(false);
+              }
             }}
             type="submit"
           >

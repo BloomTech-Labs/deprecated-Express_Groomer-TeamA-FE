@@ -47,7 +47,6 @@ const RenderCustomerProfile = ({ userInfo }) => {
 
   const handleAddPet = e => {
     e.preventDefault();
-
     setTriggerAddPet(true);
   };
 
@@ -160,14 +159,17 @@ const RenderCustomerProfile = ({ userInfo }) => {
                 />
               ))}
               <Col xs={{ span: 24 }} sm={{ span: 8 }} md={{ span: 8 }}>
-                <div className="add-pets">
-                  <a type="submit" onClick={handleAddPet}>
-                    <i className="fas fa-plus"></i>
-                  </a>
+                <div className="add-pets" onClick={handleAddPet}>
+                  <i className="fas fa-plus"></i>
                 </div>
               </Col>
               {triggerAddPet && (
-                <AddPet data={petData} handleSavePet={handleSavePet} />
+                <AddPet
+                  triggerAddPet={triggerAddPet}
+                  setTriggerAddPet={setTriggerAddPet}
+                  data={petData}
+                  handleSavePet={handleSavePet}
+                />
               )}
             </Row>
           </div>

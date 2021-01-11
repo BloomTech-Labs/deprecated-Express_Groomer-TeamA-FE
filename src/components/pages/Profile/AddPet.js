@@ -2,7 +2,7 @@ import React, { useState, Fragment, useEffect } from 'react';
 import { Menu, Dropdown, Modal } from 'antd';
 import VerticalForm from '../../common/VerticalForm';
 
-const AddPet = ({ handleSavePet }) => {
+const AddPet = ({ handleSavePet, triggerAddPet, setTriggerAddPet }) => {
   const [newPet, setNewPet] = useState({
     id: 3,
     pet_name: '',
@@ -55,6 +55,7 @@ const AddPet = ({ handleSavePet }) => {
 
   const handleCancel = () => {
     setIsModalVisible(false);
+    setTriggerAddPet(false);
   };
 
   return (
@@ -77,6 +78,9 @@ const AddPet = ({ handleSavePet }) => {
           petData={newPet}
           setPetData={setNewPet}
           setIsModalVisible={setIsModalVisible}
+          triggerAddPet={triggerAddPet}
+          setTriggerAddPet={setTriggerAddPet}
+          handleCancel={handleCancel}
         ></VerticalForm>
       </Modal>
     </div>
