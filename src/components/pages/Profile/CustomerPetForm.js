@@ -108,6 +108,7 @@ const CustomerPetForm = ({ createPet, setIsModalVisible }) => {
               date_of_birth: '',
               phone_number: '',
             });
+            form.resetFields();
             setIsModalVisible(false);
           }}
         >
