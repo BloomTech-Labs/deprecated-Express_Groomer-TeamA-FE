@@ -30,8 +30,6 @@
 }
 
 .profile-container .upcoming-appointments-content {
-  display: flex;
-  flex-wrap: wrap;
   width: 100%;
 }
 
@@ -45,10 +43,10 @@
 }
 
 .current-appointments {
-  margin-right: 20px;
   padding: 20px;
   text-align: center;
   border: 1px solid gray;
+  height: 100%;
 }
 
 #profile-img {
