@@ -9,7 +9,16 @@ import { UserOutlined } from '@ant-design/icons';
 import VerticalForm from '../../common/VerticalForm';
 // import FormModal from '../../common/FormModal'
 
-const PetCard = ({ pet, petData, handleSave, handleDelete, setPetData }) => {
+const PetCard = ({
+  pet,
+  petData,
+  handleSave,
+  handleDelete,
+  setPetData,
+  showPetModal,
+  petIndex,
+  setCurrentPetSelected,
+}) => {
   // Dummy Data
   const PetFormFields = [
     {
@@ -60,6 +69,7 @@ const PetCard = ({ pet, petData, handleSave, handleDelete, setPetData }) => {
         <a
           onClick={e => {
             e.preventDefault();
+            e.stopPropagation();
             showModal();
           }}
           target="_blank"
@@ -106,13 +116,33 @@ const PetCard = ({ pet, petData, handleSave, handleDelete, setPetData }) => {
 
   return (
     <Col xs={{ span: 24 }} sm={{ span: 8 }} md={{ span: 8 }}>
-      <div className="customer-pet">
+      <div
+        onClick={e => {
+          if (!isModalVisible) {
+            setCurrentPetSelected(petIndex);
+            showPetModal();
+          }
+        }}
+        className="customer-pet"
+      >
         <Avatar size={48} src={pet.image_url} icon={<UserOutlined />} />
+
         <div className="pet-info">
           <p>Name: {pet.pet_name}</p>
           <p>Color: {pet.color}</p>
-          <Dropdown overlay={menu}>
-            <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+          <Dropdown
+            onClick={e => {
+              e.stopPropagation();
+            }}
+            overlay={menu}
+          >
+            <a
+              className="ant-dropdown-link"
+              onClick={e => {
+                e.preventDefault();
+                e.stopPropagation();
+              }}
+            >
               More Options <DownOutlined />
             </a>
           </Dropdown>
