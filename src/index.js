@@ -20,7 +20,6 @@ import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
 import { EditProfile } from './components/pages/EditProfile';
 import { Profile } from './components/pages/Profile';
-import AddPet from './components/pages/Profile/AddPet';
 import { createStore } from 'redux';
 
 import { Provider } from 'react-redux';

@@ -1,5 +1,5 @@
 import React, { useState, Fragment, useEffect } from 'react';
-import { Menu, Dropdown, Modal } from 'antd';
+import { Modal } from 'antd';
 import VerticalForm from '../../common/VerticalForm';
 
 const AddPet = ({ handleSavePet, triggerAddPet, setTriggerAddPet }) => {

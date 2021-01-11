@@ -3,8 +3,7 @@ import React, { useState, useEffect } from 'react';
 // Dropdown ///
 import { Menu, Dropdown, Modal } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
-import { Row, Col, Avatar, Button } from 'antd';
+import { Row, Col, Avatar } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 // Form
 import VerticalForm from '../../common/VerticalForm';
@@ -91,7 +90,16 @@ const PetCard = ({ pet, petData, handleSave, handleDelete, setPetData }) => {
         </Modal>
       </Menu.Item>
       <Menu.Item danger>
-        <Link onClick={() => handleDelete(pet.id)}>Delete</Link>
+        <a
+          to={`myprofile`}
+          onClick={e => {
+            e.preventDefault();
+            e.stopPropagation();
+            handleDelete(pet.id);
+          }}
+        >
+          Delete
+        </a>
       </Menu.Item>
     </Menu>
   );
