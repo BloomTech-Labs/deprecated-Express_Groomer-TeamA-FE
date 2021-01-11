@@ -102,6 +102,12 @@ const CustomerPetForm = ({ createPet, setIsModalVisible }) => {
               return;
             }
             createPet(formData);
+            setFormData({
+              pet_name: '',
+              color: '',
+              date_of_birth: '',
+              phone_number: '',
+            });
             setIsModalVisible(false);
           }}
         >
