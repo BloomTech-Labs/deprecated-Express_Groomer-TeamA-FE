@@ -1,10 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import NavBar from '../../Navigation/NavBar';
 import husky from '../../../assets/husky.jpg';
 import map from '../../../assets/sample-map.png';
 import mediumdog from '../../../assets/mediumdog.jpg';
-import NavBar from '../../Navigation/NavBar';
+import '../../Navigation/NavBar';
 import { Layout } from 'antd';
 import {
   HeaderImg,
