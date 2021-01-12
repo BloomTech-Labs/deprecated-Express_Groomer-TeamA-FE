@@ -1,20 +1,37 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import husky from '../../../assets/husky.jpg';
+import map from '../../../assets/sample-map.png';
+import mediumdog from '../../../assets/mediumdog.jpg';
+import NavBar from '../../Navigation/NavBar';
+import { Layout } from 'antd';
+import {
+  HeaderImg,
+  FirstParagraphContent,
+  SecondParagraphContent,
+  MapImg,
+  ParagraphTwoFormater,
+  HeaderDiv,
+  BodyDiv,
+  ContentDiv,
+  ContentP,
+} from './landingPageStyledComponents';
 
-function RenderLandingPage(props) {
+function RenderLandingPage() {
   return (
-    <div>
-      <h1>Welcome to Labs Basic SPA</h1>
+    <Layout>
+      <NavBar />
       <div>
-        <p>
-          This is an example of how we'd like for you to approach page/routable
-          components.
-        </p>
-        <p>
-          <Link to="/example-list">Example List of Items</Link>
-        </p>
+        <HeaderImg src={husky} />
+        <ContentDiv>
+          <BodyDiv src={mediumdog} />
+          <ContentP>{FirstParagraphContent[0]}</ContentP>
+        </ContentDiv>
+        <hr></hr>
+        <HeaderDiv>How it works</HeaderDiv>
+        <MapImg src={map} />
+        <ParagraphTwoFormater>{SecondParagraphContent[0]}</ParagraphTwoFormater>
       </div>
-    </div>
+    </Layout>
   );
 }
 export default RenderLandingPage;
