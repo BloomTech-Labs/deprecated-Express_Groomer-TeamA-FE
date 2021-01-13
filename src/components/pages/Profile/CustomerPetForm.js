@@ -1,15 +1,24 @@
 import React, { useState } from 'react';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, Select } from 'antd';
+import { useOktaAuth } from '@okta/okta-react';
+import { createCustomerPet } from '../../../api';
 
-const CustomerPetForm = ({ createPet, setIsModalVisible }) => {
+const CustomerPetForm = ({ setIsModalVisible }) => {
   const [form] = Form.useForm();
+  const { authState } = useOktaAuth();
   const [formData, setFormData] = useState({
-    pet_name: '',
-    color: '',
-    date_of_birth: '',
-    phone_number: '',
-    image_url: '',
+    pet_name: null,
+    color: null,
+    date_of_birth: null,
+    phone_number: null,
+    image_url: null,
   });
+
+  const [selectionValue, setSelectionValue] = useState('');
+
+  const onSelectionChange = value => {
+    setSelectionValue(value);
+  };
 
   const onFormChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -31,7 +40,7 @@ const CustomerPetForm = ({ createPet, setIsModalVisible }) => {
 
   const formItemLayout = {
     labelCol: {
-      span: 4,
+      span: 8,
     },
     wrapperCol: {
       span: 16,
@@ -42,6 +51,7 @@ const CustomerPetForm = ({ createPet, setIsModalVisible }) => {
       span: 14,
     },
   };
+
   return (
     <Form {...formItemLayout} layout={'vertical'} form={form}>
       <Form.Item
@@ -86,6 +96,26 @@ const CustomerPetForm = ({ createPet, setIsModalVisible }) => {
           onChange={onFormChange}
         />
       </Form.Item>
+      <Form.Item
+        label="Animal Type"
+        name="animal-type"
+        rules={[
+          {
+            required: true,
+            message: 'Please select animal type',
+          },
+        ]}
+        hasFeedback
+      >
+        <Select
+          name="animal-type"
+          value={selectionValue}
+          onChange={onSelectionChange}
+        >
+          <Select.Option value="1">Cat</Select.Option>
+          <Select.Option value="2">Dog</Select.Option>
+        </Select>
+      </Form.Item>
       <Form.Item label={'Photo'}>
         <Input
           type="file"
@@ -102,13 +132,23 @@ const CustomerPetForm = ({ createPet, setIsModalVisible }) => {
             if (!formData.pet_name) {
               return;
             }
-            createPet(formData);
+
+            if (!selectionValue) {
+              return;
+            }
+
+            const data = {
+              animal_id: +selectionValue,
+              ...formData,
+            };
+
+            createCustomerPet(authState, data);
             setFormData({
-              pet_name: '',
-              color: '',
-              date_of_birth: '',
-              phone_number: '',
-              image_url: '',
+              pet_name: null,
+              color: null,
+              date_of_birth: null,
+              phone_number: null,
+              image_url: null,
             });
             setIsModalVisible(false);
           }}
