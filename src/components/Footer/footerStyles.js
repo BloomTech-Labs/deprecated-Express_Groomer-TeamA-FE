@@ -5,9 +5,10 @@ const FooterContainer = styled.div`
     color: #ffffff;
     display: flex;
     width: 100%;
+    height: 5%;
     bottom: 0;
-    position: absolute;
     justify-content: space-between;
+    align-self: flex-end;
 
     img {
         widows: 100px;
