@@ -6,6 +6,7 @@ import CustomerInfo from './CustomerInfo';
 import CustomerEditInfo from './CustomerEditInfo';
 import PetCard from './PetCard';
 import AppointmentCard from './AppointmentCard';
+import CustomerAddPet from './CustomerAddPet';
 import './profile.css';
 
 // Ant Design
@@ -101,7 +102,6 @@ const RenderCustomerProfile = ({ userInfo }) => {
           date_of_birth: formData.date_of_birth,
           image_url: formData.image_url,
           phone_number: formData.phone_number,
-          image_url: formData.image_url,
         };
       } else {
         return newpet;
@@ -114,6 +114,12 @@ const RenderCustomerProfile = ({ userInfo }) => {
     console.log('ID', id);
     const newPets = petData.filter(pet => pet.id !== id);
     setPetData(newPets);
+  };
+
+  const createPet = data => {
+    const newId = petData[petData.length - 1].id + 1;
+    const newPet = { id: newId, ...data };
+    setPetData([...petData, newPet]);
   };
 
   console.log('PETDATA', petData);
@@ -195,11 +201,7 @@ const RenderCustomerProfile = ({ userInfo }) => {
                 <p>DOB: {petData[currentPetSelected].date_of_birth}</p>
                 <p>Contact: {petData[currentPetSelected].phone_number}</p>
               </Modal>
-              <Col xs={{ span: 24 }} sm={{ span: 8 }} md={{ span: 8 }}>
-                <div className="add-pets">
-                  <i className="fas fa-plus"></i>
-                </div>
-              </Col>
+              <CustomerAddPet createPet={createPet} />
             </Row>
           </div>
         </div>
