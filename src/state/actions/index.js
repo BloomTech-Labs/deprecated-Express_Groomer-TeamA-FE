@@ -3,6 +3,7 @@ export const POPULATE_USER = 'POPULATE_USER';
 export const POPULATE_PET = 'POPULATE_PET';
 export const CREATE_PET = 'CREATE_PET';
 export const EDIT_PET = 'EDIT_PET';
+export const DELETE_PET = 'DELETE_PET';
 
 export const setProfilesToState = data => {
   console.log(data);
@@ -35,6 +36,13 @@ export const createPet = data => {
 export const editPet = data => {
   return {
     type: EDIT_PET,
+    payload: data,
+  };
+};
+
+export const deletePet = data => {
+  return {
+    type: DELETE_PET,
     payload: data,
   };
 };

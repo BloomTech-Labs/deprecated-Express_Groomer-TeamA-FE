@@ -4,6 +4,7 @@ import {
   POPULATE_PET,
   CREATE_PET,
   EDIT_PET,
+  DELETE_PET,
 } from '../actions/index';
 
 const initialState = {
@@ -43,6 +44,13 @@ export const appReducer = (state = initialState, action) => {
           } else {
             return pet;
           }
+        }),
+      };
+    case DELETE_PET:
+      return {
+        ...state,
+        pets: state.pets.filter(pet => {
+          return pet.id !== action.payload.id;
         }),
       };
     default:

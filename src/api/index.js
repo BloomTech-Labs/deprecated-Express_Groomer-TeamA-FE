@@ -5,6 +5,7 @@ import {
   populatePet,
   createPet,
   editPet,
+  deletePet,
 } from '../state/actions';
 import { store } from '../index';
 
@@ -77,6 +78,12 @@ const apiAuthCreatePet = (authHeader, data) => {
 // edit customer pets
 const apiAuthEditPet = (authHeader, data) => {
   return axios.put(`${apiUrl}/customerPet`, data, { headers: authHeader });
+};
+
+// delete customer pets
+
+const apiAuthDeletePet = (authHeader, id) => {
+  return axios.delete(`${apiUrl}/customerPet/${id}`, { headers: authHeader });
 };
 
 const getProfileData = authState => {
@@ -190,6 +197,25 @@ const editCustomerPet = (authState, data) => {
   }
 };
 
+const deleteCustomerPet = (authState, id) => {
+  const header = getAuthHeader(authState);
+  try {
+    return apiAuthDeletePet(header, id)
+      .then(res => {
+        store.dispatch(deletePet(res.data.customer.pets[0]));
+        return res.data;
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  } catch (e) {
+    return new Promise(() => {
+      console.log(`Error: ${e}`);
+      return [];
+    });
+  }
+};
+
 export {
   sleep,
   getExampleData,
@@ -200,5 +226,6 @@ export {
   getUserProfileData,
   getCustomerPetsData,
   createCustomerPet,
+  deleteCustomerPet,
   getAuthHeader,
 };
