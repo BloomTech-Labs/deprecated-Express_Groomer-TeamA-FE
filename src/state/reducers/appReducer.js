@@ -3,6 +3,7 @@ import {
   POPULATE_USER,
   POPULATE_PET,
   CREATE_PET,
+  EDIT_PET,
 } from '../actions/index';
 
 const initialState = {
@@ -32,6 +33,17 @@ export const appReducer = (state = initialState, action) => {
       return {
         ...state,
         pets: [...state.pets, ...action.payload],
+      };
+    case EDIT_PET:
+      return {
+        ...state,
+        pets: state.pets.map(pet => {
+          if (pet.id === action.payload.id) {
+            return action.payload;
+          } else {
+            return pet;
+          }
+        }),
       };
     default:
       return state;

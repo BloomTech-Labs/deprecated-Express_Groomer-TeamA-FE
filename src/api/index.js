@@ -4,6 +4,7 @@ import {
   populateUser,
   populatePet,
   createPet,
+  editPet,
 } from '../state/actions';
 import { store } from '../index';
 
@@ -68,8 +69,14 @@ const apiAuthCustomerPets = authHeader => {
   return axios.get(`${apiUrl}/customerPet`, { headers: authHeader });
 };
 
+// create customer pets
 const apiAuthCreatePet = (authHeader, data) => {
   return axios.post(`${apiUrl}/customerPet`, data, { headers: authHeader });
+};
+
+// edit customer pets
+const apiAuthEditPet = (authHeader, data) => {
+  return axios.put(`${apiUrl}/customerPet`, data, { headers: authHeader });
 };
 
 const getProfileData = authState => {
@@ -164,12 +171,32 @@ const createCustomerPet = (authState, data) => {
   }
 };
 
+const editCustomerPet = (authState, data) => {
+  const header = getAuthHeader(authState);
+  try {
+    return apiAuthEditPet(header, data)
+      .then(res => {
+        store.dispatch(editPet(res.data.customer.pets[0]));
+        return res.data;
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  } catch (e) {
+    return new Promise(() => {
+      console.log(`Error: ${e}`);
+      return [];
+    });
+  }
+};
+
 export {
   sleep,
   getExampleData,
   getProfileData,
   getDSData,
   editProfileData,
+  editCustomerPet,
   getUserProfileData,
   getCustomerPetsData,
   createCustomerPet,
