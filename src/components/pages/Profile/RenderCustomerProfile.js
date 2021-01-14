@@ -52,20 +52,19 @@ const RenderCustomerProfile = ({ userInfo, pets }) => {
   const [displayUserInfoInputs, toggleUserInfoInputs] = useState(false);
   const [isModalVisible1, setIsModalVisible1] = useState(false);
   const [userFormData, setUserFormData] = useState({
-    name: '',
-    email: '',
+    id: null,
+    name: null,
+    email: null,
   });
   const [currentPetSelected, setCurrentPetSelected] = useState(0);
 
   useEffect(() => {
     setUserFormData({
+      id: userInfo.id,
       name: userInfo.name,
       email: userInfo.email,
     });
   }, [userInfo]);
-
-  // Destructure State
-  const { name, email } = userFormData;
 
   const onChange = e => {
     setUserFormData({ ...userFormData, [e.target.name]: e.target.value });
@@ -89,36 +88,6 @@ const RenderCustomerProfile = ({ userInfo, pets }) => {
     setIsModalVisible1(false);
   };
 
-  // const handleSave = formData => {
-  //   const newPets = petData.map(newpet => {
-  //     if (newpet.id === formData.id) {
-  //       return {
-  //         id: formData.id,
-  //         pet_name: formData.pet_name,
-  //         color: formData.color,
-  //         date_of_birth: formData.date_of_birth,
-  //         image_url: formData.image_url,
-  //         phone_number: formData.phone_number,
-  //       };
-  //     } else {
-  //       return newpet;
-  //     }
-  //   });
-  //   setPetData(newPets);
-  // };
-
-  // const handleDelete = id => {
-  //   console.log('ID', id);
-  //   const newPets = petData.filter(pet => pet.id !== id);
-  //   setPetData(newPets);
-  // };
-
-  // const createPet = data => {
-  //   const newId = petData[petData.length - 1].id + 1;
-  //   const newPet = { id: newId, ...data };
-  //   setPetData([...petData, newPet]);
-  // };
-
   return (
     <div>
       {userInfo && (
@@ -127,15 +96,13 @@ const RenderCustomerProfile = ({ userInfo, pets }) => {
             <Col xs={{ span: 24 }} sm={{ span: 8 }} md={{ span: 8 }}>
               {!displayUserInfoInputs ? (
                 <CustomerInfo
-                  name={name}
-                  email={email}
+                  userFormData={userFormData}
                   toggleUserInfoInputs={toggleUserInfoInputs}
                   displayUserInfoInputs={displayUserInfoInputs}
                 />
               ) : (
                 <CustomerEditInfo
-                  name={name}
-                  email={email}
+                  userFormData={userFormData}
                   saveChanges={onSubmit}
                   updateForm={onChange}
                   toggleUserInfoInputs={toggleUserInfoInputs}

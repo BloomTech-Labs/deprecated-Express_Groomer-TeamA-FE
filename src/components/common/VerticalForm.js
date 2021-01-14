@@ -11,8 +11,6 @@ const VerticalForm = ({ fields, layout, data, setIsModalVisible }) => {
   const [loading, setLoading] = useState({ loading: false, image_url: '' });
   const { authState } = useOktaAuth();
 
-  console.log('formData', formData);
-
   const onChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };

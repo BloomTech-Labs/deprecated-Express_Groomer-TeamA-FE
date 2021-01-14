@@ -105,6 +105,7 @@ const editProfileData = (authState, profile_data) => {
     return apiAuthEdit(getAuthHeader(authState), profile_data).then(
       response => {
         store.dispatch(populateUser(response.data.profile));
+        return response.data;
       }
     );
   } catch (error) {
