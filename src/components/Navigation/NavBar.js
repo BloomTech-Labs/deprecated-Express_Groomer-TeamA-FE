@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Nav, Title } from './navStyles';
-import RightNav from './RightNav';
+import {RightNav} from './RightNav';
+import {BurgerMenu} from "./BurgerMenu";
 
 function NavBar() {
   return (
@@ -9,6 +10,7 @@ function NavBar() {
       <Link to="/home">
         <Title>Express Groomer</Title>
       </Link>
+      <BurgerMenu />
       <RightNav />
     </Nav>
   );
