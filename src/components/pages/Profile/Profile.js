@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { useOktaAuth } from '@okta/okta-react';
 import RenderGroomerProfile from './RenderGroomerProfile';
 import RenderCustomerProfile from './RenderCustomerProfile';
-import { getUserProfileData } from '../../../api';
+import { getUserProfileData, getCustomerPetsData } from '../../../api';
 
 const Profile = props => {
   const { authState, authService } = useOktaAuth();
@@ -16,6 +16,7 @@ const Profile = props => {
       .getUser()
       .then(info => {
         getUserProfileData(authState, info.sub);
+        getCustomerPetsData(authState);
       })
       .catch(err => {
         console.log(err);
@@ -32,7 +33,7 @@ const Profile = props => {
       {isGroomer ? (
         <RenderGroomerProfile userInfo={props.currentUser} />
       ) : (
-        <RenderCustomerProfile userInfo={props.currentUser} />
+        <RenderCustomerProfile userInfo={props.currentUser} pets={props.pets} />
       )}
     </div>
   );
@@ -41,6 +42,7 @@ const Profile = props => {
 const mapStateToProps = state => {
   return {
     currentUser: state.currentUser,
+    pets: state.pets,
   };
 };
 

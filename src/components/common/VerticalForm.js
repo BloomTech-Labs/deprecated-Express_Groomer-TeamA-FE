@@ -1,24 +1,15 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Input, Button } from 'antd';
+import { useOktaAuth } from '@okta/okta-react';
+import { editCustomerPet } from '../../api';
 
-const VerticalForm = ({
-  fields,
-  layout,
-  data,
-  handleSave,
-  setIsModalVisible,
-}) => {
+const VerticalForm = ({ fields, layout, data, setIsModalVisible }) => {
   const [form] = Form.useForm();
   const [formLayout, setFormLayout] = useState(layout);
   const [formData, setFormData] = useState(data);
   const [loading, setLoading] = useState({ loading: false, image_url: '' });
-
-  console.log('formData', formData);
-  const onSubmit = e => {
-    e.preventDefault();
-    handleSave(formData);
-  };
+  const { authState } = useOktaAuth();
 
   const onChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -64,9 +55,6 @@ const VerticalForm = ({
   return (
     <div>
       <Form
-        onSubmit={e => {
-          onSubmit(formData);
-        }}
         {...formItemLayout}
         layout={formLayout}
         form={form}
@@ -94,7 +82,10 @@ const VerticalForm = ({
           <Button
             onClick={() => {
               setIsModalVisible(false);
-              handleSave(formData);
+              editCustomerPet(authState, {
+                animal_id: formData.animal.id,
+                ...formData,
+              });
             }}
             type="submit"
           >

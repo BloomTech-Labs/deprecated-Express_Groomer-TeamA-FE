@@ -3,16 +3,15 @@ import { Avatar, Button } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 
 const CustomerInfo = ({
-  name,
-  email,
+  userFormData,
   toggleUserInfoInputs,
   displayUserInfoInputs,
 }) => {
   return (
     <div className="customer-info">
       <Avatar size={84} icon={<UserOutlined />} />
-      <p>Username: {name}</p>
-      <p>Email: {email}</p>
+      <p>Username: {userFormData.name}</p>
+      <p>Email: {userFormData.email}</p>
       <Button
         onClick={() => {
           toggleUserInfoInputs(!displayUserInfoInputs);
