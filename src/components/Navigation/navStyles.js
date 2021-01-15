@@ -13,7 +13,7 @@ const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  background-color: #00B3B3;
+  background-color: #006161;
   color: #ffffff;
 
   @media (max-width: 768px) {
