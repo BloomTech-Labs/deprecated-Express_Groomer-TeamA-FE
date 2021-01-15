@@ -19,6 +19,7 @@ import { LoginPage } from './components/pages/Login';
 import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
 import { EditProfile } from './components/pages/EditProfile';
+import { AppointmentPage } from './components/pages/Appointments/';
 import { Profile } from './components/pages/Profile';
 import { createStore } from 'redux';
 
@@ -80,6 +81,7 @@ function App() {
           render={props => <EditProfile {...props} />}
         />
         <SecureRoute path="/map-view" component={MapBox} />
+        <SecureRoute path="/groomer-appointment" component={AppointmentPage} />
         <Route path="/home" component={LandingPage} />
         <Route path="/groomers" component={LandingPageForGroomers} />
       </Switch>
