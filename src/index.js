@@ -16,6 +16,7 @@ import { ExampleListPage } from './components/pages/ExampleList';
 import { HomePage } from './components/pages/Home';
 import { ProfileListPage } from './components/pages/ProfileList';
 import { LoginPage } from './components/pages/Login';
+import { AppointmentPage } from './components/pages/Appointments';
 import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
 import { EditProfile } from './components/pages/EditProfile';
@@ -80,6 +81,7 @@ function App() {
           render={props => <EditProfile {...props} />}
         />
         <SecureRoute path="/map-view" component={MapBox} />
+        <SecureRoute path="/groomer-appointment" component={AppointmentPage} />
         <Route path="/home" component={LandingPage} />
         <Route path="/groomers" component={LandingPageForGroomers} />
       </Switch>
