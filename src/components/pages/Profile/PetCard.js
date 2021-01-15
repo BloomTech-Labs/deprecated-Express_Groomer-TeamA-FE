@@ -8,6 +8,8 @@ import { Row, Col, Avatar, Button } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 // Form
 import VerticalForm from '../../common/VerticalForm';
+import { useOktaAuth } from '@okta/okta-react';
+import { deleteCustomerPet } from '../../../api';
 
 const PetCard = ({
   pet,
@@ -51,6 +53,7 @@ const PetCard = ({
   };
   // Menu
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const { authState } = useOktaAuth();
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -101,11 +104,11 @@ const PetCard = ({
       </Menu.Item>
       <Menu.Item danger>
         <a
-          to={`myprofile`}
+          href="#"
           onClick={e => {
             e.preventDefault();
             e.stopPropagation();
-            handleDelete(pet.id);
+            deleteCustomerPet(authState, pet.id);
           }}
         >
           Delete
