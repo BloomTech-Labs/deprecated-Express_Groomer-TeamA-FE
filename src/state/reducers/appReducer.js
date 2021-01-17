@@ -5,11 +5,13 @@ import {
   CREATE_PET,
   EDIT_PET,
   DELETE_PET,
+  GET_APPOINTMENTS,
 } from '../actions/index';
 
 const initialState = {
   profiles: [],
   pets: [],
+  appointments: [],
   currentUser: {},
 };
 
@@ -52,6 +54,11 @@ export const appReducer = (state = initialState, action) => {
         pets: state.pets.filter(pet => {
           return pet.id !== action.payload.id;
         }),
+      };
+    case GET_APPOINTMENTS:
+      return {
+        ...state,
+        appointments: [...action.payload],
       };
     default:
       return state;

@@ -15,13 +15,18 @@ const CustomerPetForm = ({ setIsModalVisible }) => {
   });
 
   const [selectionValue, setSelectionValue] = useState('');
+  const dateRegex = /^([0-3]?[0-9])\-([0-3]?[0-9])\-((?:[0-9]{2})?[0-9]{2})$/g;
 
   const onSelectionChange = value => {
     setSelectionValue(value);
   };
 
   const onFormChange = e => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    if (e.target.value === '') {
+      setFormData({ ...formData, [e.target.name]: null });
+    } else {
+      setFormData({ ...formData, [e.target.name]: e.target.value });
+    }
   };
 
   const uploadImage = async e => {
@@ -80,7 +85,17 @@ const CustomerPetForm = ({ setIsModalVisible }) => {
           onChange={onFormChange}
         />
       </Form.Item>
-      <Form.Item label="DOB">
+      <Form.Item
+        name="date_of_birth"
+        label="DOB"
+        rules={[
+          {
+            pattern: new RegExp(dateRegex),
+            message: 'Date format Should be in format MM-DD-YYYY',
+          },
+        ]}
+        hasFeedback
+      >
         <Input
           name="date_of_birth"
           placeholder="Date of birth"
@@ -129,11 +144,18 @@ const CustomerPetForm = ({ setIsModalVisible }) => {
           type="primary"
           htmlType="submit"
           onClick={() => {
+            const regex = RegExp(dateRegex);
             if (!formData.pet_name) {
               return;
             }
 
             if (!selectionValue) {
+              return;
+            }
+
+            //check to see date format is right
+            if (!regex.test(formData.date_of_birth) && formData.date_of_birth) {
+              console.log('wrong date format');
               return;
             }
 

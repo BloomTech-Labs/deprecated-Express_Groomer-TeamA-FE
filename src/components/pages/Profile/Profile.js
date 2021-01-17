@@ -3,7 +3,11 @@ import { connect } from 'react-redux';
 import { useOktaAuth } from '@okta/okta-react';
 import RenderGroomerProfile from './RenderGroomerProfile';
 import RenderCustomerProfile from './RenderCustomerProfile';
-import { getUserProfileData, getCustomerPetsData } from '../../../api';
+import {
+  getUserProfileData,
+  getCustomerPetsData,
+  getAppointmentData,
+} from '../../../api';
 
 const Profile = props => {
   const { authState, authService } = useOktaAuth();
@@ -16,7 +20,6 @@ const Profile = props => {
       .getUser()
       .then(info => {
         getUserProfileData(authState, info.sub);
-        getCustomerPetsData(authState);
       })
       .catch(err => {
         console.log(err);
@@ -25,6 +28,8 @@ const Profile = props => {
       setIsGroomer(true);
     } else {
       setIsGroomer(false);
+      getCustomerPetsData(authState);
+      getAppointmentData(authState);
     }
   }, []);
 
@@ -33,7 +38,11 @@ const Profile = props => {
       {isGroomer ? (
         <RenderGroomerProfile userInfo={props.currentUser} />
       ) : (
-        <RenderCustomerProfile userInfo={props.currentUser} pets={props.pets} />
+        <RenderCustomerProfile
+          userInfo={props.currentUser}
+          pets={props.pets}
+          appointments={props.appointments}
+        />
       )}
     </div>
   );
@@ -41,6 +50,7 @@ const Profile = props => {
 
 const mapStateToProps = state => {
   return {
+    appointments: state.appointments,
     currentUser: state.currentUser,
     pets: state.pets,
   };
