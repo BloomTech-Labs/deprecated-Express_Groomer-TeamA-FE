@@ -7,7 +7,7 @@ function NavBar() {
   return (
     <Nav>
       <Link to="/home">
-        <Title>Express Groomer</Title>
+        <Title>Pet Express</Title>
       </Link>
       <RightNav />
     </Nav>
