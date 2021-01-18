@@ -2,6 +2,7 @@ import axios from 'axios';
 import {
   setProfilesToState,
   getAppointments,
+  createAppointment,
   populateUser,
   populatePet,
   createPet,
@@ -89,6 +90,11 @@ const apiAuthDeletePet = (authHeader, id) => {
 // get Appointments
 const apiAuthGetAppointment = authHeader => {
   return axios.get(`${apiUrl}/appointments`, { headers: authHeader });
+};
+
+// create appointment
+const apiAuthCreateAppointment = (authHeader, data) => {
+  return axios.post(`${apiUrl}/appointments`, data, { headers: authHeader });
 };
 
 const getProfileData = authState => {
@@ -241,6 +247,25 @@ const getAppointmentData = authState => {
   }
 };
 
+const createAppointmentData = (authState, data) => {
+  const header = getAuthHeader(authState);
+  try {
+    return apiAuthCreateAppointment(header, data)
+      .then(res => {
+        store.dispatch(createAppointment(res.data));
+        return res.data;
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  } catch (e) {
+    return new Promise(() => {
+      console.log(`Error: ${e}`);
+      return [];
+    });
+  }
+};
+
 export {
   sleep,
   getExampleData,
@@ -250,6 +275,7 @@ export {
   editCustomerPet,
   getUserProfileData,
   getCustomerPetsData,
+  createAppointmentData,
   getAppointmentData,
   createCustomerPet,
   deleteCustomerPet,
