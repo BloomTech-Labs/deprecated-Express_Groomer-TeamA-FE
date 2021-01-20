@@ -9,10 +9,15 @@ const VerticalForm = ({ fields, layout, data, setIsModalVisible }) => {
   const [formLayout, setFormLayout] = useState(layout);
   const [formData, setFormData] = useState(data);
   const [loading, setLoading] = useState({ loading: false, image_url: '' });
+  const dateRegex = /^([0-3]?[0-9])\-([0-3]?[0-9])\-((?:[0-9]{2})?[0-9]{2})$/g;
   const { authState } = useOktaAuth();
 
   const onChange = e => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    if (e.target.value === '') {
+      setFormData({ ...formData, [e.target.name]: null });
+    } else {
+      setFormData({ ...formData, [e.target.name]: e.target.value });
+    }
   };
 
   const onFormLayoutChange = ({ layout }) => {
@@ -53,47 +58,70 @@ const VerticalForm = ({ fields, layout, data, setIsModalVisible }) => {
       : null;
 
   return (
-    <div>
-      <Form
-        {...formItemLayout}
-        layout={formLayout}
-        form={form}
-        initialValues={{ layout: formLayout }}
-        onValuesChange={onFormLayoutChange}
-      >
-        {fields.map(field => (
-          <Form.Item key={field.data} label={field.displayName}>
-            <Input
+    <Form {...formItemLayout} layout={formLayout} form={form}>
+      {fields.map(field => {
+        if (field.data === 'date_of_birth') {
+          return (
+            <Form.Item
               name={field.data}
-              onChange={e => onChange(e)}
-              value={formData[field.data]}
-            />
-          </Form.Item>
-        ))}
-        <Form.Item label={'Photo'}>
-          <Input
-            type="file"
-            name="file"
-            placeholder="Upload Image..."
-            onChange={uploadImage}
-          />
-        </Form.Item>
-        <Form.Item>
-          <Button
-            onClick={() => {
-              setIsModalVisible(false);
-              editCustomerPet(authState, {
-                animal_id: formData.animal.id,
-                ...formData,
-              });
-            }}
-            type="submit"
-          >
-            Save
-          </Button>
-        </Form.Item>
-      </Form>
-    </div>
+              key={field.data}
+              label={field.displayName}
+              hasFeedback
+              rules={[
+                {
+                  pattern: new RegExp(dateRegex),
+                  message: 'Date format Should be in format MM-DD-YYYY',
+                },
+              ]}
+            >
+              <Input
+                name={field.data}
+                onChange={e => onChange(e)}
+                value={formData[field.data]}
+              />
+            </Form.Item>
+          );
+        } else {
+          return (
+            <Form.Item key={field.data} label={field.displayName}>
+              <Input
+                name={field.data}
+                onChange={e => onChange(e)}
+                value={formData[field.data]}
+              />
+            </Form.Item>
+          );
+        }
+      })}
+      <Form.Item label={'Photo'}>
+        <Input
+          type="file"
+          name="file"
+          placeholder="Upload Image..."
+          onChange={uploadImage}
+        />
+      </Form.Item>
+      <Form.Item>
+        <Button
+          onClick={() => {
+            const regex = RegExp(dateRegex);
+            //check to see date format is right
+            if (!regex.test(formData.date_of_birth) && formData.date_of_birth) {
+              console.log('wrong date format');
+              return;
+            }
+            setIsModalVisible(false);
+            editCustomerPet(authState, {
+              animal_id: formData.animal.id,
+              ...formData,
+            });
+          }}
+          htmlType="submit"
+        >
+          Save
+        </Button>
+      </Form.Item>
+    </Form>
   );
 };
 export default VerticalForm;

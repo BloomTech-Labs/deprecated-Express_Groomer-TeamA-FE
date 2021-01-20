@@ -7,13 +7,14 @@ import CustomerEditInfo from './CustomerEditInfo';
 import PetCard from './PetCard';
 import AppointmentCard from './AppointmentCard';
 import CustomerAddPet from './CustomerAddPet';
+import convertISODate from '../../../utils/convertiso';
 import './profile.css';
 
 // Ant Design
 import { Menu, Dropdown } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 
-const RenderCustomerProfile = ({ userInfo, pets }) => {
+const RenderCustomerProfile = ({ userInfo, pets, appointments }) => {
   // Dummy Data
   const dates = [
     {
@@ -29,6 +30,7 @@ const RenderCustomerProfile = ({ userInfo, pets }) => {
       pet: 'Rocky',
     },
   ];
+
   // const pets = [
   //   {
   //     id: 1,
@@ -115,7 +117,7 @@ const RenderCustomerProfile = ({ userInfo, pets }) => {
                 <h2>Upcoming Appointments</h2>
                 <div className="upcoming-appointments-content">
                   <Row gutter={[16, 16]}>
-                    {dates.map(date => {
+                    {appointments.map((appointment, index) => {
                       return (
                         <Col
                           xs={{ span: 24 }}
@@ -123,10 +125,10 @@ const RenderCustomerProfile = ({ userInfo, pets }) => {
                           md={{ span: 8 }}
                         >
                           <AppointmentCard
-                            key={date.id}
-                            date={date.date}
-                            location={date.location}
-                            pet={date.pet}
+                            key={index}
+                            date={convertISODate(appointment.appointment_date)}
+                            time={appointment.appointment_time}
+                            status={appointment.status}
                           />
                         </Col>
                       );
@@ -161,14 +163,13 @@ const RenderCustomerProfile = ({ userInfo, pets }) => {
                       <p>Color: {pets[currentPetSelected].color}</p>
                     )}
                     {pets[currentPetSelected].date_of_birth && (
-                      <p>DOB: {pets[currentPetSelected].date_of_birth}</p>
+                      <p>
+                        DOB:{' '}
+                        {convertISODate(pets[currentPetSelected].date_of_birth)}
+                      </p>
                     )}
                   </>
                 )}
-                {/*
-                  <p>DOB: {pets[currentPetSelected].date_of_birth}</p>
-                  <p>Contact: {pets[currentPetSelected].phone_number}</p>
-                */}
               </Modal>
               <CustomerAddPet />
             </Row>

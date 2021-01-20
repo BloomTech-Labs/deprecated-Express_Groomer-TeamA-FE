@@ -1,6 +1,8 @@
 import axios from 'axios';
 import {
   setProfilesToState,
+  getAppointments,
+  createAppointment,
   populateUser,
   populatePet,
   createPet,
@@ -81,9 +83,18 @@ const apiAuthEditPet = (authHeader, data) => {
 };
 
 // delete customer pets
-
 const apiAuthDeletePet = (authHeader, id) => {
   return axios.delete(`${apiUrl}/customerPet/${id}`, { headers: authHeader });
+};
+
+// get Appointments
+const apiAuthGetAppointment = authHeader => {
+  return axios.get(`${apiUrl}/appointments`, { headers: authHeader });
+};
+
+// create appointment
+const apiAuthCreateAppointment = (authHeader, data) => {
+  return axios.post(`${apiUrl}/appointments`, data, { headers: authHeader });
 };
 
 const getProfileData = authState => {
@@ -217,6 +228,44 @@ const deleteCustomerPet = (authState, id) => {
   }
 };
 
+const getAppointmentData = authState => {
+  const header = getAuthHeader(authState);
+  try {
+    return apiAuthGetAppointment(header)
+      .then(res => {
+        store.dispatch(getAppointments(res.data));
+        return res.data;
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  } catch (e) {
+    return new Promise(() => {
+      console.log(`Error: ${e}`);
+      return [];
+    });
+  }
+};
+
+const createAppointmentData = (authState, data) => {
+  const header = getAuthHeader(authState);
+  try {
+    return apiAuthCreateAppointment(header, data)
+      .then(res => {
+        store.dispatch(createAppointment(res.data));
+        return res.data;
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  } catch (e) {
+    return new Promise(() => {
+      console.log(`Error: ${e}`);
+      return [];
+    });
+  }
+};
+
 export {
   sleep,
   getExampleData,
@@ -226,6 +275,8 @@ export {
   editCustomerPet,
   getUserProfileData,
   getCustomerPetsData,
+  createAppointmentData,
+  getAppointmentData,
   createCustomerPet,
   deleteCustomerPet,
   getAuthHeader,
