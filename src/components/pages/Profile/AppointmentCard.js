@@ -1,16 +1,11 @@
 import React from 'react';
-/// Ant Design ///
-// Dropdown ///
 
-// Form
-//import VerticalForm from '../../common/VerticalForm';
-
-const AppointmentCard = ({ date, location, pet }) => {
+const AppointmentCard = ({ date, time, status }) => {
   return (
     <div className="current-appointments">
-      <p>Date:{date}</p>
-      <p>Location: {location}</p>
-      <p>Pet: {pet}</p>
+      <p>Date: {date}</p>
+      <p>Time: {time}</p>
+      <p>Status: {status}</p>
     </div>
   );
 };

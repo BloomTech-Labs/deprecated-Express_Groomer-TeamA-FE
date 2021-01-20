@@ -8,7 +8,11 @@ const Title = styled.h1`
 
 const Nav = styled.nav`
   width: 100%;
+<<<<<<< HEAD
   border-bottom: 2px solid #bababa;
+=======
+  border-bottom: 2px solid #BABABA;
+>>>>>>> fa0f362a74ca69a4698927191a601482bf11f7e7
   padding: 0 20px;
   display: flex;
   justify-content: space-between;

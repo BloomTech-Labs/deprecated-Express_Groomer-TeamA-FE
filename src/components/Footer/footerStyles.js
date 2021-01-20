@@ -1,18 +1,20 @@
 import styled from "styled-components";
 
 const FooterContainer = styled.div`
-    background-color: #008080;
-    color: #ffffff;
+    background-color: #006161;
+    color: #FFFFFF;
     display: flex;
     width: 100%;
-    height: 5%;
+    height: 3%;
     bottom: 0;
     justify-content: space-between;
     align-self: flex-end;
+    border-top: 2px solid #BABABA;
 
     img {
-        widows: 100px;
+        width: 100px;
         height: 100px;
+        margin-left: 1%;
       }
     
     .footer-icons {
@@ -25,8 +27,10 @@ const FooterContainer = styled.div`
             margin-top: 35px;
             margin-left:7%;
             font-size: 2rem;
+            text-shadow: 0 0 2px gray;
+            color: white;
             &:hover {
-              color:white;
+              color:orange;
             }
     }
 `;

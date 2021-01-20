@@ -1,18 +1,32 @@
 import React, { useState } from 'react';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, Select } from 'antd';
+import { useOktaAuth } from '@okta/okta-react';
+import { createCustomerPet } from '../../../api';
 
-const CustomerPetForm = ({ createPet, setIsModalVisible }) => {
+const CustomerPetForm = ({ setIsModalVisible }) => {
   const [form] = Form.useForm();
+  const { authState } = useOktaAuth();
   const [formData, setFormData] = useState({
-    pet_name: '',
-    color: '',
-    date_of_birth: '',
-    phone_number: '',
-    image_url: '',
+    pet_name: null,
+    color: null,
+    date_of_birth: null,
+    phone_number: null,
+    image_url: null,
   });
 
+  const [selectionValue, setSelectionValue] = useState('');
+  const dateRegex = /^([0-3]?[0-9])\-([0-3]?[0-9])\-((?:[0-9]{2})?[0-9]{2})$/g;
+
+  const onSelectionChange = value => {
+    setSelectionValue(value);
+  };
+
   const onFormChange = e => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    if (e.target.value === '') {
+      setFormData({ ...formData, [e.target.name]: null });
+    } else {
+      setFormData({ ...formData, [e.target.name]: e.target.value });
+    }
   };
 
   const uploadImage = async e => {
@@ -31,7 +45,7 @@ const CustomerPetForm = ({ createPet, setIsModalVisible }) => {
 
   const formItemLayout = {
     labelCol: {
-      span: 4,
+      span: 8,
     },
     wrapperCol: {
       span: 16,
@@ -42,6 +56,7 @@ const CustomerPetForm = ({ createPet, setIsModalVisible }) => {
       span: 14,
     },
   };
+
   return (
     <Form {...formItemLayout} layout={'vertical'} form={form}>
       <Form.Item
@@ -70,7 +85,17 @@ const CustomerPetForm = ({ createPet, setIsModalVisible }) => {
           onChange={onFormChange}
         />
       </Form.Item>
-      <Form.Item label="DOB">
+      <Form.Item
+        name="date_of_birth"
+        label="DOB"
+        rules={[
+          {
+            pattern: new RegExp(dateRegex),
+            message: 'Date format Should be in format MM-DD-YYYY',
+          },
+        ]}
+        hasFeedback
+      >
         <Input
           name="date_of_birth"
           placeholder="Date of birth"
@@ -86,6 +111,26 @@ const CustomerPetForm = ({ createPet, setIsModalVisible }) => {
           onChange={onFormChange}
         />
       </Form.Item>
+      <Form.Item
+        label="Animal Type"
+        name="animal-type"
+        rules={[
+          {
+            required: true,
+            message: 'Please select animal type',
+          },
+        ]}
+        hasFeedback
+      >
+        <Select
+          name="animal-type"
+          value={selectionValue}
+          onChange={onSelectionChange}
+        >
+          <Select.Option value="1">Cat</Select.Option>
+          <Select.Option value="2">Dog</Select.Option>
+        </Select>
+      </Form.Item>
       <Form.Item label={'Photo'}>
         <Input
           type="file"
@@ -99,16 +144,33 @@ const CustomerPetForm = ({ createPet, setIsModalVisible }) => {
           type="primary"
           htmlType="submit"
           onClick={() => {
+            const regex = RegExp(dateRegex);
             if (!formData.pet_name) {
               return;
             }
-            createPet(formData);
+
+            if (!selectionValue) {
+              return;
+            }
+
+            //check to see date format is right
+            if (!regex.test(formData.date_of_birth) && formData.date_of_birth) {
+              console.log('wrong date format');
+              return;
+            }
+
+            const data = {
+              animal_id: +selectionValue,
+              ...formData,
+            };
+
+            createCustomerPet(authState, data);
             setFormData({
-              pet_name: '',
-              color: '',
-              date_of_birth: '',
-              phone_number: '',
-              image_url: '',
+              pet_name: null,
+              color: null,
+              date_of_birth: null,
+              phone_number: null,
+              image_url: null,
             });
             setIsModalVisible(false);
           }}

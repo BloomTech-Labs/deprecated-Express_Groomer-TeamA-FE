@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Col, Modal } from 'antd';
 import CustomerPetForm from './CustomerPetForm';
 
-const CustomerAddPet = ({ createPet }) => {
+const CustomerAddPet = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const showModal = () => {
@@ -26,10 +26,7 @@ const CustomerAddPet = ({ createPet }) => {
         destroyOnClose={true}
         footer={null}
       >
-        <CustomerPetForm
-          createPet={createPet}
-          setIsModalVisible={setIsModalVisible}
-        />
+        <CustomerPetForm setIsModalVisible={setIsModalVisible} />
       </Modal>
       <Col xs={{ span: 24 }} sm={{ span: 8 }} md={{ span: 8 }}>
         <div
