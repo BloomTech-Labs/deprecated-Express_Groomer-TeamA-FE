@@ -20,6 +20,7 @@ import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
 import { EditProfile } from './components/pages/EditProfile';
 import { Profile } from './components/pages/Profile';
+import { GroomerProfilePage } from './components/pages/GroomerProfile/GroomerProfilePage';
 import { createStore } from 'redux';
 
 import { Provider } from 'react-redux';
@@ -82,6 +83,7 @@ function App() {
         <SecureRoute path="/map-view" component={MapBox} />
         <Route path="/home" component={LandingPage} />
         <Route path="/groomers" component={LandingPageForGroomers} />
+        <Route path="/groomer-profile" component={GroomerProfilePage}></Route>
       </Switch>
       <Footer />
     </Security>
