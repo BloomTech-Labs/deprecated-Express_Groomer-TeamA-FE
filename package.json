@@ -10,7 +10,9 @@
     "@okta/okta-signin-widget": "^4.5.1",
     "antd": "^4.8.2",
     "axios": "^0.19.2",
+    "commitizen": "^4.2.2",
     "craco-less": "^1.17.0",
+    "dotenv": "^8.2.0",
     "node-sass": "^4.14.1",
     "react": "^16.14.0",
     "react-card-flip": "^1.0.11",
@@ -91,6 +93,7 @@
     "jest-prop-type-error": "^1.1.0",
     "lint-staged": "^10.2.11",
     "prettier-eslint-cli": "^5.0.0",
+    "redux-devtools-extension": "^2.13.8",
     "redux-mock-store": "^1.5.4"
   }
 }

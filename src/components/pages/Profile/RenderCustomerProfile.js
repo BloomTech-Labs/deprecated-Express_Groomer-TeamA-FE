@@ -5,54 +5,68 @@ import { UserOutlined } from '@ant-design/icons';
 import CustomerInfo from './CustomerInfo';
 import CustomerEditInfo from './CustomerEditInfo';
 import PetCard from './PetCard';
+import AppointmentCard from './AppointmentCard';
+import CustomerAddPet from './CustomerAddPet';
+import convertISODate from '../../../utils/convertiso';
 import './profile.css';
 
 // Ant Design
 import { Menu, Dropdown } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 
-const RenderCustomerProfile = ({ userInfo }) => {
+const RenderCustomerProfile = ({ userInfo, pets, appointments }) => {
   // Dummy Data
-  const pets = [
+  const dates = [
     {
       id: 1,
-      pet_name: 'Rabby',
-      color: 'Red',
-      date_of_birth: '2020-11-02',
-      phone_number: '123456789',
-      image_url:
-        'https://i.pinimg.com/originals/29/29/62/292962d64cdc42f9e8295f5ca56ba1ce.jpg',
+      date: '12-4-2020',
+      location: '123 SW Air LN 12345',
+      pet: 'Molly',
     },
     {
       id: 2,
-      pet_name: 'Doggy',
-      color: 'Beige',
-      date_of_birth: '2010-11-02',
-      phone_number: '123456789',
-      image_url:
-        'https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/other/dog_cool_summer_slideshow/1800x1200_dog_cool_summer_other.jpg',
+      date: '12-5-2020',
+      location: '36 Airport Rd',
+      pet: 'Rocky',
     },
   ];
 
-  const [petData, setPetData] = useState(pets);
-
+  // const pets = [
+  //   {
+  //     id: 1,
+  //     pet_name: 'Rabby',
+  //     color: 'Red',
+  //     date_of_birth: '2020-11-02',
+  //     phone_number: '123456789',
+  //     image_url:
+  //       'https://i.pinimg.com/originals/29/29/62/292962d64cdc42f9e8295f5ca56ba1ce.jpg',
+  //   },
+  //   {
+  //     id: 2,
+  //     pet_name: 'Doggy',
+  //     color: 'Beige',
+  //     date_of_birth: '2010-11-02',
+  //     phone_number: '123456789',
+  //     image_url:
+  //       'https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/other/dog_cool_summer_slideshow/1800x1200_dog_cool_summer_other.jpg',
+  //   },
+  // ];
   const [displayUserInfoInputs, toggleUserInfoInputs] = useState(false);
   const [isModalVisible1, setIsModalVisible1] = useState(false);
   const [userFormData, setUserFormData] = useState({
-    name: '',
-    email: '',
+    id: null,
+    name: null,
+    email: null,
   });
   const [currentPetSelected, setCurrentPetSelected] = useState(0);
 
   useEffect(() => {
     setUserFormData({
+      id: userInfo.id,
       name: userInfo.name,
       email: userInfo.email,
     });
   }, [userInfo]);
-
-  // Destructure State
-  const { name, email } = userFormData;
 
   const onChange = e => {
     setUserFormData({ ...userFormData, [e.target.name]: e.target.value });
@@ -76,31 +90,6 @@ const RenderCustomerProfile = ({ userInfo }) => {
     setIsModalVisible1(false);
   };
 
-  const handleSave = formData => {
-    const newPets = petData.map(newpet => {
-      if (newpet.id === formData.id) {
-        return {
-          id: formData.id,
-          pet_name: formData.pet_name,
-          color: formData.color,
-          date_of_birth: formData.date_of_birth,
-          image_url: formData.image_url,
-          phone_number: formData.phone_number,
-          image_url: formData.image_url,
-        };
-      } else {
-        return newpet;
-      }
-    });
-    setPetData(newPets);
-  };
-
-  const handleDelete = id => {
-    console.log('ID', id);
-    const newPets = petData.filter(pet => pet.id !== id);
-    setPetData(newPets);
-  };
-
   return (
     <div>
       {userInfo && (
@@ -109,15 +98,13 @@ const RenderCustomerProfile = ({ userInfo }) => {
             <Col xs={{ span: 24 }} sm={{ span: 8 }} md={{ span: 8 }}>
               {!displayUserInfoInputs ? (
                 <CustomerInfo
-                  name={name}
-                  email={email}
+                  userFormData={userFormData}
                   toggleUserInfoInputs={toggleUserInfoInputs}
                   displayUserInfoInputs={displayUserInfoInputs}
                 />
               ) : (
                 <CustomerEditInfo
-                  name={name}
-                  email={email}
+                  userFormData={userFormData}
                   saveChanges={onSubmit}
                   updateForm={onChange}
                   toggleUserInfoInputs={toggleUserInfoInputs}
@@ -129,38 +116,36 @@ const RenderCustomerProfile = ({ userInfo }) => {
               <div className="upcoming-appointments">
                 <h2>Upcoming Appointments</h2>
                 <div className="upcoming-appointments-content">
-                  <div className="current-appointments">
-                    <p>Date:</p>
-                    <p>12/4/2020</p>
-                    <p>Location:</p>
-                    <p>123 SW Air LN 12345</p>
-                    <p>Pet:</p>
-                    <p>Molly</p>
-                  </div>
-                  <div className="current-appointments">
-                    <p>Date:</p>
-                    <p>12/4/2020</p>
-                    <p>Location:</p>
-                    <p>123 SW Air LN 12345</p>
-                    <p>Pet:</p>
-                    <p>Rusty</p>
-                  </div>
+                  <Row gutter={[16, 16]}>
+                    {appointments.map((appointment, index) => {
+                      return (
+                        <Col
+                          xs={{ span: 24 }}
+                          sm={{ span: 24 }}
+                          md={{ span: 8 }}
+                        >
+                          <AppointmentCard
+                            key={index}
+                            date={convertISODate(appointment.appointment_date)}
+                            time={appointment.appointment_time}
+                            status={appointment.status}
+                          />
+                        </Col>
+                      );
+                    })}
+                  </Row>
                 </div>
               </div>
             </Col>
           </Row>
           <div className="pet-container">
             <Row gutter={[16, 16]}>
-              {petData.map((pet, index) => (
+              {pets.map((pet, index) => (
                 <PetCard
                   key={pet.id}
                   showPetModal={showModal1}
                   closePetModal={setIsModalVisible1}
                   pet={pet}
-                  handleSave={handleSave}
-                  petData={petData}
-                  setPetData={setPetData}
-                  handleDelete={handleDelete}
                   petIndex={index}
                   setCurrentPetSelected={setCurrentPetSelected}
                 />
@@ -171,16 +156,22 @@ const RenderCustomerProfile = ({ userInfo }) => {
                 onOk={handleOk1}
                 onCancel={handleCancel1}
               >
-                <p>Name: {petData[currentPetSelected].pet_name}</p>
-                <p>Color: {petData[currentPetSelected].color}</p>
-                <p>DOB: {petData[currentPetSelected].date_of_birth}</p>
-                <p>Contact: {petData[currentPetSelected].phone_number}</p>
+                {pets.length && (
+                  <>
+                    <p>Name: {pets[currentPetSelected].pet_name}</p>
+                    {pets[currentPetSelected].color && (
+                      <p>Color: {pets[currentPetSelected].color}</p>
+                    )}
+                    {pets[currentPetSelected].date_of_birth && (
+                      <p>
+                        DOB:{' '}
+                        {convertISODate(pets[currentPetSelected].date_of_birth)}
+                      </p>
+                    )}
+                  </>
+                )}
               </Modal>
-              <Col xs={{ span: 24 }} sm={{ span: 8 }} md={{ span: 8 }}>
-                <div className="add-pets">
-                  <i className="fas fa-plus"></i>
-                </div>
-              </Col>
+              <CustomerAddPet />
             </Row>
           </div>
         </div>
