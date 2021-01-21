@@ -113,6 +113,85 @@ img .card {
   margin: 0 25px;
 }
 
+.services-card {
+  max-width: 900px;
+  height: auto;
+  display: flex;
+  border: 1px solid black;
+  margin: 5% auto;
+}
+
+.services-image {
+  width: 100%;
+  position: relative;
+  height: 100%;
+}
+
+.services-container {
+  width: 40%;
+  display: -webkit-inline-box;
+}
+
+.services-title {
+  margin: 0 3%;
+  /* width: 75%; */
+}
+
+.services-title {
+  margin: 0 2%;
+}
+
+.services-features {
+  margin: 0 3%;
+}
+
+.services-button-container {
+  text-align: end;
+  margin-bottom: 2%;
+}
+
+.services-button {
+  background-color: #2c89d9;
+  color: white;
+}
+
+@media only screen and (max-width: 768px) {
+  .services-card {
+    max-width: 400px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    margin: 5% auto;
+  }
+  .services-image {
+    width: 100%;
+    position: relative;
+    height: 100%;
+  }
+  .services-container {
+    width: 100%;
+    display: -webkit-inline-box;
+  }
+  .ant-btn {
+    width: 80%;
+    background-color: #2c89d9;
+    color: white;
+  }
+  .services-button-container {
+    text-align: center;
+    margin-bottom: 2%;
+  }
+
+  .services-features {
+    margin: 0 8%;
+  }
+
+  .services-features {
+    margin: 0 5%;
+  }
+}
+
 /*
 .fullscreen .image-gallery-slide img {
   max-width: 100%;

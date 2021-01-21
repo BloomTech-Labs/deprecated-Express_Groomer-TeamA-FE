@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Layout, Row, Col, Card, Button } from 'antd';
 
 export const AboutGroomer = () => {
@@ -19,7 +20,7 @@ export const AboutGroomer = () => {
         </p>
         <div style={{ display: 'inline-block' }}>
           <Button style={{ padding: '0 15px', margin: '15px' }}>
-            LEARN MORE
+            <Link to="/groomer-services">LEARN MORE</Link>
           </Button>
           <Button style={{ padding: '0 15px', margin: '15px' }}>
             BOOK A SERVICE

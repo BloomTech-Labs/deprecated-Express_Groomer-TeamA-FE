@@ -170,7 +170,6 @@ export const Services = () => {
                 bordered={true}
                 style={{ width: 240 }}
               >
-                {' '}
                 <div className="image">{service.service_name}</div>
                 <div style={{ paddingTop: '10px' }}>
                   <Button
