@@ -99,9 +99,11 @@ export const GroomerServicesPage = () => {
               </div>
             </div>
             <div className="services-title">
-              <div style={{ marginLeft: '-0.5%', width: '75%' }}>
-                <h1>{service.service_name}</h1>
-                <h2>Starting at ${service.serviceCost}</h2>
+              <div style={{ marginLeft: '-0.5%', width: '100%' }}>
+                <h1 className="services-heading">{service.service_name}</h1>
+                <h2 className="services-price">
+                  Starting at ${service.serviceCost}
+                </h2>
                 <p>{service.service_description}</p>
               </div>
               <div className="services-features">

@@ -154,6 +154,13 @@ img .card {
   background-color: #2c89d9;
   color: white;
 }
+.services-heading {
+  margin-bottom: 0px;
+}
+
+.services-price {
+  color: #27d827;
+}
 
 @media only screen and (max-width: 768px) {
   .services-card {
@@ -182,13 +189,15 @@ img .card {
     text-align: center;
     margin-bottom: 2%;
   }
-
-  .services-features {
-    margin: 0 8%;
-  }
-
   .services-features {
     margin: 0 5%;
+  }
+
+  .services-heading {
+    margin-bottom: 0px;
+  }
+  .services-price {
+    color: #27d827;
   }
 }
 
