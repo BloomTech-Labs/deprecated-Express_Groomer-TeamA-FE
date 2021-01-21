@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { Row, Col, Avatar, Button, Modal } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
+import { Row, Col, Modal } from 'antd';
 import CustomerInfo from './CustomerInfo';
 import CustomerEditInfo from './CustomerEditInfo';
 import PetCard from './PetCard';
@@ -10,47 +8,7 @@ import CustomerAddPet from './CustomerAddPet';
 import convertISODate from '../../../utils/convertiso';
 import './profile.css';
 
-// Ant Design
-import { Menu, Dropdown } from 'antd';
-import { DownOutlined } from '@ant-design/icons';
-
 const RenderCustomerProfile = ({ userInfo, pets, appointments }) => {
-  // Dummy Data
-  const dates = [
-    {
-      id: 1,
-      date: '12-4-2020',
-      location: '123 SW Air LN 12345',
-      pet: 'Molly',
-    },
-    {
-      id: 2,
-      date: '12-5-2020',
-      location: '36 Airport Rd',
-      pet: 'Rocky',
-    },
-  ];
-
-  // const pets = [
-  //   {
-  //     id: 1,
-  //     pet_name: 'Rabby',
-  //     color: 'Red',
-  //     date_of_birth: '2020-11-02',
-  //     phone_number: '123456789',
-  //     image_url:
-  //       'https://i.pinimg.com/originals/29/29/62/292962d64cdc42f9e8295f5ca56ba1ce.jpg',
-  //   },
-  //   {
-  //     id: 2,
-  //     pet_name: 'Doggy',
-  //     color: 'Beige',
-  //     date_of_birth: '2010-11-02',
-  //     phone_number: '123456789',
-  //     image_url:
-  //       'https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/other/dog_cool_summer_slideshow/1800x1200_dog_cool_summer_other.jpg',
-  //   },
-  // ];
   const [displayUserInfoInputs, toggleUserInfoInputs] = useState(false);
   const [isModalVisible1, setIsModalVisible1] = useState(false);
   const [userFormData, setUserFormData] = useState({

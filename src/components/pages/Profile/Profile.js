@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { useOktaAuth } from '@okta/okta-react';
 import RenderGroomerProfile from './RenderGroomerProfile';
 import RenderCustomerProfile from './RenderCustomerProfile';
+import { LoadingComponent } from '../../common';
 import {
   getUserProfileData,
   getCustomerPetsData,
@@ -14,12 +15,16 @@ const Profile = props => {
   const [memoAuthService] = useMemo(() => [authService], []);
   const [isGroomer, setIsGroomer] = useState(true);
 
+  console.log(props.currentUser);
+
   useEffect(() => {
     // Check current user type to see if groomer or not
     memoAuthService
       .getUser()
       .then(info => {
         getUserProfileData(authState, info.sub);
+        getCustomerPetsData(authState);
+        getAppointmentData(authState);
       })
       .catch(err => {
         console.log(err);
@@ -28,21 +33,23 @@ const Profile = props => {
       setIsGroomer(true);
     } else {
       setIsGroomer(false);
-      getCustomerPetsData(authState);
-      getAppointmentData(authState);
     }
   }, []);
 
   return (
     <div>
-      {isGroomer ? (
-        <RenderGroomerProfile userInfo={props.currentUser} />
+      {Object.keys(props.currentUser).length ? (
+        props.currentUser.user_type === 'Groomer' ? (
+          <RenderGroomerProfile userInfo={props.currentUser} />
+        ) : (
+          <RenderCustomerProfile
+            userInfo={props.currentUser}
+            pets={props.pets}
+            appointments={props.appointments}
+          />
+        )
       ) : (
-        <RenderCustomerProfile
-          userInfo={props.currentUser}
-          pets={props.pets}
-          appointments={props.appointments}
-        />
+        <LoadingComponent />
       )}
     </div>
   );
