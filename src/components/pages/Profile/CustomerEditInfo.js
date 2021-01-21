@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Form, Input, Button } from 'antd';
+import { useOktaAuth } from '@okta/okta-react';
+import { editProfileData } from '../../../api';
 
 const CustomerEditInfo = ({
-  name,
-  email,
+  userFormData,
   updateForm,
   saveChanges,
   toggleUserInfoInputs,
@@ -11,6 +12,8 @@ const CustomerEditInfo = ({
 }) => {
   const [form] = Form.useForm();
   const [formLayout, setFormLayout] = useState('horizontal');
+  const [isDisable, setIsDisable] = useState(false);
+  const { authState } = useOktaAuth();
 
   const onFormLayoutChange = ({ layout }) => {
     setFormLayout(layout);
@@ -35,9 +38,6 @@ const CustomerEditInfo = ({
   return (
     <>
       <Form
-        onSubmit={e => {
-          saveChanges(e);
-        }}
         className="customer-edit-form"
         {...formItemLayout}
         layout={formLayout}
@@ -54,7 +54,7 @@ const CustomerEditInfo = ({
             }}
             placeholder="Name"
             name="name"
-            value={name}
+            value={userFormData.name}
           />
         </Form.Item>
         <Form.Item label="Email">
@@ -62,15 +62,20 @@ const CustomerEditInfo = ({
             onChange={e => updateForm(e)}
             placeholder="Email"
             name="email"
-            value={email}
+            value={userFormData.email}
           />
         </Form.Item>
         <Form.Item {...buttonItemLayout}>
           <Button
             onClick={() => {
-              toggleUserInfoInputs(!displayUserInfoInputs);
+              setIsDisable(true);
+              editProfileData(authState, userFormData).then(() => {
+                toggleUserInfoInputs(!displayUserInfoInputs);
+                setIsDisable(false);
+              });
             }}
             type="primary"
+            disabled={isDisable}
           >
             Submit
           </Button>

@@ -19,19 +19,21 @@ import { LoginPage } from './components/pages/Login';
 import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
 import { EditProfile } from './components/pages/EditProfile';
+import { AppointmentPage } from './components/pages/Appointments/';
 import { Profile } from './components/pages/Profile';
 import { GroomerProfilePage } from './components/pages/GroomerProfile/GroomerProfilePage';
 import { GroomerServicesPage } from './components/pages/GroomerProfile/GroomerServicesPage';
 import { createStore } from 'redux';
 
 import { Provider } from 'react-redux';
+import { devToolsEnhancer } from 'redux-devtools-extension';
 import { appReducer } from './state/reducers/appReducer';
 import MapBox from './components/Map/MapBox';
 import Footer from './components/Footer/Footer';
 
 import 'antd/dist/antd.css';
 
-export const store = createStore(appReducer);
+export const store = createStore(appReducer, devToolsEnhancer());
 
 ReactDOM.render(
   <Provider store={store}>
@@ -82,6 +84,7 @@ function App() {
           render={props => <EditProfile {...props} />}
         />
         <SecureRoute path="/map-view" component={MapBox} />
+        <SecureRoute path="/groomer-appointment" component={AppointmentPage} />
         <Route path="/home" component={LandingPage} />
         <Route path="/groomers" component={LandingPageForGroomers} />
         <SecureRoute
