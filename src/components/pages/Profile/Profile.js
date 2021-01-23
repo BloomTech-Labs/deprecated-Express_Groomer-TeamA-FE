@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { useOktaAuth } from '@okta/okta-react';
 import RenderGroomerProfile from './RenderGroomerProfile';
 import RenderCustomerProfile from './RenderCustomerProfile';
-import { LoadingComponent } from '../../common';
+import { LoadingSpinner } from '../../common';
 import {
   getUserProfileData,
   getCustomerPetsData,
@@ -49,7 +49,7 @@ const Profile = props => {
           />
         )
       ) : (
-        <LoadingComponent />
+        <LoadingSpinner />
       )}
     </div>
   );
