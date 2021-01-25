@@ -19,6 +19,7 @@ const Nav = styled.nav`
   @media (max-width: 768px) {
     flex-flow: column nowrap;
     justify-content: center;
+    height: 55px;
   }
 `;
 
@@ -32,7 +33,7 @@ const NavLinks = styled.ul`
   .nav-links {
     text-decoration: none;
     color: #ffffff;
-
+    padding: 18px 10px;
     &:hover {
       color: #ffa500;
     }
@@ -68,9 +69,9 @@ const Burger = styled.div`
 
   div {
     width: 2rem;
-    height: 0.25 rem;
+    height:0.5rem;
     border-radius: 10px;
-    background-color: ${({open}) => (open ? '#ccc' : '#333')};
+    background-color: white;
     transform-origin: 1px;
     transition: all 0.3s linear;
   }

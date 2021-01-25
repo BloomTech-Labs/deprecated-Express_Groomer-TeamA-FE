@@ -2,9 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { NavLinks } from './navStyles';
 
-export const RightNav = () => {
+export const RightNav = ({open}) => {
   return (
-    <NavLinks>
+    <NavLinks open = {open}>
       <li>
         <Link to="/groomers" className="nav-links">
           For Groomers
