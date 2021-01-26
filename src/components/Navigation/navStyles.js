@@ -27,7 +27,7 @@ const NavLinks = styled.ul`
   list-style: none;
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-evenly;
+  justify-content: space-between;
   width: 30%;
 
   .nav-links {
@@ -41,13 +41,16 @@ const NavLinks = styled.ul`
 
   @media (max-width: 768px) {
     flex-flow: column nowrap;
+    justify-content: flex-start;
     position: fixed;
+    background-color: #006161;
+    opacity: 0.75;
     transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(100%)'};
     top: 0;
     right: 0;
     height: 100vh;
     width: 300px;
-    padding-top: 3.5rem;
+    padding: 3.5rem 1rem 2rem 1rem;
     transition: transform 0.3s ease-in-out;
   }
 `;
@@ -69,7 +72,7 @@ const Burger = styled.div`
 
   div {
     width: 2rem;
-    height:0.5rem;
+    height:0.25rem;
     border-radius: 10px;
     background-color: white;
     transform-origin: 1px;
