@@ -9,11 +9,11 @@ import {
 
 import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
 import 'antd/dist/antd.less';
-
+import { ScheduledAppointments } from './components/pages/ScheduledAppointments';
+import { AppointmentInfo } from './components/pages/AppointmentInfo';
 import { LandingPage } from './components/pages/Landing';
 import { LandingPageForGroomers } from './components/pages/LandingForGroomers';
 import { ExampleListPage } from './components/pages/ExampleList';
-import { HomePage } from './components/pages/Home';
 import { ProfileListPage } from './components/pages/ProfileList';
 import { LoginPage } from './components/pages/Login';
 import { config } from './utils/oktaConfig';
@@ -24,14 +24,13 @@ import { GroomerProfilePage } from './components/pages/GroomerProfile/GroomerPro
 import { createStore } from 'redux';
 
 import { Provider } from 'react-redux';
-import { devToolsEnhancer } from 'redux-devtools-extension';
 import { appReducer } from './state/reducers/appReducer';
 import MapBox from './components/Map/MapBox';
 import Footer from './components/Footer/Footer';
 
 import 'antd/dist/antd.css';
 
-export const store = createStore(appReducer, devToolsEnhancer());
+export const store = createStore(appReducer);
 
 ReactDOM.render(
   <Provider store={store}>
@@ -58,16 +57,10 @@ function App() {
   return (
     <Security {...config} onAuthRequired={authHandler}>
       <Switch>
-        <Route path="/login" component={LoginPage} />
+        <Route path="/login" component={LoginPage} />{' '}
+        {/** ISSUE: AFTER LOGIN USER GETS REDIRECTED TO LandingPage */}
         <Route path="/implicit/callback" component={LoginCallback} />
         {/* any of the routes you need secured should be registered as SecureRoutes */}
-        <SecureRoute
-          path="/"
-          exact
-          render={props => (
-            <HomePage {...props} LoadingComponent={LoadingSpinner} />
-          )}
-        />
         <SecureRoute
           path="/myprofile"
           exact
@@ -82,9 +75,19 @@ function App() {
           render={props => <EditProfile {...props} />}
         />
         <SecureRoute path="/map-view" component={MapBox} />
-        <Route path="/home" component={LandingPage} />
+        <Route exact path="/" component={LandingPage} />{' '}
+        {/** ISSUE: AFTER LOGIN USER GETS REDIRECTED TO LandingPage */}
         <Route path="/groomers" component={LandingPageForGroomers} />
-        <Route path="/groomer-profile" component={GroomerProfilePage}></Route>
+        <SecureRoute
+          exact
+          path="/appointments/scheduled"
+          component={ScheduledAppointments}
+        />
+        <SecureRoute
+          exact
+          path="/appointments/scheduled/:id"
+          component={AppointmentInfo}
+        />
       </Switch>
       <Footer />
     </Security>
