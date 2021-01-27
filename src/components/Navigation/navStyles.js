@@ -45,6 +45,7 @@ const NavLinks = styled.ul`
     position: fixed;
     background-color: #006161;
     opacity: 0.75;
+    z-index: 19;
     transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(100%)'};
     top: 0;
     right: 0;
@@ -74,20 +75,21 @@ const Burger = styled.div`
     width: 2rem;
     height:0.25rem;
     border-radius: 10px;
+    border: 1px solid black;
     background-color: white;
     transform-origin: 1px;
     transition: all 0.3s linear;
-  }
-  &:nth child(1) {
-    transform: ${({ open }) => open ? 'rotate(45deg)' : 'rotate(0)'};
-  }
-  &:nth child(2) {
-    transform: ${({ open }) => open ? 'translateX(100%)' : 'translateX(0)'};
-    opacity: ${({ open }) => open ? 0 : 1};
-  }
-  &:nth child(3) {
-    transform: ${({ open }) => open ? 'rotate(-45deg)' : 'rotate(0)'};
-    justify-content: center;
+
+    &:nth-child(1) {
+      transform: ${({ open }) => open ? 'rotate(45deg)' : 'rotate(0)'};
+    }
+    &:nth-child(2) {
+      transform: ${({ open }) => open ? 'translateX(100%)' : 'translateX(0)'};
+      opacity: ${({ open }) => open ? 0 : 1};
+    }
+    &:nth-child(3) {
+      transform: ${({ open }) => open ? 'rotate(-45deg)' : 'rotate(0)'};
+    }
   }
 `;
 

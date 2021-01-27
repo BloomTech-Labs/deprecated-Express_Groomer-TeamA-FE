@@ -34,8 +34,10 @@ function RenderLandingPage() {
   return (
     <Layout>
       <NavBar />
-      <div>
-        <HeaderImg src={husky} />
+      <div className="aspect-ratio-16x9">
+        <div className="aspect-ratio-container">
+          <HeaderImg src={husky} alt="image of two dogs looking at camera"/>
+        </div>
       </div>
       <ImageMessage>
         <div>
