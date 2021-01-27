@@ -8,6 +8,7 @@ import {
   getUserProfileData,
   getCustomerPetsData,
   getAppointmentData,
+  getBusinessProfileData,
 } from '../../../api';
 
 const Profile = props => {
@@ -15,14 +16,13 @@ const Profile = props => {
   const [memoAuthService] = useMemo(() => [authService], []);
   const [isGroomer, setIsGroomer] = useState(true);
 
-  console.log(props.currentUser);
-
   useEffect(() => {
     // Check current user type to see if groomer or not
     memoAuthService
       .getUser()
       .then(info => {
         getUserProfileData(authState, info.sub);
+        getBusinessProfileData(authState, info.sub);
         getCustomerPetsData(authState);
         getAppointmentData(authState);
       })
