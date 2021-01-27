@@ -6,6 +6,8 @@ import './homepage.scss';
 
 function RenderHomePage(props) {
   const { userInfo, authService } = props;
+
+  console.log(props);
   return (
     <div className="home-container">
       <img src={logo} alt="dog and cat together" />

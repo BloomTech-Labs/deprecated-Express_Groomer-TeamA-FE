@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useState, useMemo, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { useOktaAuth } from '@okta/okta-react';
 import RenderEditGroomerProfile from './RenderEditGroomerProfile';
@@ -6,6 +6,7 @@ import RenderEditCustomerProfile from './RenderEditCustomerProfile';
 import { getUserProfileData } from '../../../api';
 
 const EditProfile = props => {
+  console.log('Props', props);
   const { authState, authService } = useOktaAuth();
   const [memoAuthService] = useMemo(() => [authService], []);
   const [isGroomer, setIsGroomer] = useState(true);
@@ -29,16 +30,22 @@ const EditProfile = props => {
 
   return (
     <div>
-      {isGroomer ? (
-        <RenderEditGroomerProfile
-          history={props.history}
-          userInfo={props.currentUser}
-        />
+      {props.currentUser == {} ? (
+        <p>Loading...</p>
       ) : (
-        <RenderEditCustomerProfile
-          history={props.history}
-          userInfo={props.currentUser}
-        />
+        <Fragment>
+          {isGroomer === 'true' ? (
+            <RenderEditGroomerProfile
+              history={props.history}
+              userInfo={props.currentUser}
+            />
+          ) : (
+            <RenderEditCustomerProfile
+              history={props.history}
+              userInfo={props.currentUser}
+            />
+          )}
+        </Fragment>
       )}
     </div>
   );
