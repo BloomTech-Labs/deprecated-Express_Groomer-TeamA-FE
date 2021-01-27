@@ -3,15 +3,14 @@ import { Link } from 'react-router-dom';
 import { Nav, Title } from './navStyles';
 import {BurgerMenu} from "./BurgerMenu";
 
-function NavBar() {
+export const NavBar = () => {
   return (
     <Nav>
-      <Link to="/home">
+      <Link to="/">
         <Title>Pet Express</Title>
       </Link>
       <BurgerMenu />
     </Nav>
   );
-}
-
+};
 export default NavBar;

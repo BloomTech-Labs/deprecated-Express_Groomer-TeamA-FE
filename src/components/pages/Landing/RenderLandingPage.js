@@ -2,7 +2,6 @@ import React from 'react';
 import husky from '../../../assets/husky.jpg';
 import map from '../../../assets/sample-map.png';
 import mediumdog from '../../../assets/mediumdog.jpg';
-import NavBar from '../../Navigation/NavBar';
 import { Button, Avatar, Layout } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import {
@@ -33,7 +32,6 @@ import {
 function RenderLandingPage() {
   return (
     <Layout>
-      <NavBar />
       <div className="aspect-ratio-16x9">
         <div className="aspect-ratio-container">
           <HeaderImg src={husky} alt="image of two dogs looking at camera"/>

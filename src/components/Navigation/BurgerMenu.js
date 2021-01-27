@@ -12,7 +12,7 @@ export const BurgerMenu = () => {
         <div></div>
         <div></div>
       </Burger>
-      <RightNav open={open} />
+      <RightNav open={open}  />
     </>
   );
 };
