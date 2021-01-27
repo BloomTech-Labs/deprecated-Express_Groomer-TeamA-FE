@@ -7,6 +7,7 @@ import {
   DELETE_PET,
   GET_APPOINTMENTS,
   CREATE_APPOINTMENT,
+  EDIT_BUSINESS_PROFILE_INFO,
 } from '../actions/index';
 
 const initialState = {
