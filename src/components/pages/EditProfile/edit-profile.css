@@ -29,3 +29,33 @@ h2 {
   box-shadow: 0 -5px 45px rgb(100 100 100 / 20%) inset,
     0 1px 1px rgb(255 247 247 / 20%);
 }
+
+.ant-form {
+  /* margin-right: 20%; */
+  margin: 0 auto !important;
+  margin-left: 50px !important;
+}
+
+@media only screen and (max-width: 576px) {
+  .ant-row {
+    display: flex;
+    justify-content: center;
+  }
+  .ant-form {
+    /* margin-right: 20%; */
+    width: 100%;
+    margin-left: 0px !important;
+  }
+
+  .ant-col-offset {
+    margin-left: 0px !important;
+  }
+
+  .ant-col {
+    margin: 0px !important;
+  }
+
+  h2 {
+    margin-left: 0px;
+  }
+}

@@ -8,12 +8,12 @@ const Title = styled.h1`
 
 const Nav = styled.nav`
   width: 100%;
-  border-bottom: 2px solid #f1f1f1;
+  border-bottom: 2px solid #bababa;
   padding: 0 20px;
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  background-color: #1e90ff;
+  background-color: #006161;
   color: #ffffff;
 
   @media (max-width: 768px) {
@@ -33,7 +33,7 @@ const NavLinks = styled.ul`
     text-decoration: none;
     color: #ffffff;
 
-    &::hover {
+    &:hover {
       color: #ffa500;
     }
   }

@@ -8,8 +8,66 @@ import { Layout, Row, Col } from 'antd';
 import './edit-profile.css';
 
 const RenderEditGroomerProfile = props => {
+  // Groomer Dummy Object
+  const groomer = {
+    id: 1,
+    business_profile_id: 1,
+    name: 'Groomer',
+    email: 'email@gmail.com',
+    avatar:
+      'https://cdn1.vectorstock.com/i/1000x1000/08/65/cute-labrador-retriever-dog-avatar-vector-20670865.jpg',
+    cover_images: [],
+    services_heading: 'Professional Services',
+    services_intro: 'About Professional Grooming Services',
+    why_choose_description:
+      'You should choose our grooming services because...',
+  };
   const { authState, authService } = useOktaAuth();
+  const [form] = Form.useForm();
+  const [formData, setFormData] = useState(groomer);
+  const [loading, setLoading] = useState({ loading: false, image_url: '' });
   const [id, setId] = useState();
+
+  const onChange = e =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  // Image Upload Function
+  const uploadImage = async e => {
+    const files = e.target.files;
+    const data = new FormData();
+    data.append('file', files[0]);
+    data.append('upload_preset', 'images');
+    setLoading(true);
+    const res = await fetch(
+      'https://api.cloudinary.com/v1_1/milo95/image/upload',
+      { method: 'POST', body: data }
+    );
+    const file = await res.json();
+
+    setFormData({
+      ...formData,
+      cover_images: formData.cover_images.concat([file.secure_url]),
+    });
+    setLoading({ loading: false });
+  };
+
+  useEffect(() => {
+    // Call Get groomer profile function here //
+
+    setFormData({
+      name: !groomer.name ? '' : groomer.name,
+      email: !groomer.email ? '' : groomer.email,
+      avatar: !groomer.avatar ? '' : groomer.avatar,
+      cover_images: !groomer.cover_images ? [] : groomer.cover_images,
+      services_heading: !groomer.services_heading
+        ? ''
+        : groomer.services_heading,
+      services_intro: !groomer.services_intro ? '' : groomer.services_intro,
+      why_choose_description: !groomer.why_choose_description
+        ? ''
+        : groomer.why_choose_description,
+    });
+  }, []);
 
   const submitHandler = async values => {
     const response = {
@@ -57,7 +115,7 @@ const RenderEditGroomerProfile = props => {
       </p>
       <Row gutter={[16, 16]}>
         <Col xs={{ span: 16 }} sm={{ span: 24 }} md={{ span: 24 }}>
-          <Form {...layout} onFinish={submitHandler}>
+          <Form {...layout} onFinish={submitHandler} form={form}>
             <h2>Edit Business Information</h2>
             <Form.Item
               rules={[
@@ -69,7 +127,11 @@ const RenderEditGroomerProfile = props => {
               name="name"
               label="Name"
             >
-              <Input />
+              <Input
+                name="name"
+                onChange={e => onChange(e)}
+                initialValue={groomer.name}
+              />
             </Form.Item>
             <Form.Item
               rules={[
@@ -81,11 +143,21 @@ const RenderEditGroomerProfile = props => {
               name="email"
               label="Email"
             >
-              <Input />
+              <Input
+                name="email"
+                onChange={e => onChange(e)}
+                value={formData.email}
+              />
             </Form.Item>
-            <Form.Item name="avatarUrl" label="Avatar URL">
-              <Input />
+            <Form.Item label={'Logo'}>
+              <Input
+                type="file"
+                name="file"
+                placeholder="Upload Image..."
+                onChange={uploadImage}
+              />
             </Form.Item>
+            {/*AVATAR URL*/}
             <h2>Profile Page</h2>
             <Form.Item
               rules={[
@@ -97,7 +169,12 @@ const RenderEditGroomerProfile = props => {
               name="about"
               label="About"
             >
-              <Input.TextArea placeholder="Tell your potential customers why they should choose your business" />
+              <Input.TextArea
+                name="about"
+                onChange={e => onChange(e)}
+                value={formData.why_choose_description}
+                placeholder="Tell your potential customers why they should choose your business"
+              />
             </Form.Item>
             <h2>Services Page</h2>
             <Form.Item
@@ -110,7 +187,11 @@ const RenderEditGroomerProfile = props => {
               name="service_heading"
               label="Headline"
             >
-              <Input />
+              <Input
+                name="service_heading"
+                onChange={e => onChange(e)}
+                value={formData.services_heading}
+              />
             </Form.Item>
             <Form.Item
               rules={[
@@ -122,10 +203,21 @@ const RenderEditGroomerProfile = props => {
               name="description"
               label="Description"
             >
-              <Input.TextArea placeholder="What makes your grooming services unique from others?" />
+              <Input.TextArea
+                name="services_intro"
+                onChange={e => onChange(e)}
+                value={formData.services_intro}
+                placeholder="What makes your grooming services unique from others?"
+              />
             </Form.Item>
             <Form.Item {...ButtonItemLayout}>
-              <Button type="primary" htmlType="submit">
+              <Button
+                onClick={() => {
+                  setFormData(...formData);
+                }}
+                type="primary"
+                htmlType="submit"
+              >
                 Submit
               </Button>
             </Form.Item>

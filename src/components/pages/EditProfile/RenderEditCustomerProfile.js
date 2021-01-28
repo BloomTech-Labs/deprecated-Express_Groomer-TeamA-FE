@@ -38,7 +38,7 @@ const RenderEditCustomerProfile = props => {
   };
   const tailLayout = {
     wrapperCol: {
-      offset: 8,
+      offset: 6,
       span: 16,
     },
   };
@@ -55,8 +55,13 @@ const RenderEditCustomerProfile = props => {
         <Link to="/">Home</Link>
       </p>
       <Row gutter={[16, 16]}>
-        <Col xs={{ span: 16 }} sm={{ span: 24 }} md={{ span: 24 }}>
-          <Form {...layout} onFinish={submitHandler}>
+        <Col
+          xs={{ span: 8 }}
+          sm={{ span: 16 }}
+          md={{ span: 24 }}
+          lg={{ span: 24 }}
+        >
+          <Form onFinish={submitHandler}>
             <h2>Edit Profile</h2>
             <Form.Item
               rules={[
