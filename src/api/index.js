@@ -3,6 +3,7 @@ import {
   setProfilesToState,
   getAppointments,
   createAppointment,
+  getBusinessProfile,
   populateUser,
   populatePet,
   createPet,
@@ -95,6 +96,11 @@ const apiAuthGetAppointment = authHeader => {
 // create appointment
 const apiAuthCreateAppointment = (authHeader, data) => {
   return axios.post(`${apiUrl}/appointments`, data, { headers: authHeader });
+};
+
+// get business profile
+const apiAuthGetBusinessProfile = (authHeader, id) => {
+  return axios.get(`${apiUrl}/businessProfile/${id}`, { headers: authHeader });
 };
 
 const getProfileData = authState => {
@@ -266,6 +272,20 @@ const createAppointmentData = (authState, data) => {
   }
 };
 
+const getBusinessProfileData = (authState, id) => {
+  const header = getAuthHeader(authState);
+  try {
+    return apiAuthGetBusinessProfile(header, id)
+      .then(res => {
+        store.dispatch(getBusinessProfile(res.data));
+        return res.data;
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  } catch (e) {}
+};
+
 export {
   sleep,
   getExampleData,
@@ -277,6 +297,7 @@ export {
   getCustomerPetsData,
   createAppointmentData,
   getAppointmentData,
+  getBusinessProfileData,
   createCustomerPet,
   deleteCustomerPet,
   getAuthHeader,

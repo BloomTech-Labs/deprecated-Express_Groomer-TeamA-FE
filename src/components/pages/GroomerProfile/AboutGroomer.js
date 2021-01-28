@@ -21,6 +21,7 @@ export const AboutGroomer = () => {
         <div style={{ display: 'inline-block' }}>
           <Button style={{ padding: '0 15px', margin: '15px' }}>
             <Link to="/groomer-services">LEARN MORE</Link>
+            LEARN MORE
           </Button>
           <Button style={{ padding: '0 15px', margin: '15px' }}>
             BOOK A SERVICE
