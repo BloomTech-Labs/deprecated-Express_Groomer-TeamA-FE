@@ -3,11 +3,13 @@ import {
   setProfilesToState,
   getAppointments,
   createAppointment,
+  getBusinessProfile,
   populateUser,
   populatePet,
   createPet,
   editPet,
   deletePet,
+  editBusinessProfileInfo,
 } from '../state/actions';
 import { store } from '../index';
 
@@ -95,6 +97,18 @@ const apiAuthGetAppointment = authHeader => {
 // create appointment
 const apiAuthCreateAppointment = (authHeader, data) => {
   return axios.post(`${apiUrl}/appointments`, data, { headers: authHeader });
+};
+
+// get business profile
+const apiAuthGetBusinessProfile = (authHeader, id) => {
+  return axios.get(`${apiUrl}/businessProfile/${id}`, { headers: authHeader });
+};
+
+// update business profile info
+const apiAuthEditBusinessProfile = (authHeader, id, data) => {
+  return axios.put(`${apiUrl}/businessProfile/${id}`, data, {
+    headers: authHeader,
+  });
 };
 
 const getProfileData = authState => {
@@ -266,6 +280,44 @@ const createAppointmentData = (authState, data) => {
   }
 };
 
+const getBusinessProfileData = (authState, id) => {
+  const header = getAuthHeader(authState);
+  try {
+    return apiAuthGetBusinessProfile(header, id)
+      .then(res => {
+        store.dispatch(getBusinessProfile(res.data));
+        return res.data;
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  } catch (e) {
+    return new Promise(() => {
+      console.log(`Error: ${e}`);
+      return [];
+    });
+  }
+};
+
+const editBusinessProfileInfoData = (authState, id, data) => {
+  const header = getAuthHeader(authState);
+  try {
+    return apiAuthEditBusinessProfile(header, id, data)
+      .then(res => {
+        store.dispatch(editBusinessProfileInfo(res.data));
+        return res.data;
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  } catch (e) {
+    return new Promise(() => {
+      console.log(`Error: ${e}`);
+      return [];
+    });
+  }
+};
+
 export {
   sleep,
   getExampleData,
@@ -277,6 +329,8 @@ export {
   getCustomerPetsData,
   createAppointmentData,
   getAppointmentData,
+  getBusinessProfileData,
+  editBusinessProfileInfoData,
   createCustomerPet,
   deleteCustomerPet,
   getAuthHeader,

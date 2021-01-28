@@ -20,17 +20,17 @@ import { config } from './utils/oktaConfig';
 import { LoadingSpinner } from './components/common';
 import { EditProfile } from './components/pages/EditProfile';
 import { Profile } from './components/pages/Profile';
-import { GroomerProfilePage } from './components/pages/GroomerProfile/GroomerProfilePage';
 import { createStore } from 'redux';
 
 import { Provider } from 'react-redux';
+import { devToolsEnhancer } from 'redux-devtools-extension';
 import { appReducer } from './state/reducers/appReducer';
 import MapBox from './components/Map/MapBox';
 import Footer from './components/Footer/Footer';
 
 import 'antd/dist/antd.css';
 
-export const store = createStore(appReducer);
+export const store = createStore(appReducer, devToolsEnhancer());
 
 ReactDOM.render(
   <Provider store={store}>
