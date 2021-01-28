@@ -153,7 +153,7 @@ const RenderEditGroomerProfile = props => {
                 value={formData.email}
               />
             </Form.Item>
-            <Form.Item label={'Logo'}>
+            <Form.Item label={'Slider Images'}>
               <Input
                 type="file"
                 name="file"
