@@ -17,7 +17,7 @@ import { ExampleListPage } from './components/pages/ExampleList';
 import { ProfileListPage } from './components/pages/ProfileList';
 import { LoginPage } from './components/pages/Login';
 import { config } from './utils/oktaConfig';
-import { LoadingComponent } from './components/common';
+import { LoadingSpinner } from './components/common';
 import { EditProfile } from './components/pages/EditProfile';
 import { Profile } from './components/pages/Profile';
 import { GroomerProfilePage } from './components/pages/GroomerProfile/GroomerProfilePage';
@@ -70,7 +70,7 @@ function App() {
           path="/myprofile"
           exact
           render={props => (
-            <Profile {...props} LoadingComponent={LoadingComponent} />
+            <Profile {...props} LoadingComponent={LoadingSpinner} />
           )}
         />
         <SecureRoute path="/example-list" component={ExampleListPage} />
