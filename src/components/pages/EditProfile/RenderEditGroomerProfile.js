@@ -33,22 +33,28 @@ const RenderEditGroomerProfile = props => {
 
   // Image Upload Function
   const uploadImage = async e => {
-    const files = e.target.files;
-    const data = new FormData();
-    data.append('file', files[0]);
-    data.append('upload_preset', 'images');
-    setLoading(true);
-    const res = await fetch(
-      'https://api.cloudinary.com/v1_1/milo95/image/upload',
-      { method: 'POST', body: data }
-    );
-    const file = await res.json();
+    if (formData.cover_images.length < 3) {
+      const files = e.target.files;
+      const data = new FormData();
 
-    setFormData({
-      ...formData,
-      cover_images: formData.cover_images.concat([file.secure_url]),
-    });
-    setLoading({ loading: false });
+      if (files.length > 0) {
+        data.append('file', files[0]);
+        data.append('upload_preset', 'images');
+        setLoading(true);
+        const res = await fetch(
+          'https://api.cloudinary.com/v1_1/milo95/image/upload',
+          { method: 'POST', body: data }
+        );
+        const file = await res.json();
+        setFormData({
+          ...formData,
+          cover_images: formData.cover_images.concat([file.secure_url]),
+        });
+        setLoading({ loading: false });
+      } else {
+        return;
+      }
+    }
   };
 
   useEffect(() => {
@@ -124,13 +130,12 @@ const RenderEditGroomerProfile = props => {
                   message: 'Please input your name!',
                 },
               ]}
-              name="name"
               label="Name"
             >
               <Input
                 name="name"
                 onChange={e => onChange(e)}
-                initialValue={groomer.name}
+                value={formData.name}
               />
             </Form.Item>
             <Form.Item
@@ -140,7 +145,6 @@ const RenderEditGroomerProfile = props => {
                   message: 'Please input your email!',
                 },
               ]}
-              name="email"
               label="Email"
             >
               <Input
@@ -166,7 +170,6 @@ const RenderEditGroomerProfile = props => {
                   message: 'Company description is required',
                 },
               ]}
-              name="about"
               label="About"
             >
               <Input.TextArea
@@ -184,7 +187,6 @@ const RenderEditGroomerProfile = props => {
                   message: 'Services headline is required',
                 },
               ]}
-              name="service_heading"
               label="Headline"
             >
               <Input
@@ -200,7 +202,6 @@ const RenderEditGroomerProfile = props => {
                   message: 'Services description is required',
                 },
               ]}
-              name="description"
               label="Description"
             >
               <Input.TextArea
@@ -213,7 +214,7 @@ const RenderEditGroomerProfile = props => {
             <Form.Item {...ButtonItemLayout}>
               <Button
                 onClick={() => {
-                  setFormData(...formData);
+                  setFormData({ ...formData });
                 }}
                 type="primary"
                 htmlType="submit"
