@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const HeaderImg = styled.img`
   width: 100%;
-  height: 500px;
+  height: 100%;
 `;
 
 export const MapImg = styled.img`
@@ -39,19 +39,11 @@ export const ContentCard = styled.div`
   }
 `;
 
-const Image = styled.img`
-  border-radius: 5px;
-
-  width: 500px;
-  height: 750px;
-  }
-`;
-
 export const ResizingBreakPoint = styled.div`
   margin-left: 25%;
   margin-right: 5%;
   width: 50%;
-  border: 10px solid orange;
+  border: 5px solid orange;
   background-color: teal;
 `;
 
