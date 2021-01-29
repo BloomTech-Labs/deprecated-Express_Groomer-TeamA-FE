@@ -6,7 +6,7 @@ import {
   useHistory,
   Switch,
 } from 'react-router-dom';
-
+import {NavBar} from './components/Navigation/NavBar';
 import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
 import 'antd/dist/antd.less';
 import { ScheduledAppointments } from './components/pages/ScheduledAppointments';
@@ -56,6 +56,7 @@ function App() {
 
   return (
     <Security {...config} onAuthRequired={authHandler}>
+      <NavBar />
       <Switch>
         <Route path="/login" component={LoginPage} />{' '}
         {/** ISSUE: AFTER LOGIN USER GETS REDIRECTED TO LandingPage */}
