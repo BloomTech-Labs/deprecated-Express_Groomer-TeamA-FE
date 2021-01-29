@@ -8,6 +8,7 @@ import {
   GET_APPOINTMENTS,
   CREATE_APPOINTMENT,
   DELETE_APPOINTMENT,
+  GET_BUSINESS_PROFILE,
 } from '../actions/index';
 
 const initialState = {
@@ -15,6 +16,7 @@ const initialState = {
   pets: [],
   appointments: [],
   currentUser: {},
+  businessProfile: {},
 };
 
 export const appReducer = (state = initialState, action) => {
@@ -73,6 +75,11 @@ export const appReducer = (state = initialState, action) => {
         appointments: state.appointments.filter(appointment => {
           return appointment.id !== action.payload.id;
         }),
+      };
+    case GET_BUSINESS_PROFILE:
+      return {
+        ...state,
+        businessProfile: action.payload,
       };
     default:
       return state;

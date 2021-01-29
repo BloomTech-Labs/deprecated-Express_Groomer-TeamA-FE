@@ -1,7 +1,6 @@
 import React from 'react';
 import { Button, Avatar, Layout } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
-import NavBar from '../../Navigation/NavBar';
 import {
   Heading,
   ImageMessage,
@@ -21,7 +20,6 @@ import { PageMessage, ReviewOne, ReviewTwo, ReviewThree } from './Text';
 function RenderLandingPageForGroomers(props) {
   return (
     <Layout>
-      <NavBar />
       <div>
         <Heading>Join our network of professional groomers</Heading>
       </div>

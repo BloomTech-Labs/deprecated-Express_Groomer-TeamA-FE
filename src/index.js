@@ -6,7 +6,7 @@ import {
   useHistory,
   Switch,
 } from 'react-router-dom';
-
+import {NavBar} from './components/Navigation/NavBar';
 import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
 import 'antd/dist/antd.less';
 import { ScheduledAppointments } from './components/pages/ScheduledAppointments';
@@ -17,9 +17,10 @@ import { ExampleListPage } from './components/pages/ExampleList';
 import { ProfileListPage } from './components/pages/ProfileList';
 import { LoginPage } from './components/pages/Login';
 import { config } from './utils/oktaConfig';
-import { LoadingComponent } from './components/common';
+import { LoadingSpinner } from './components/common';
 import { EditProfile } from './components/pages/EditProfile';
 import { Profile } from './components/pages/Profile';
+import { GroomerProfilePage } from './components/pages/GroomerProfile/GroomerProfilePage';
 import { createStore } from 'redux';
 
 import { Provider } from 'react-redux';
@@ -55,6 +56,7 @@ function App() {
 
   return (
     <Security {...config} onAuthRequired={authHandler}>
+      <NavBar />
       <Switch>
         <Route path="/login" component={LoginPage} />{' '}
         {/** ISSUE: AFTER LOGIN USER GETS REDIRECTED TO LandingPage */}
@@ -64,7 +66,7 @@ function App() {
           path="/myprofile"
           exact
           render={props => (
-            <Profile {...props} LoadingComponent={LoadingComponent} />
+            <Profile {...props} LoadingComponent={LoadingSpinner} />
           )}
         />
         <SecureRoute path="/example-list" component={ExampleListPage} />
