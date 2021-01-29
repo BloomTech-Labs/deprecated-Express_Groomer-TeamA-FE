@@ -5,7 +5,7 @@ export const AppointmentDiv = styled.div`
   width: 35%;
   background-color: rgb(179, 0, 219); // is the value of strong magenta
   border: 1px solid #f0f0f0 border-radius 2px;
-  height: 425px;
+  height: auto;
   margin-bottom: 3%;
   box-shadow: 20px 20px 60px #b9b9b9, -20px -20px 60px #fbfbfb;
 `;

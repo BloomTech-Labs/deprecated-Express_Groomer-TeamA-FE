@@ -13,6 +13,7 @@ import {
 } from './AppointmentContainerStyles';
 import { createAppointmentData } from '../../../api';
 import { useOktaAuth } from '@okta/okta-react';
+import { Form, Input, Select } from 'antd';
 
 const iconSize = 50;
 const appointmentWindowWidth = 300;
@@ -28,6 +29,36 @@ function RenderGroomerAppointmentDashboard(props) {
   const { authState, authService } = useOktaAuth();
   const [memoAuthService] = useMemo(() => [authService], []);
 
+  const groomer = {
+    id: 1,
+    name: 'Groomer One',
+  };
+
+  var today = new Date();
+  var dd = String(today.getDate()).padStart(2, '0');
+  var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  var yyyy = today.getFullYear();
+
+  today = mm + '/' + dd + '/' + yyyy;
+
+  var date = new Date();
+  var minutes = date.getMinutes();
+  var hour = date.getHours();
+
+  const [appointment, setAppointment] = useState({
+    groomer_id: groomer.id,
+    pet_id: '',
+    location_service_id: '',
+    appointment_date: today,
+    appointment_time: `${hour}:${minutes}`,
+  });
+
+  const { Option } = Select;
+
+  useEffect(() => {
+    console.log(appointment);
+  }, [appointment]);
+
   function onSelectChange(value) {
     setSelectedDate(value._d);
   }
@@ -42,6 +73,43 @@ function RenderGroomerAppointmentDashboard(props) {
         console.log(err);
       });
   });
+
+  const pets = [
+    {
+      id: 1,
+      name: 'John',
+    },
+    {
+      id: 2,
+      name: 'Jane',
+    },
+    {
+      id: 3,
+      name: 'Jessica',
+    },
+  ];
+
+  const services = [
+    {
+      id: 1,
+      name: 'Nail trimming',
+    },
+    {
+      id: 2,
+      name: 'Shampooing',
+    },
+    {
+      id: 3,
+      name: 'Combo Service',
+    },
+  ];
+
+  const onChange = value => {
+    setAppointment({ ...appointment, pet_id: value });
+  };
+  const onServiceChange = value => {
+    setAppointment({ ...appointment, location_service_id: value });
+  };
 
   return (
     <Layout>
@@ -64,11 +132,31 @@ function RenderGroomerAppointmentDashboard(props) {
               extra={<a href="#">More</a>}
               style={{ width: appointmentWindowWidth }}
             >
-              <PetNameIcon>
+              <Form>
+                <Form.Item label="Select Pet">
+                  <Select name="pet_id" onChange={e => onChange(e)}>
+                    {pets.map(pet => {
+                      return <Option value={pet.id}>{pet.name}</Option>;
+                    })}
+                  </Select>
+                </Form.Item>
+                <Form.Item label="Select Service">
+                  <Select name="location_service_id" onChange={onServiceChange}>
+                    {services.map(service => {
+                      return (
+                        <Select.Option value={service.id}>
+                          {service.name}
+                        </Select.Option>
+                      );
+                    })}
+                  </Select>
+                </Form.Item>
+                {/* <PetNameIcon>
                 Pet Name
                 <Avatar size={iconSize} icon={<UserOutlined />} />
               </PetNameIcon>
-              <p>Service</p>
+              <p>Service</p> */}
+              </Form>
               <Button
                 onClick={createAppointmentData}
                 type="primary"
