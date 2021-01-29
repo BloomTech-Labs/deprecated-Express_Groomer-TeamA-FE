@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import './profileList.scss';
 import ProfileCard from './ProfileCard';
 import { Tooltip } from 'antd';
+import SearchMap from '../Search/SearchMap';
 
 function RenderProfileListPage(props) {
   //Used local state hooks to handle search funtionality as to not manipulate our Redux state
@@ -36,18 +37,25 @@ function RenderProfileListPage(props) {
         <div className="sandbox sandbox-hello-people">
           <h1 className="profile-list-header">Meet Our Groomers</h1>
         </div>
-        <SearchForm value={searched} handleChange={handleChange} />
+        {/* <SearchForm value={searched} handleChange={handleChange} /> */}
+        {/* this is the map feature  */}
+        {/* close */}
+        {/* almost there  */}
+        <SearchMap />
+        {/* cold*/}
+        {/* colder */}
+        {/* coldest  */}
         <Tooltip title="Map-View">
           <span>
-            <Link to="/map-view">
+            {/* <Link to="/map-view">
               <i className="fas fa-globe-americas"></i>
-            </Link>
+            </Link> */}
           </span>
         </Tooltip>
       </div>
       {filtered.length <= 0 ? (
         <div className="conditional">
-          <h1 className="conditional-header">No Matches! </h1>
+          {/* <h1 className="conditional-header">No Matches! </h1> */}
         </div>
       ) : (
         <div className="profiles-list">
