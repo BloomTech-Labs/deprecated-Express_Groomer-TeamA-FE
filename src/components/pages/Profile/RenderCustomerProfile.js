@@ -9,6 +9,7 @@ import AppointmentCard from './AppointmentCard';
 import CustomerAddPet from './CustomerAddPet';
 import convertISODate from '../../../utils/convertiso';
 import './profile.css';
+import { StyledLink } from '../ScheduledAppointments/Styles';
 
 // Ant Design
 import { Menu, Dropdown } from 'antd';
@@ -134,6 +135,11 @@ const RenderCustomerProfile = ({ userInfo, pets, appointments }) => {
                       );
                     })}
                   </Row>
+                  <Col>
+                    <StyledLink to="/appointments/scheduled">
+                      All Appointments
+                    </StyledLink>
+                  </Col>
                 </div>
               </div>
             </Col>
