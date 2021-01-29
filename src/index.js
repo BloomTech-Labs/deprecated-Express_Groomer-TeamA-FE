@@ -9,18 +9,19 @@ import {
 
 import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
 import 'antd/dist/antd.less';
-
+import { ScheduledAppointments } from './components/pages/ScheduledAppointments';
+import { AppointmentInfo } from './components/pages/AppointmentInfo';
 import { LandingPage } from './components/pages/Landing';
 import { LandingPageForGroomers } from './components/pages/LandingForGroomers';
 import { ExampleListPage } from './components/pages/ExampleList';
-import { HomePage } from './components/pages/Home';
 import { ProfileListPage } from './components/pages/ProfileList';
 import { LoginPage } from './components/pages/Login';
 import { AppointmentPage } from './components/pages/Appointments';
 import { config } from './utils/oktaConfig';
-import { LoadingComponent } from './components/common';
+import { LoadingSpinner } from './components/common';
 import { EditProfile } from './components/pages/EditProfile';
 import { Profile } from './components/pages/Profile';
+import { GroomerProfilePage } from './components/pages/GroomerProfile/GroomerProfilePage';
 import { createStore } from 'redux';
 
 import { Provider } from 'react-redux';
@@ -57,21 +58,15 @@ function App() {
   return (
     <Security {...config} onAuthRequired={authHandler}>
       <Switch>
-        <Route path="/login" component={LoginPage} />
+        <Route path="/login" component={LoginPage} />{' '}
+        {/** ISSUE: AFTER LOGIN USER GETS REDIRECTED TO LandingPage */}
         <Route path="/implicit/callback" component={LoginCallback} />
         {/* any of the routes you need secured should be registered as SecureRoutes */}
-        <SecureRoute
-          path="/"
-          exact
-          render={props => (
-            <HomePage {...props} LoadingComponent={LoadingComponent} />
-          )}
-        />
         <SecureRoute
           path="/myprofile"
           exact
           render={props => (
-            <Profile {...props} LoadingComponent={LoadingComponent} />
+            <Profile {...props} LoadingComponent={LoadingSpinner} />
           )}
         />
         <SecureRoute path="/example-list" component={ExampleListPage} />
@@ -84,6 +79,16 @@ function App() {
         <SecureRoute path="/groomer-appointment" component={AppointmentPage} />
         <Route path="/home" component={LandingPage} />
         <Route path="/groomers" component={LandingPageForGroomers} />
+        <SecureRoute
+          exact
+          path="/appointments/scheduled"
+          component={ScheduledAppointments}
+        />
+        <SecureRoute
+          exact
+          path="/appointments/scheduled/:id"
+          component={AppointmentInfo}
+        />
       </Switch>
       <Footer />
     </Security>
