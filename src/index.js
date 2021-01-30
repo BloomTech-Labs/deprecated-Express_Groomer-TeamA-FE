@@ -35,8 +35,6 @@ import 'antd/dist/antd.css';
 export const store = createStore(appReducer, devToolsEnhancer());
 
 import './globalStyles.css';
-export const store = createStore(appReducer);
-
 
 ReactDOM.render(
   <Provider store={store}>
