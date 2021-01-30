@@ -3,7 +3,7 @@ import { Layout, Row, Col } from 'antd';
 import { Hero } from './Hero';
 import { Services } from './Services';
 import { AboutGroomer } from './AboutGroomer';
-import { FormProvider } from 'antd/lib/form/context';
+
 export const GroomerProfilePage = () => {
   const { Content } = Layout;
   const contentStyle = {
