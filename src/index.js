@@ -20,17 +20,18 @@ import { config } from './utils/oktaConfig';
 import { LoadingSpinner } from './components/common';
 import { EditProfile } from './components/pages/EditProfile';
 import { Profile } from './components/pages/Profile';
-import { GroomerProfilePage } from './components/pages/GroomerProfile/GroomerProfilePage';
+import GroomerProfilePage from './components/pages/GroomerProfile/GroomerProfilePage';
 import { createStore } from 'redux';
 
 import { Provider } from 'react-redux';
+import { devToolsEnhancer } from 'redux-devtools-extension';
 import { appReducer } from './state/reducers/appReducer';
 import MapBox from './components/Map/MapBox';
 import Footer from './components/Footer/Footer';
 
 import 'antd/dist/antd.css';
 
-export const store = createStore(appReducer);
+export const store = createStore(appReducer, devToolsEnhancer());
 
 ReactDOM.render(
   <Provider store={store}>
@@ -75,10 +76,11 @@ function App() {
           render={props => <EditProfile {...props} />}
         />
         <SecureRoute path="/map-view" component={MapBox} />
-        <Route exact path="/" component={LandingPage} />{' '}
+        <Route exact path="/" component={LandingPage} />
         {/** ISSUE: AFTER LOGIN USER GETS REDIRECTED TO LandingPage */}
         <Route path="/groomers" component={LandingPageForGroomers} />
-        <SecureRoute
+        <SecureRoute exact path="/groomer/:id" component={GroomerProfilePage} />
+        <Route
           exact
           path="/appointments/scheduled"
           component={ScheduledAppointments}

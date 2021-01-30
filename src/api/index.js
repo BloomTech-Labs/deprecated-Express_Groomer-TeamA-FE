@@ -103,9 +103,10 @@ const apiAuthGetBusinessProfile = (authHeader, id) => {
   return axios.get(`${apiUrl}/businessProfile/${id}`, { headers: authHeader });
 };
 
-const getProfileData = authState => {
+const getProfileData = (authState, id) => {
+  const header = getAuthHeader(authState);
   try {
-    return apiAuthGet(getAuthHeader(authState)).then(response => {
+    return apiAuthGetUser(header, id).then(response => {
       store.dispatch(setProfilesToState(response.data));
       return response.data;
     });

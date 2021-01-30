@@ -40,7 +40,10 @@ const Profile = props => {
     <div>
       {Object.keys(props.currentUser).length ? (
         props.currentUser.user_type === 'Groomer' ? (
-          <RenderGroomerProfile userInfo={props.currentUser} />
+          <RenderGroomerProfile
+            userInfo={props.currentUser}
+            businessProfile={props.businessProfile}
+          />
         ) : (
           <RenderCustomerProfile
             userInfo={props.currentUser}
@@ -60,6 +63,7 @@ const mapStateToProps = state => {
     appointments: state.appointments,
     currentUser: state.currentUser,
     pets: state.pets,
+    businessProfile: state.businessProfile,
   };
 };
 
