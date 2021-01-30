@@ -16,7 +16,7 @@ import { store } from '../index';
 // we will define a bunch of API calls here.
 const apiUrl =
   process.env.NODE_ENV === 'development'
-    ? 'http://localhost:8000'
+    ? 'http://localhost:8000/'
     : `${process.env.REACT_APP_API_URI}`;
 
 const sleep = time =>
@@ -106,7 +106,7 @@ const apiAuthGetBusinessProfile = (authHeader, id) => {
 
 // Delete appointment
 const apiAuthDeleteAppointment = (authHeader, id) => {
-  return axios.delete(`${apiUrl}/appointments/${id}`, { headers: authHeader });
+  return axios.delete(`${apiUrl}appointments/${id}`, { headers: authHeader });
 };
 
 const getProfileData = authState => {
