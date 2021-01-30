@@ -20,7 +20,7 @@ import { config } from './utils/oktaConfig';
 import { LoadingSpinner } from './components/common';
 import { EditProfile } from './components/pages/EditProfile';
 import { Profile } from './components/pages/Profile';
-import { GroomerProfilePage } from './components/pages/GroomerProfile/GroomerProfilePage';
+import { GroomerServicesPage } from './components/pages/GroomerProfile/GroomerServicesPage';
 import { createStore } from 'redux';
 
 import { Provider } from 'react-redux';
@@ -79,6 +79,10 @@ function App() {
         <Route exact path="/" component={LandingPage} />{' '}
         {/** ISSUE: AFTER LOGIN USER GETS REDIRECTED TO LandingPage */}
         <Route path="/groomers" component={LandingPageForGroomers} />
+        <SecureRoute
+          path="/groomer-services"
+          component={GroomerServicesPage}
+        />
         <SecureRoute
           exact
           path="/appointments/scheduled"
