@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const AppointmentDiv = styled.div`
   margin-left: 4%;
   width: 35%;
-  background-color: rgb(179, 0, 219); // is the value of strong magenta
+  background-color: #006161;
   border: 1px solid #f0f0f0 border-radius 2px;
   height: auto;
   margin-bottom: 3%;
@@ -14,7 +14,7 @@ export const AppointmentScheduledFont = styled.div`
   text-align: left;
   padding: 4%;
   font-size: 1.7rem;
-  font-color: black;
+  color: #ffffff;
 `;
 
 export const CalendarButtonStyle = styled.div`

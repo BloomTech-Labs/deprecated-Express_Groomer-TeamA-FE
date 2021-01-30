@@ -13,14 +13,13 @@ import {
 } from './AppointmentContainerStyles';
 import { createAppointmentData } from '../../../api';
 import { useOktaAuth } from '@okta/okta-react';
-import { Form, Input, Select } from 'antd';
+import { Form, Select } from 'antd';
 
 const iconSize = 50;
 const appointmentWindowWidth = 300;
 
 function onPanelChange(value, mode) {
   console.log(value.format('YYYY-MM-DD'), mode);
-  // return value.format('YYYY-MM-DD')
   console.log(value);
 }
 
@@ -113,7 +112,6 @@ function RenderGroomerAppointmentDashboard(props) {
 
   return (
     <Layout>
-      <NavBar />
       <CalendarSize>
         <WhiteSpaceForCalendar>
           <Calendar
@@ -161,6 +159,7 @@ function RenderGroomerAppointmentDashboard(props) {
                 onClick={createAppointmentData}
                 type="primary"
                 size="large"
+                style={{ background: 'orange', borderColor: 'white' }}
               >
                 Add Appointment
               </Button>
