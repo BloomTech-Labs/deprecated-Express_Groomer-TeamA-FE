@@ -9,6 +9,7 @@ import {
   createPet,
   editPet,
   deletePet,
+  editBusinessProfileInfo,
   delAppointment,
 } from '../state/actions';
 import { store } from '../index';
@@ -107,6 +108,13 @@ const apiAuthGetBusinessProfile = (authHeader, id) => {
 // Delete appointment
 const apiAuthDeleteAppointment = (authHeader, id) => {
   return axios.delete(`${apiUrl}appointments/${id}`, { headers: authHeader });
+};
+
+// update business profile info
+const apiAuthEditBusinessProfile = (authHeader, id, data) => {
+  return axios.put(`${apiUrl}/businessProfile/${id}`, data, {
+    headers: authHeader,
+  });
 };
 
 const getProfileData = authState => {
@@ -309,7 +317,31 @@ const getBusinessProfileData = (authState, id) => {
       .catch(err => {
         console.log(err);
       });
-  } catch (e) {}
+  } catch (e) {
+    return new Promise(() => {
+      console.log(`Error: ${e}`);
+      return [];
+    });
+  }
+};
+
+const editBusinessProfileInfoData = (authState, id, data) => {
+  const header = getAuthHeader(authState);
+  try {
+    return apiAuthEditBusinessProfile(header, id, data)
+      .then(res => {
+        store.dispatch(editBusinessProfileInfo(res.data));
+        return res.data;
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  } catch (e) {
+    return new Promise(() => {
+      console.log(`Error: ${e}`);
+      return [];
+    });
+  }
 };
 
 export {
@@ -324,6 +356,7 @@ export {
   createAppointmentData,
   getAppointmentData,
   getBusinessProfileData,
+  editBusinessProfileInfoData,
   createCustomerPet,
   deleteCustomerPet,
   getAuthHeader,
