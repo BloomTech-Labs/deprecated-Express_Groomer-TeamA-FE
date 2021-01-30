@@ -6,7 +6,7 @@ import {
   useHistory,
   Switch,
 } from 'react-router-dom';
-
+import {NavBar} from './components/Navigation/NavBar';
 import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
 import 'antd/dist/antd.less';
 import { ScheduledAppointments } from './components/pages/ScheduledAppointments';
@@ -20,6 +20,8 @@ import { config } from './utils/oktaConfig';
 import { LoadingSpinner } from './components/common';
 import { EditProfile } from './components/pages/EditProfile';
 import { Profile } from './components/pages/Profile';
+import { GroomerServicesPage } from './components/pages/GroomerProfile/GroomerServicesPage';
+
 import { createStore } from 'redux';
 
 import { Provider } from 'react-redux';
@@ -31,6 +33,10 @@ import Footer from './components/Footer/Footer';
 import 'antd/dist/antd.css';
 
 export const store = createStore(appReducer, devToolsEnhancer());
+
+import './globalStyles.css';
+export const store = createStore(appReducer);
+
 
 ReactDOM.render(
   <Provider store={store}>
@@ -55,41 +61,46 @@ function App() {
   };
 
   return (
-    <Security {...config} onAuthRequired={authHandler}>
-      <Switch>
-        <Route path="/login" component={LoginPage} />{' '}
-        {/** ISSUE: AFTER LOGIN USER GETS REDIRECTED TO LandingPage */}
-        <Route path="/implicit/callback" component={LoginCallback} />
-        {/* any of the routes you need secured should be registered as SecureRoutes */}
-        <SecureRoute
-          path="/myprofile"
-          exact
-          render={props => (
-            <Profile {...props} LoadingComponent={LoadingSpinner} />
-          )}
-        />
-        <SecureRoute path="/example-list" component={ExampleListPage} />
-        <SecureRoute path="/profile-list" component={ProfileListPage} />
-        <SecureRoute
-          path="/editprofile"
-          render={props => <EditProfile {...props} />}
-        />
-        <SecureRoute path="/map-view" component={MapBox} />
-        <Route exact path="/" component={LandingPage} />{' '}
-        {/** ISSUE: AFTER LOGIN USER GETS REDIRECTED TO LandingPage */}
-        <Route path="/groomers" component={LandingPageForGroomers} />
-        <SecureRoute
-          exact
-          path="/appointments/scheduled"
-          component={ScheduledAppointments}
-        />
-        <SecureRoute
-          exact
-          path="/appointments/scheduled/:id"
-          component={AppointmentInfo}
-        />
-      </Switch>
-      <Footer />
-    </Security>
+    <div className="app-container">
+        <Security {...config} onAuthRequired={authHandler}>
+          <NavBar />
+          <div className="content-wrapper">
+            <Switch>
+              <Route path="/login" component={LoginPage} />{' '}
+              {/** ISSUE: AFTER LOGIN USER GETS REDIRECTED TO LandingPage */}
+              <Route path="/implicit/callback" component={LoginCallback} />
+              {/* any of the routes you need secured should be registered as SecureRoutes */}
+              <SecureRoute
+                path="/myprofile"
+                exact
+                render={props => (
+                  <Profile {...props} LoadingComponent={LoadingSpinner} />
+                )}
+              />
+              <SecureRoute path="/example-list" component={ExampleListPage} />
+              <SecureRoute path="/profile-list" component={ProfileListPage} />
+              <SecureRoute
+                path="/editprofile"
+                render={props => <EditProfile {...props} />}
+              />
+              <SecureRoute path="/map-view" component={MapBox} />
+              <Route exact path="/" component={LandingPage} />{' '}
+              {/** ISSUE: AFTER LOGIN USER GETS REDIRECTED TO LandingPage */}
+              <Route path="/groomers" component={LandingPageForGroomers} />
+              <SecureRoute
+                exact
+                path="/appointments/scheduled"
+                component={ScheduledAppointments}
+              />
+              <SecureRoute
+                exact
+                path="/appointments/scheduled/:id"
+                component={AppointmentInfo}
+              />
+            </Switch>
+          </div>
+        <Footer />
+      </Security>
+    </div>
   );
 }
