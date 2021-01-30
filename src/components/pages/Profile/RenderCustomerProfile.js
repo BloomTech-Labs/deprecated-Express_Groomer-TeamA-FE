@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { Row, Col, Avatar, Button, Modal } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
+
+// import { UserOutlined } from '@ant-design/icons';
 import CustomerInfo from './CustomerInfo';
 import CustomerEditInfo from './CustomerEditInfo';
 import PetCard from './PetCard';
@@ -10,8 +11,8 @@ import CustomerAddPet from './CustomerAddPet';
 import './profile.css';
 
 // Ant Design
-import { Menu, Dropdown } from 'antd';
-import { DownOutlined } from '@ant-design/icons';
+// import { Menu, Dropdown } from 'antd';
+// import { DownOutlined } from '@ant-design/icons';
 
 const RenderCustomerProfile = ({ userInfo, pets }) => {
   // Dummy Data

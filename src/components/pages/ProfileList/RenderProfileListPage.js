@@ -1,15 +1,16 @@
+//import React from 'react';
 import React, { useState, useEffect } from 'react';
-import { Router, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import SearchForm from '../Search/SearchForm';
+// import SearchForm from '../Search/SearchForm';
 import { connect } from 'react-redux';
 import './profileList.scss';
 import ProfileCard from './ProfileCard';
-import { Tooltip } from 'antd';
+//import { Tooltip } from 'antd';
 import SearchMap from '../Search/SearchMap';
 
 function RenderProfileListPage(props) {
-  //Used local state hooks to handle search funtionality as to not manipulate our Redux state
+  //   Used local state hooks to handle search funtionality as to not manipulate our Redux state
   const [searched, setSearched] = useState('');
   const [filtered, setFiltered] = useState([]);
 
@@ -32,7 +33,6 @@ function RenderProfileListPage(props) {
       <Link to="/">
         <i className="fas fa-house-user home-icon"></i>
       </Link>
-
       <div className="middle-content">
         <div className="sandbox sandbox-hello-people">
           <h1 className="profile-list-header">Meet Our Groomers</h1>
@@ -45,17 +45,17 @@ function RenderProfileListPage(props) {
         {/* cold*/}
         {/* colder */}
         {/* coldest  */}
-        <Tooltip title="Map-View">
+        {/* <Tooltip title="Map-View">
           <span>
-            {/* <Link to="/map-view">
+            <Link to="/map-view">
               <i className="fas fa-globe-americas"></i>
-            </Link> */}
+            </Link>
           </span>
-        </Tooltip>
+        </Tooltip> */}
       </div>
       {filtered.length <= 0 ? (
         <div className="conditional">
-          {/* <h1 className="conditional-header">No Matches! </h1> */}
+          <h1 className="conditional-header"> </h1>
         </div>
       ) : (
         <div className="profiles-list">
@@ -74,10 +74,11 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, {})(RenderProfileListPage);
+export default connect(mapStateToProps, {})(RenderProfileListPage, SearchMap);
 
 // Don't forget your prop types! It will save you a lot of debugging headache as you add more features.
 RenderProfileListPage.propTypes = {
+  mapboxApiAccessToken: PropTypes.string,
   data: PropTypes.arrayOf(
     // Here is an example of enforcing an object structure that we expect to receive in our props:
     PropTypes.shape({
@@ -98,4 +99,8 @@ RenderProfileListPage.propTypes = {
       updated_at: PropTypes.string,
     })
   ),
+};
+
+SearchMap.propTypes = {
+  mapboxApiAccessToken: PropTypes.string,
 };
