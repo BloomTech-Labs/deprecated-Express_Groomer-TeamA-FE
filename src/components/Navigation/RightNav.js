@@ -5,6 +5,7 @@ import { NavLinks } from './navStyles';
 
 export const RightNav = (props) => {
   const userType = useSelector(state => state.currentUser.user_type);
+
   const groomerLinks = () => {
     return (
     <>
@@ -19,17 +20,12 @@ export const RightNav = (props) => {
         </Link>
       </li>
       <li>
-        <Link to="/editprofile" className="nav-links">
-          Edit Profile
-        </Link>
-      </li>
-      <li>
         <Link to="/appointments/scheduled" className="nav-links">
           Appointments
         </Link>
       </li>
     </>
-    )
+    );
   };
 
   const customerLinks = () => {
@@ -46,17 +42,12 @@ export const RightNav = (props) => {
           </Link>
         </li>
         <li>
-          <Link to="/editprofile" className="nav-links">
-            Edit Profile
-          </Link>
-        </li>
-        <li>
           <Link to="/map-view" className="nav-links">
             Find Groomers
           </Link>
         </li>
       </>
-    )
+    );
   };
 
   const defaultLinks = () => {
@@ -73,7 +64,7 @@ export const RightNav = (props) => {
           </Link>
         </li>
       </>
-    )
+    );
   };
 
   const getLinks = (userType) => {
@@ -88,7 +79,9 @@ export const RightNav = (props) => {
 
   return (
     <NavLinks open = {props.open}>
-      {getLinks(userType)}
+      {
+      getLinks(userType)
+      }
     </NavLinks>
   );
 };
