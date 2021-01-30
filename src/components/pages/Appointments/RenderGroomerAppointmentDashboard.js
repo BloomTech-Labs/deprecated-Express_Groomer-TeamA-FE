@@ -63,7 +63,7 @@ function RenderGroomerAppointmentDashboard(props) {
     memoAuthService
       .getUser()
       .then(info => {
-        createAppointmentData(authState, selectedDate);
+        createAppointmentData(authState, appointment);
       })
       .catch(err => {
         console.log(err);
