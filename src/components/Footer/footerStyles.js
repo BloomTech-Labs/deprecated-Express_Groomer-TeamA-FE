@@ -5,39 +5,32 @@ const FooterContainer = styled.div`
     color: #FFFFFF;
     display: flex;
     width: 100%;
-    height: 3%;
-    bottom: 0;
     justify-content: space-between;
-    align-self: flex-end;
+    align-items: center;
     border-top: 2px solid #BABABA;
+
+    @media (max-width: 768px){
+      flex-flow: column nowrap;
+      justify-content: center;
+    } 
 
     img {
         width: 100px;
         height: 100px;
-        margin-left: 1%;
+        padding-left: 0.25rem;
       }
     
-    .footer-icons {
-        display: flex;
-        justify-content: flex-end;
-        margin-right:5%;
-        width:30%;
-
-        .footer-icon {
-            margin-top: 35px;
-            margin-left:7%;
-            font-size: 2rem;
-            text-shadow: 0 0 2px gray;
-            color: white;
-            &:hover {
-              color:orange;
-            }
-    }
+    .footer-icon {
+        padding: 0 0.5rem;
+        font-size: 2rem;
+        text-shadow: 0 0 2px gray;
+        color: white;
+        &:hover {
+          color:orange;
+        }
 `;
 
 const FooterName = styled.p`
-  margin-left: 25%;
-  margin-top: 3%;
   font-size: 1.25rem;
 `;
 
