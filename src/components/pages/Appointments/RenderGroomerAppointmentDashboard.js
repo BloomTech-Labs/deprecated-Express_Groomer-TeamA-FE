@@ -1,26 +1,23 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { connect } from 'react-redux';
-import NavBar from '../../Navigation/NavBar';
-import { Layout, Calendar, Button, Card, Avatar } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
+import { Layout, Calendar, Button, Card, TimePicker } from 'antd';
 import { CalendarSize, WhiteSpaceForCalendar } from './CalendarStyles';
+import moment from 'moment';
 import {
   AppointmentDiv,
   AppointmentScheduledFont,
   AppointmentHeader,
   CalendarButtonStyle,
-  PetNameIcon,
 } from './AppointmentContainerStyles';
 import { createAppointmentData } from '../../../api';
 import { useOktaAuth } from '@okta/okta-react';
 import { Form, Select } from 'antd';
 
-const iconSize = 50;
 const appointmentWindowWidth = 300;
+const format = 'HH:mm';
 
 function onPanelChange(value, mode) {
   console.log(value.format('YYYY-MM-DD'), mode);
-  console.log(value);
 }
 
 function RenderGroomerAppointmentDashboard(props) {
@@ -110,6 +107,10 @@ function RenderGroomerAppointmentDashboard(props) {
     setAppointment({ ...appointment, location_service_id: value });
   };
 
+  const onAppointmentTimeChange = value => {
+    setAppointment({ ...appointment, appointment_time: value });
+  };
+
   return (
     <Layout>
       <CalendarSize>
@@ -149,11 +150,15 @@ function RenderGroomerAppointmentDashboard(props) {
                     })}
                   </Select>
                 </Form.Item>
-                {/* <PetNameIcon>
-                Pet Name
-                <Avatar size={iconSize} icon={<UserOutlined />} />
-              </PetNameIcon>
-              <p>Service</p> */}
+                <Form>
+                  <Form.Item label="Select Time">
+                    <TimePicker
+                      defaultValue={moment(Date.now(), format)}
+                      format={format}
+                      onChange={onAppointmentTimeChange}
+                    />
+                  </Form.Item>
+                </Form>
               </Form>
               <Button
                 onClick={createAppointmentData}
