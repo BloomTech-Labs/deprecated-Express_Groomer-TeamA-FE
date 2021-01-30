@@ -31,7 +31,11 @@ const FooterContainer = styled.div`
 `;
 
 const FooterName = styled.p`
+<<<<<<< HEAD
     font-size: 1.25rem;
+=======
+  font-size: 1.25rem;
+>>>>>>> e184cfca2bc3600d9d08652214eb3b5df68f0926
 `;
 
 export { FooterContainer, FooterName };
