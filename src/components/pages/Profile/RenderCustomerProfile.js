@@ -7,6 +7,7 @@ import AppointmentCard from './AppointmentCard';
 import CustomerAddPet from './CustomerAddPet';
 import convertISODate from '../../../utils/convertiso';
 import './profile.css';
+import { StyledLink } from '../ScheduledAppointments/Styles';
 
 const RenderCustomerProfile = ({ userInfo, pets, appointments }) => {
   const [displayUserInfoInputs, toggleUserInfoInputs] = useState(false);
@@ -92,6 +93,11 @@ const RenderCustomerProfile = ({ userInfo, pets, appointments }) => {
                       );
                     })}
                   </Row>
+                  <Col>
+                    <StyledLink to="/appointments/scheduled">
+                      All Appointments
+                    </StyledLink>
+                  </Col>
                 </div>
               </div>
             </Col>
