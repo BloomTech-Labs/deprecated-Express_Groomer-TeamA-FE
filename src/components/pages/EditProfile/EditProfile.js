@@ -29,16 +29,15 @@ const EditProfile = props => {
 
   return (
     <div>
-      {isGroomer ? (
-        <RenderEditGroomerProfile
-          history={props.history}
-          userInfo={props.currentUser}
-        />
+      {Object.keys(props.currentUser).length ? (
+        <>
+          <RenderEditGroomerProfile
+            history={props.history}
+            userInfo={props.currentUser}
+          />
+        </>
       ) : (
-        <RenderEditCustomerProfile
-          history={props.history}
-          userInfo={props.currentUser}
-        />
+        <>Loading...</>
       )}
     </div>
   );
