@@ -1,17 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Nav, Title } from './navStyles';
-import RightNav from './RightNav';
+import { BurgerMenu } from './BurgerMenu';
 
-function NavBar() {
+export const NavBar = () => {
   return (
     <Nav>
-      <Link to="/home">
+      <Link to="/">
         <Title>Pet Express</Title>
       </Link>
-      <RightNav />
+      <BurgerMenu />
     </Nav>
   );
-}
-
+};
 export default NavBar;

@@ -7,7 +7,9 @@ import {
   DELETE_PET,
   GET_APPOINTMENTS,
   CREATE_APPOINTMENT,
+  DELETE_APPOINTMENT,
   GET_BUSINESS_PROFILE,
+  EDIT_BUSINESS_PROFILE_INFO,
 } from '../actions/index';
 
 const initialState = {
@@ -68,10 +70,25 @@ export const appReducer = (state = initialState, action) => {
         ...state,
         appointments: [...state.appointments, ...action.payload],
       };
+    case DELETE_APPOINTMENT:
+      return {
+        ...state,
+        appointments: state.appointments.filter(appointment => {
+          return appointment.id !== action.payload.id;
+        }),
+      };
     case GET_BUSINESS_PROFILE:
       return {
         ...state,
         businessProfile: action.payload,
+      };
+    case EDIT_BUSINESS_PROFILE_INFO:
+      return {
+        ...state,
+        businessProfile: {
+          ...state.businessProfile,
+          ...action.payload,
+        },
       };
     default:
       return state;

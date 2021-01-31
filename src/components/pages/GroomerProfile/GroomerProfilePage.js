@@ -17,6 +17,7 @@ const GroomerProfilePage = props => {
       getBusinessProfileData(authState, id);
     }
   }, []);
+
   return (
     <div className="container-fluid">
       <Row
