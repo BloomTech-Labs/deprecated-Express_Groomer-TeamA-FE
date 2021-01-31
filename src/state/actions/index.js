@@ -7,6 +7,7 @@ export const DELETE_PET = 'DELETE_PET';
 export const GET_APPOINTMENTS = 'GET_APPOINTMENTS';
 export const CREATE_APPOINTMENT = 'CREATE_APPOINTMENT';
 export const DELETE_APPOINTMENT = 'DELETE_APPOINTMENT';
+export const EDIT_APPOINTMENT = 'EDIT_APPOINTMENT';
 export const GET_BUSINESS_PROFILE = 'GET_BUSINESS_PROFILE';
 
 export const setProfilesToState = data => {
@@ -67,6 +68,13 @@ export const createAppointment = data => {
 export const delAppointment = data => {
   return {
     type: DELETE_APPOINTMENT,
+    payload: data,
+  };
+};
+
+export const editAppt = data => {
+  return {
+    type: EDIT_APPOINTMENT,
     payload: data,
   };
 };

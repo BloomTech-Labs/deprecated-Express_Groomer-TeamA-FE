@@ -32,7 +32,21 @@ const InnerDataDiv = styled.div`
   justify-content: center;
 `;
 
-const StyledButton = styled(Link)`
+const StyledButton = styled.button`
+  border-radius: 2px;
+  border: 1px solid #0384fc;
+  background-color: #0384fc;
+  color: white;
+  font-size: 120%;
+  text-align: center;
+  padding: 2% 0 2% 0;
+  :hover {
+    background-color: #4aa8ff;
+    color: white;
+  }
+`;
+
+const StyledLink = styled(Link)`
   border-radius: 2px;
   border: 1px solid #0384fc;
   background-color: #0384fc;
@@ -67,4 +81,5 @@ export {
   InnerDataDiv,
   OuterDataDiv,
   CardOuterDiv,
+  StyledLink,
 };
