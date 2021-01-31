@@ -22,7 +22,6 @@ import { EditProfile } from './components/pages/EditProfile';
 import { Profile } from './components/pages/Profile';
 import GroomerProfilePage from './components/pages/GroomerProfile/GroomerProfilePage';
 import { GroomerServicesPage } from './components/pages/GroomerProfile/GroomerServicesPage';
-import { createStore } from 'redux';
 
 import { createStore } from 'redux';
 
