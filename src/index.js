@@ -95,6 +95,11 @@ function App() {
               path="/appointments/scheduled/:id"
               component={AppointmentInfo}
             />
+            <SecureRoute
+              exact
+              path="/groomer-services"
+              component={GroomerServicesPage}
+            />
           </Switch>
         </div>
         <Footer />

@@ -112,7 +112,7 @@ const apiAuthDeleteAppointment = (authHeader, id) => {
 
 // update business profile info
 const apiAuthEditBusinessProfile = (authHeader, id, data) => {
-  return axios.put(`${apiUrl}/businessProfile/${id}`, data, {
+  return axios.put(`${apiUrl}businessProfile/${id}`, data, {
     headers: authHeader,
   });
 };

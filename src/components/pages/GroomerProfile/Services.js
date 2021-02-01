@@ -145,7 +145,7 @@ export const Services = props => {
           md={{ span: 24 }}
         >
           <div className="main-services-top">
-            <h2>
+            <h2 style={{ textAlign: 'center', margin: 0 }}>
               WELCOME TO THE{' '}
               {Object.keys(props.profile) &&
                 props.profile.business_profile &&
