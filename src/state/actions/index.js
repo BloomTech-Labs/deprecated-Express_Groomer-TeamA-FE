@@ -9,6 +9,7 @@ export const CREATE_APPOINTMENT = 'CREATE_APPOINTMENT';
 export const DELETE_APPOINTMENT = 'DELETE_APPOINTMENT';
 export const EDIT_APPOINTMENT = 'EDIT_APPOINTMENT';
 export const GET_BUSINESS_PROFILE = 'GET_BUSINESS_PROFILE';
+export const EDIT_BUSINESS_PROFILE_INFO = 'EDIT_BUSINESS_PROFILE_INFO';
 
 export const setProfilesToState = data => {
   return {
@@ -82,6 +83,13 @@ export const editAppt = data => {
 export const getBusinessProfile = data => {
   return {
     type: GET_BUSINESS_PROFILE,
+    payload: data,
+  };
+};
+
+export const editBusinessProfileInfo = data => {
+  return {
+    type: EDIT_BUSINESS_PROFILE_INFO,
     payload: data,
   };
 };

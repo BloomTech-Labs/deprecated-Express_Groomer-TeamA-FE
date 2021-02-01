@@ -10,6 +10,7 @@ import {
   EDIT_APPOINTMENT,
   DELETE_APPOINTMENT,
   GET_BUSINESS_PROFILE,
+  EDIT_BUSINESS_PROFILE_INFO,
 } from '../actions/index';
 
 const initialState = {
@@ -92,6 +93,14 @@ export const appReducer = (state = initialState, action) => {
       return {
         ...state,
         businessProfile: action.payload,
+      };
+    case EDIT_BUSINESS_PROFILE_INFO:
+      return {
+        ...state,
+        businessProfile: {
+          ...state.businessProfile,
+          ...action.payload,
+        },
       };
     default:
       return state;

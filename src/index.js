@@ -20,17 +20,23 @@ import { config } from './utils/oktaConfig';
 import { LoadingSpinner } from './components/common';
 import { EditProfile } from './components/pages/EditProfile';
 import { Profile } from './components/pages/Profile';
+import GroomerProfilePage from './components/pages/GroomerProfile/GroomerProfilePage';
 import { GroomerServicesPage } from './components/pages/GroomerProfile/GroomerServicesPage';
+
 import { createStore } from 'redux';
 
 import { Provider } from 'react-redux';
+import { devToolsEnhancer } from 'redux-devtools-extension';
 import { appReducer } from './state/reducers/appReducer';
 import MapBox from './components/Map/MapBox';
 import Footer from './components/Footer/Footer';
 
 import 'antd/dist/antd.css';
+
+
+export const store = createStore(appReducer, devToolsEnhancer());
+
 import './globalStyles.css';
-export const store = createStore(appReducer);
 
 ReactDOM.render(
   <Provider store={store}>
@@ -90,6 +96,11 @@ function App() {
                 exact
                 path="/appointments/scheduled/:id"
                 component={AppointmentInfo}
+              />
+               <SecureRoute
+                exact
+                path="/groomer-services"
+                component={GroomerServicesPage}
               />
             </Switch>
           </div>

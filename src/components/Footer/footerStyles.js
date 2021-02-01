@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const FooterContainer = styled.div`
     background-color: #006161;
@@ -34,4 +34,4 @@ const FooterName = styled.p`
     font-size: 1.25rem;
 `;
 
-export {FooterContainer, FooterName};
+export { FooterContainer, FooterName };
