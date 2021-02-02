@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './profileList.scss';
 import { Card, Rate, Button } from 'antd';
 import { ScissorOutlined } from '@ant-design/icons';
@@ -35,7 +36,9 @@ function CardFront(props) {
       <br />
       {/* Button below should be made into a link that takes users to individual groomer pages */}
       <Tooltip title={`View ${props.item.name}'s Profile`}>
-        <Button>View Profile</Button>
+        <Link to={`groomer/${props.item.id}`}>
+          <Button>View Profile</Button>
+        </Link>
       </Tooltip>
       <button className="curl-bottom-left" onClick={() => props.handleClick()}>
         click to flip

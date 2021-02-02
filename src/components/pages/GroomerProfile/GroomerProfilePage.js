@@ -42,9 +42,9 @@ const GroomerProfilePage = props => {
         <Col>
           {props.businessProfile &&
           Object.keys(props.businessProfile).length > 0 ? (
-            <AboutGroomer profile={props.businessProfile} />
+            <AboutGroomer id={id} profile={props.businessProfile} />
           ) : (
-            <AboutGroomer profile={props.businessProfile} />
+            <AboutGroomer id={id} profile={props.businessProfile} />
           )}
         </Col>
       </Row>

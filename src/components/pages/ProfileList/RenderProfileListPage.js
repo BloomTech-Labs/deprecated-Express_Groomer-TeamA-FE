@@ -43,7 +43,7 @@ function RenderProfileListPage(props) {
         {/* this is the map feature  */}
         {/* close */}
         {/* almost there  */}
-        <SearchMap />
+        {/* <SearchMap /> */}
         {/* cold*/}
         {/* colder */}
         {/* coldest  */}

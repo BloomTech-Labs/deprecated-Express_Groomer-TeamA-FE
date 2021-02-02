@@ -1,8 +1,11 @@
 import React from 'react';
+import { Link, useParams } from 'react-router-dom';
 import { Layout, Row, Col, Card, Button } from 'antd';
 import PropTypes from 'prop-types';
 
-export const GroomerServicesPage = () => {
+export const GroomerServicesPage = props => {
+  console.log('services page props', props);
+  const { id } = useParams();
   const groomer_services = [
     {
       service_image:
@@ -114,12 +117,14 @@ export const GroomerServicesPage = () => {
                 </ul>
               </div>
               <div className="services-button-container">
-                <Button
-                  className="services-button"
-                  style={{ backgroundColor: '#2c89d9', color: 'white' }}
-                >
-                  BOOK NOW
-                </Button>
+                <Link to={`groomer/${id}/schedule`}>
+                  <Button
+                    className="services-button"
+                    style={{ backgroundColor: '#2c89d9', color: 'white' }}
+                  >
+                    BOOK NOW
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>

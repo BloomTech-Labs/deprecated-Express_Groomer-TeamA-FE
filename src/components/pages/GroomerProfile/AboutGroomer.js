@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Layout, Row, Col, Card, Button } from 'antd';
 
 export const AboutGroomer = props => {
+  console.log(props);
   return (
     <div className="container-fluid">
       <div style={{ padding: '25px', maxWidth: '900px', margin: '0 auto' }}>
@@ -21,9 +22,11 @@ export const AboutGroomer = props => {
           <Button style={{ padding: '0 15px', margin: '15px' }}>
             <Link to="/groomer-services">LEARN MORE</Link>
           </Button>
-          <Button style={{ padding: '0 15px', margin: '15px' }}>
-            BOOK A SERVICE
-          </Button>
+          <Link to={`${props.id}/groomer-services`}>
+            <Button style={{ padding: '0 15px', margin: '15px' }}>
+              BOOK A SERVICE
+            </Button>
+          </Link>
         </div>
       </div>
       <div>
