@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useMemo } from 'react';
+import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Layout, Calendar, Button, Card, TimePicker } from 'antd';
 import { CalendarSize, WhiteSpaceForCalendar } from './CalendarStyles';
@@ -9,7 +10,13 @@ import {
   AppointmentHeader,
   CalendarButtonStyle,
 } from './AppointmentContainerStyles';
-import { createAppointmentData } from '../../../api';
+import {
+  createAppointmentData,
+  getBusinessProfileData,
+  getUserProfileData,
+  getCustomerPetsData,
+  getAppointmentData,
+} from '../../../api';
 import { useOktaAuth } from '@okta/okta-react';
 import { Form, Select } from 'antd';
 
@@ -25,9 +32,20 @@ function RenderGroomerAppointmentDashboard(props) {
   const { authState, authService } = useOktaAuth();
   const [memoAuthService] = useMemo(() => [authService], []);
 
+  console.log('PROPS', props);
+
+  const { id } = useParams();
+
+  console.log('id', id);
+
+  // useEffect(() => {
+  //   if (id) {
+  //     getBusinessProfileData(authState, id);
+  //   }
+  // }, []);
+
   const groomer = {
-    id: 1,
-    name: 'Groomer One',
+    id: '00ultwew80Onb2vOT4x6',
   };
 
   var today = new Date();
@@ -43,36 +61,38 @@ function RenderGroomerAppointmentDashboard(props) {
 
   const [appointment, setAppointment] = useState({
     groomer_id: groomer.id,
-    pet_id: '',
-    location_service_id: '',
-    appointment_date: today,
-    appointment_time: `${hour}:${minutes}`,
+    pet_id: 0,
+    location_service_id: 0,
+    appointment_date_time: 16121585,
+    duration: 60,
+    status: 'Pending',
+    service_provider_name: 'Pro Groomer',
   });
-
   const { Option } = Select;
 
-  useEffect(() => {
-    console.log(appointment);
-  }, [appointment]);
+  console.log('APPT', appointment);
+  // useEffect(() => {
+  //   console.log(appointment);
+  // }, [appointment]);
 
   function onSelectChange(value) {
-    setSelectedDate(value._d);
+    setSelectedDate(value);
   }
 
-  useEffect(() => {
-    memoAuthService
-      .getUser()
-      .then(info => {
-        createAppointmentData(authState, appointment);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  });
+  // useEffect(() => {
+  //   memoAuthService
+  //     .getUser()
+  //     .then(info => {
+  //       createAppointmentData(authState, appointment);
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     });
+  // });
 
   const pets = [
     {
-      id: 1,
+      id: 0,
       name: 'John',
     },
     {
@@ -87,7 +107,7 @@ function RenderGroomerAppointmentDashboard(props) {
 
   const services = [
     {
-      id: 1,
+      id: 0,
       name: 'Nail trimming',
     },
     {
@@ -108,9 +128,10 @@ function RenderGroomerAppointmentDashboard(props) {
   };
 
   const onAppointmentTimeChange = value => {
-    setAppointment({ ...appointment, appointment_time: value });
+    setAppointment({ ...appointment, appointment_date_time: 1612158200 });
   };
 
+  console.log(authState);
   return (
     <Layout>
       <CalendarSize>
@@ -150,18 +171,19 @@ function RenderGroomerAppointmentDashboard(props) {
                     })}
                   </Select>
                 </Form.Item>
-                <Form>
-                  <Form.Item label="Select Time">
-                    <TimePicker
-                      defaultValue={moment(Date.now(), format)}
-                      format={format}
-                      onChange={onAppointmentTimeChange}
-                    />
-                  </Form.Item>
-                </Form>
+                <Form.Item label="Select Time">
+                  <TimePicker
+                    defaultValue={moment(Date.now(), format)}
+                    format={format}
+                    onChange={() => onAppointmentTimeChange()}
+                  />
+                </Form.Item>
               </Form>
               <Button
-                onClick={createAppointmentData}
+                onClick={e => {
+                  e.preventDefault();
+                  createAppointmentData(authState, appointment);
+                }}
                 type="primary"
                 size="large"
                 style={{ background: 'orange', borderColor: 'white' }}

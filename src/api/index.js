@@ -96,12 +96,15 @@ const apiAuthGetAppointment = authHeader => {
 
 // create appointment
 const apiAuthCreateAppointment = (authHeader, data) => {
-  return axios.post(`${apiUrl}appointments`, data, { headers: authHeader });
+  console.log('ApiAuthCreteAPp');
+  console.log('ApiAuthCreteAPp', data);
+  console.log('ApiAuthCreteAPp', authHeader);
+  return axios.post(`${apiUrl}/appointments`, data, { headers: authHeader });
 };
 
 // get business profile
 const apiAuthGetBusinessProfile = (authHeader, id) => {
-  return axios.get(`${apiUrl}businessProfile/${id}`, { headers: authHeader });
+  return axios.get(`${apiUrl}/businessProfile/${id}`, { headers: authHeader });
 };
 
 // Delete appointment
@@ -259,12 +262,16 @@ const getAppointmentData = authState => {
   }
 };
 
-const createAppointmentData = (authState, data) => {
+const createAppointmentData = async (authState, data) => {
+  console.log('Create appointment Data function authState', authState);
+  console.log('Create appointment Data function data', data);
   const header = getAuthHeader(authState);
   try {
     return apiAuthCreateAppointment(header, data)
       .then(res => {
+        console.log('res', res);
         store.dispatch(createAppointment(res.data));
+        console.log('Create appointment Data function', res.data);
         return res.data;
       })
       .catch(err => {
