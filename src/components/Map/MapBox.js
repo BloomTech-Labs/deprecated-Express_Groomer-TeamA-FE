@@ -75,7 +75,7 @@ function MapBox() {
         <ReactMapGL
           {...viewport}
           ref={mapRef}
-          mapboxApiAccessToken={process.env.REACT_APP_API_KEY}
+          mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
           mapStyle={'mapbox://styles/mdl518/ckfxkaya10bwx1apfnhoyj92x'}
           onViewportChange={handleViewportChange}
         >
@@ -87,7 +87,7 @@ function MapBox() {
           <Geocoder
             mapRef={mapRef}
             onViewportChange={handleGeocoderViewportChange}
-            mapboxApiAccessToken={process.env.REACT_APP_API_KEY}
+            mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
             position="top-right"
           />
         </ReactMapGL>
