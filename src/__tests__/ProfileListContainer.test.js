@@ -10,6 +10,8 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { ProfileListPage } from '../components/pages/ProfileList';
 
+window.URL.createObjectURL = function() {};
+
 jest.mock('../api', () => {
   return { getProfileData: () => Promise.resolve([]) };
 });

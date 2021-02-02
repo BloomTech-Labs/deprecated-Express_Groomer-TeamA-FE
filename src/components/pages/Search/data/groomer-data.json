@@ -1,0 +1,36 @@
+{
+  "groomers": [
+    {
+      "id": 1,
+      "name": "Amber",
+      "address": "123 starlight road",
+      "stars": "5 Stars",
+      "lat": 42.7478,
+      "lon": -73.7605
+    },
+    {
+      "id": 2,
+      "name": "Cynthia",
+      "address": "123 starlight road",
+      "stars": "5 Stars",
+      "lat": 42.6478,
+      "lon": -73.6605
+    },
+    {
+      "id": 3,
+      "name": "Jose",
+      "address": "123 starlight road",
+      "stars": "5 Stars",
+      "lat": 42.8478,
+      "lon": -73.8605
+    },
+    {
+      "id": 4,
+      "name": "Future",
+      "address": "123 starlight road",
+      "stars": "5 Stars",
+      "lat": 42.9478,
+      "lon": -73.9605
+    }
+  ]
+}

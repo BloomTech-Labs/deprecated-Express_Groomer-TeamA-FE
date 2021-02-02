@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+
 import { Row, Col, Modal } from 'antd';
+
 import CustomerInfo from './CustomerInfo';
 import CustomerEditInfo from './CustomerEditInfo';
 import PetCard from './PetCard';
@@ -9,7 +11,9 @@ import convertISODate from '../../../utils/convertiso';
 import './profile.css';
 import { StyledLink } from '../ScheduledAppointments/Styles';
 
+
 const RenderCustomerProfile = ({ userInfo, pets, appointments }) => {
+
   const [displayUserInfoInputs, toggleUserInfoInputs] = useState(false);
   const [isModalVisible1, setIsModalVisible1] = useState(false);
   const [userFormData, setUserFormData] = useState({
