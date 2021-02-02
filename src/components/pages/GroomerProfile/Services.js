@@ -1,6 +1,6 @@
 import React from 'react';
 import { Layout, Row, Col, Card, Button } from 'antd';
-export const Services = () => {
+export const Services = props => {
   const groomer_services = [
     {
       service_image:
@@ -145,11 +145,20 @@ export const Services = () => {
           md={{ span: 24 }}
         >
           <div className="main-services-top">
-            <h2>WELCOME TO THE @GROOMER_NAME</h2>
+            <h2 style={{ textAlign: 'center', margin: 0 }}>
+              WELCOME TO THE{' '}
+              {Object.keys(props.profile) &&
+                props.profile.business_profile &&
+                props.profile.business_profile.business_name}
+            </h2>
             <p></p>
           </div>
           <div className="main-services-top">
-            <h3>CANINE CONCIERGE SERVICES BASED IN @GROOMER_LOCATION</h3>
+            <h3>
+              {Object.keys(props.profile) &&
+                props.profile.business_profile &&
+                props.profile.business_profile.groomer_service_heading}
+            </h3>
           </div>
         </Col>
         <Col xs={{ span: 24 }} sm={{ span: 24 }} md={{ span: 24 }}>

@@ -1,6 +1,6 @@
 import React from 'react';
-import {Link} from "react-router-dom";
-import {FooterContainer, FooterName} from './footerStyles';
+import { Link } from 'react-router-dom';
+import { FooterContainer, FooterName } from './footerStyles';
 import logo from '../../assets/Pet Express.png';
 
 function Footer() {

@@ -46,7 +46,7 @@ const NavLinks = styled.ul`
     background-color: #006161;
     opacity: 0.75;
     z-index: 19;
-    transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(100%)'};
+    transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(100%)')};
     top: 0;
     right: 0;
     height: 100vh;
@@ -64,7 +64,7 @@ const Burger = styled.div`
   right: 20px;
   z-index: 20;
   display: none;
-  
+
   @media (max-width: 768px) {
     display: flex;
     justify-content: space-around;
@@ -73,7 +73,7 @@ const Burger = styled.div`
 
   div {
     width: 2rem;
-    height:0.25rem;
+    height: 0.25rem;
     border-radius: 10px;
     border: 1px solid black;
     background-color: white;
@@ -81,14 +81,14 @@ const Burger = styled.div`
     transition: all 0.3s linear;
 
     &:nth-child(1) {
-      transform: ${({ open }) => open ? 'rotate(45deg)' : 'rotate(0)'};
+      transform: ${({ open }) => (open ? 'rotate(45deg)' : 'rotate(0)')};
     }
     &:nth-child(2) {
-      transform: ${({ open }) => open ? 'translateX(100%)' : 'translateX(0)'};
-      opacity: ${({ open }) => open ? 0 : 1};
+      transform: ${({ open }) => (open ? 'translateX(100%)' : 'translateX(0)')};
+      opacity: ${({ open }) => (open ? 0 : 1)};
     }
     &:nth-child(3) {
-      transform: ${({ open }) => open ? 'rotate(-45deg)' : 'rotate(0)'};
+      transform: ${({ open }) => (open ? 'rotate(-45deg)' : 'rotate(0)')};
     }
   }
 `;
