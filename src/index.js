@@ -32,11 +32,9 @@ import MapBox from './components/Map/MapBox';
 import Footer from './components/Footer/Footer';
 
 import 'antd/dist/antd.css';
-
+import './globalStyles.css';
 
 export const store = createStore(appReducer, devToolsEnhancer());
-
-import './globalStyles.css';
 
 ReactDOM.render(
   <Provider store={store}>
