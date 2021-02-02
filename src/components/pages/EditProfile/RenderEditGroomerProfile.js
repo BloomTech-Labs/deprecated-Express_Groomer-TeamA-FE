@@ -1,32 +1,19 @@
-import React, { useEffect, useState, Fragment } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { editProfileData } from '../../../api';
+import { editBusinessProfileInfoData } from '../../../api';
 import { Form, Input, Button } from 'antd';
 import { useOktaAuth } from '@okta/okta-react';
-import { Layout, Row, Col } from 'antd';
+import { Row, Col } from 'antd';
 
 import './edit-profile.css';
 
 const RenderEditGroomerProfile = props => {
-  // Groomer Dummy Object
-  const groomer = {
-    id: 1,
-    business_profile_id: 1,
-    name: 'Groomer',
-    email: 'email@gmail.com',
-    avatar:
-      'https://cdn1.vectorstock.com/i/1000x1000/08/65/cute-labrador-retriever-dog-avatar-vector-20670865.jpg',
-    cover_images: [],
-    services_heading: 'Professional Services',
-    services_intro: 'About Professional Grooming Services',
-    why_choose_description:
-      'You should choose our grooming services because...',
-  };
-  const { authState, authService } = useOktaAuth();
+  const { authState } = useOktaAuth();
   const [form] = Form.useForm();
-  const [formData, setFormData] = useState(groomer);
+  const [formData, setFormData] = useState(
+    props.profile.business_profile || {}
+  );
   const [loading, setLoading] = useState({ loading: false, image_url: '' });
-  const [id, setId] = useState();
 
   const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -58,40 +45,26 @@ const RenderEditGroomerProfile = props => {
   };
 
   useEffect(() => {
-    // Call Get groomer profile function here //
+    if (
+      Object.keys(props.profile).length > 0 &&
+      Object.keys(formData).length === 0
+    ) {
+      setFormData(props.profile.business_profile);
+    }
+  }, [props.profile, formData]);
 
-    setFormData({
-      name: !groomer.name ? '' : groomer.name,
-      email: !groomer.email ? '' : groomer.email,
-      avatar: !groomer.avatar ? '' : groomer.avatar,
-      cover_images: !groomer.cover_images ? [] : groomer.cover_images,
-      services_heading: !groomer.services_heading
-        ? ''
-        : groomer.services_heading,
-      services_intro: !groomer.services_intro ? '' : groomer.services_intro,
-      why_choose_description: !groomer.why_choose_description
-        ? ''
-        : groomer.why_choose_description,
-    });
-  }, []);
-
-  const submitHandler = async values => {
-    const response = {
-      ...values,
-      id: id,
-    };
-    await editProfileData(authState, response);
-    props.history.push('/myprofile');
+  const submitHandler = async () => {
+    try {
+      let data = await editBusinessProfileInfoData(
+        authState,
+        formData.profile_id,
+        formData
+      );
+      setFormData({ ...data });
+    } catch (e) {
+      console.log(e);
+    }
   };
-
-  useEffect(() => {
-    authService
-      .getUser()
-      .then(response => {
-        setId(response.sub);
-      })
-      .catch(err => console.log(err));
-  }, []);
 
   const layout = {
     labelCol: {
@@ -116,9 +89,6 @@ const RenderEditGroomerProfile = props => {
 
   return (
     <div className="container-fluid">
-      <p>
-        <Link to="/">Home</Link>
-      </p>
       <Row gutter={[16, 16]}>
         <Col xs={{ span: 16 }} sm={{ span: 24 }} md={{ span: 24 }}>
           <Form {...layout} onFinish={submitHandler} form={form}>
@@ -133,24 +103,9 @@ const RenderEditGroomerProfile = props => {
               label="Name"
             >
               <Input
-                name="name"
+                name="business_name"
                 onChange={e => onChange(e)}
-                value={formData.name}
-              />
-            </Form.Item>
-            <Form.Item
-              rules={[
-                {
-                  required: true,
-                  message: 'Please input your email!',
-                },
-              ]}
-              label="Email"
-            >
-              <Input
-                name="email"
-                onChange={e => onChange(e)}
-                value={formData.email}
+                value={formData.business_name}
               />
             </Form.Item>
             <Form.Item label={'Slider Images'}>
@@ -190,9 +145,9 @@ const RenderEditGroomerProfile = props => {
               label="Headline"
             >
               <Input
-                name="service_heading"
+                name="service_intro"
                 onChange={e => onChange(e)}
-                value={formData.services_heading}
+                value={formData.service_intro}
               />
             </Form.Item>
             <Form.Item
@@ -212,13 +167,7 @@ const RenderEditGroomerProfile = props => {
               />
             </Form.Item>
             <Form.Item {...ButtonItemLayout}>
-              <Button
-                onClick={() => {
-                  setFormData({ ...formData });
-                }}
-                type="primary"
-                htmlType="submit"
-              >
+              <Button type="primary" htmlType="submit">
                 Submit
               </Button>
             </Form.Item>

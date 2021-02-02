@@ -2,8 +2,7 @@ import React, { useEffect, useState, useMemo } from 'react';
 import { connect } from 'react-redux';
 import { useOktaAuth } from '@okta/okta-react';
 import RenderEditGroomerProfile from './RenderEditGroomerProfile';
-import RenderEditCustomerProfile from './RenderEditCustomerProfile';
-import { getUserProfileData } from '../../../api';
+import { getUserProfileData, getBusinessProfileData } from '../../../api';
 
 const EditProfile = props => {
   const { authState, authService } = useOktaAuth();
@@ -16,6 +15,7 @@ const EditProfile = props => {
       .getUser()
       .then(info => {
         getUserProfileData(authState, info.sub);
+        getBusinessProfileData(authState, info.sub);
       })
       .catch(err => {
         console.log(err);
@@ -34,6 +34,7 @@ const EditProfile = props => {
           <RenderEditGroomerProfile
             history={props.history}
             userInfo={props.currentUser}
+            profile={props.businessProfile}
           />
         </>
       ) : (
@@ -46,6 +47,7 @@ const EditProfile = props => {
 const mapStateToProps = state => {
   return {
     currentUser: state.currentUser,
+    businessProfile: state.businessProfile,
   };
 };
 

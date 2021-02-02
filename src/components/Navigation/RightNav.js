@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { NavLinks } from './navStyles';
 
-export const RightNav = (props) => {
+export const RightNav = props => {
   const userType = useSelector(state => state.currentUser.user_type);
 
   console.log(userType);
@@ -11,23 +11,23 @@ export const RightNav = (props) => {
 
   const groomerLinks = () => {
     return (
-    <>
-      <li>
-        <Link to="/" className="nav-links">
-          Home
-        </Link>
-      </li>
-      <li>
-        <Link to="/myprofile" className="nav-links">
-          Profile
-        </Link>
-      </li>
-      <li>
-        <Link to="/appointments/scheduled" className="nav-links">
-          Appointments
-        </Link>
-      </li>
-    </>
+      <>
+        <li>
+          <Link to="/" className="nav-links">
+            Home
+          </Link>
+        </li>
+        <li>
+          <Link to="/myprofile" className="nav-links">
+            Profile
+          </Link>
+        </li>
+        <li>
+          <Link to="/appointments/scheduled" className="nav-links">
+            Appointments
+          </Link>
+        </li>
+      </>
     );
   };
 
@@ -70,23 +70,17 @@ export const RightNav = (props) => {
     );
   };
 
-  const getLinks = (userType) => {
-    if (userType === "Groomer"){
+  const getLinks = userType => {
+    if (userType === 'Groomer') {
       return groomerLinks();
-    } else if (userType === "Customer"){
+    } else if (userType === 'Customer') {
       return customerLinks();
     } else {
       return defaultLinks();
     }
   };
 
-  return (
-    <NavLinks open = {props.open}>
-      {
-      getLinks(userType)
-      }
-    </NavLinks>
-  );
+  return <NavLinks open={props.open}>{getLinks(userType)}</NavLinks>;
 };
 
 export default RightNav;

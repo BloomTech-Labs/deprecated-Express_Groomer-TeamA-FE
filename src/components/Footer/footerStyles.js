@@ -31,7 +31,7 @@ const FooterContainer = styled.div`
 `;
 
 const FooterName = styled.p`
-    font-size: 1.25rem;
+  font-size: 1.25rem;
 `;
 
 export { FooterContainer, FooterName };
