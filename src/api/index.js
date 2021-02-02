@@ -9,6 +9,7 @@ import {
   createPet,
   editPet,
   deletePet,
+  editBusinessProfileInfo,
   delAppointment,
 } from '../state/actions';
 import { store } from '../index';
@@ -16,7 +17,7 @@ import { store } from '../index';
 // we will define a bunch of API calls here.
 const apiUrl =
   process.env.NODE_ENV === 'development'
-    ? 'http://localhost:8000'
+    ? 'http://localhost:8000/'
     : `${process.env.REACT_APP_API_URI}`;
 
 const sleep = time =>
@@ -104,17 +105,25 @@ const apiAuthCreateAppointment = (authHeader, data) => {
 
 // get business profile
 const apiAuthGetBusinessProfile = (authHeader, id) => {
-  return axios.get(`${apiUrl}/businessProfile/${id}`, { headers: authHeader });
+  return axios.get(`${apiUrl}businessProfile/${id}`, { headers: authHeader });
 };
 
 // Delete appointment
 const apiAuthDeleteAppointment = (authHeader, id) => {
-  return axios.delete(`${apiUrl}/appointments/${id}`, { headers: authHeader });
+  return axios.delete(`${apiUrl}appointments/${id}`, { headers: authHeader });
 };
 
-const getProfileData = authState => {
+// update business profile info
+const apiAuthEditBusinessProfile = (authHeader, id, data) => {
+  return axios.put(`${apiUrl}businessProfile/${id}`, data, {
+    headers: authHeader,
+  });
+};
+
+const getProfileData = (authState, id) => {
+  const header = getAuthHeader(authState);
   try {
-    return apiAuthGet(getAuthHeader(authState)).then(response => {
+    return apiAuthGetUser(header, id).then(response => {
       store.dispatch(setProfilesToState(response.data));
       return response.data;
     });
@@ -316,7 +325,31 @@ const getBusinessProfileData = (authState, id) => {
       .catch(err => {
         console.log(err);
       });
-  } catch (e) {}
+  } catch (e) {
+    return new Promise(() => {
+      console.log(`Error: ${e}`);
+      return [];
+    });
+  }
+};
+
+const editBusinessProfileInfoData = (authState, id, data) => {
+  const header = getAuthHeader(authState);
+  try {
+    return apiAuthEditBusinessProfile(header, id, data)
+      .then(res => {
+        store.dispatch(editBusinessProfileInfo(res.data));
+        return res.data;
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  } catch (e) {
+    return new Promise(() => {
+      console.log(`Error: ${e}`);
+      return [];
+    });
+  }
 };
 
 export {
@@ -331,6 +364,7 @@ export {
   createAppointmentData,
   getAppointmentData,
   getBusinessProfileData,
+  editBusinessProfileInfoData,
   createCustomerPet,
   deleteCustomerPet,
   getAuthHeader,

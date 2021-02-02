@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { useOktaAuth } from '@okta/okta-react';
 import RenderGroomerProfile from './RenderGroomerProfile';
@@ -9,6 +10,7 @@ import {
   getCustomerPetsData,
   getAppointmentData,
   getBusinessProfileData,
+  editBusinessProfileInfoData,
 } from '../../../api';
 
 const Profile = props => {
@@ -38,9 +40,13 @@ const Profile = props => {
 
   return (
     <div>
+      <Link to="/profile-list">Profile List</Link>
       {Object.keys(props.currentUser).length ? (
         props.currentUser.user_type === 'Groomer' ? (
-          <RenderGroomerProfile userInfo={props.currentUser} />
+          <RenderGroomerProfile
+            userInfo={props.currentUser}
+            businessProfile={props.businessProfile}
+          />
         ) : (
           <RenderCustomerProfile
             userInfo={props.currentUser}
@@ -60,6 +66,7 @@ const mapStateToProps = state => {
     appointments: state.appointments,
     currentUser: state.currentUser,
     pets: state.pets,
+    businessProfile: state.businessProfile,
   };
 };
 

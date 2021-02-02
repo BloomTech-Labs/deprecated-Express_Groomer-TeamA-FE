@@ -21,14 +21,14 @@ function Card(props) {
   let hours = date.getHours();
   let minutes = date.getMinutes();
   let fulldate = `${month + 1}/${day}/${year}`;
-  let pet = null;
-  props.pets.forEach(i => {
-    if (i.id === props.entry.pet_id) {
-      pet = i;
-    }
-  });
+  //   let pet = null;
+  //   props.pets.forEach(i => {
+  //     if (i.id === props.entry.pet_id) {
+  //       pet = i;
+  //     }
+  //   });
 
-  console.log(pet);
+  //   console.log(pet);
 
   return (
     <>
@@ -37,9 +37,9 @@ function Card(props) {
           <InnerDataDiv>{fulldate}</InnerDataDiv>
           <InnerDataDiv>{`${hours}:${minutes}`}</InnerDataDiv>
         </OuterDataDiv>
-        <Image src={pet.image_url} height={150} />
+        {/* <Image src={pet.image_url} height={150} /> AWAITING BACKEND CHANGES*/}
         <OuterDataDiv>
-          <InnerDataDiv>Name: {pet.pet_name}</InnerDataDiv>
+          {/* <InnerDataDiv>Name: {pet.pet_name}</InnerDataDiv> AWAITING BACKEND CHANGES*/}
           <InnerDataDiv>Status: {props.entry.status}</InnerDataDiv>
         </OuterDataDiv>
         <StyledButton>
@@ -60,8 +60,9 @@ function Card(props) {
   );
 }
 
-export default connect(state => {
-  return {
-    pets: state.pets,
-  };
-})(Card);
+// export default connect(state => {
+//   return {
+//     pets: state.pets,
+//   };
+// })(Card);
+export default Card;

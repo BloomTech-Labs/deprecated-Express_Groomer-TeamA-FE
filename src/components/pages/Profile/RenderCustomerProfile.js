@@ -138,6 +138,7 @@ const RenderCustomerProfile = ({ userInfo, pets, appointments }) => {
               <CustomerAddPet />
             </Row>
           </div>
+          {/* <Link to="/editprofile">Edit</Link> */}
         </div>
       )}
     </div>

@@ -12,6 +12,8 @@ function RenderProfileListPage(props) {
   const [searched, setSearched] = useState('');
   const [filtered, setFiltered] = useState([]);
 
+  console.log('PROPS', props);
+
   useEffect(() => {
     const filteredChars = props.data.filter(char =>
       char.name.toLowerCase().includes(searched)

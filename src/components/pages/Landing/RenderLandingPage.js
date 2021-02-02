@@ -34,7 +34,7 @@ function RenderLandingPage() {
     <Layout>
       <div className="aspect-ratio-16x9">
         <div className="aspect-ratio-container">
-          <HeaderImg src={husky} alt="image of two dogs looking at camera"/>
+          <HeaderImg src={husky} alt="image of two dogs looking at camera" />
         </div>
       </div>
       <ImageMessage>
