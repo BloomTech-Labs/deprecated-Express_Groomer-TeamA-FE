@@ -56,6 +56,7 @@ const Profile = props => {
   );
 };
 
+//checking to see if it lets me push now
 const mapStateToProps = state => {
   return {
     appointments: state.appointments,
