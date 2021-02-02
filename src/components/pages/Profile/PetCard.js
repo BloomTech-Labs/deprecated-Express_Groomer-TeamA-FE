@@ -84,10 +84,9 @@ const PetCard = ({
         <Modal
           title="Edit Pet Information"
           visible={isModalVisible}
-          cancelText="Cancel"
-          okText="Save"
           onOk={handleOk}
           onCancel={handleCancel}
+          destroyOnClose={true}
           footer={null}
         >
           <VerticalForm

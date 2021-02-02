@@ -5,12 +5,19 @@ import {
   CREATE_PET,
   EDIT_PET,
   DELETE_PET,
+  GET_APPOINTMENTS,
+  CREATE_APPOINTMENT,
+  DELETE_APPOINTMENT,
+  GET_BUSINESS_PROFILE,
+  EDIT_BUSINESS_PROFILE_INFO,
 } from '../actions/index';
 
 const initialState = {
-  profiles: [],
+  profile: {},
   pets: [],
+  appointments: [],
   currentUser: {},
+  businessProfile: {},
 };
 
 export const appReducer = (state = initialState, action) => {
@@ -18,7 +25,7 @@ export const appReducer = (state = initialState, action) => {
     case POPULATE:
       return {
         ...state,
-        profiles: action.payload,
+        profile: action.payload,
       };
     case POPULATE_USER:
       return {
@@ -52,6 +59,36 @@ export const appReducer = (state = initialState, action) => {
         pets: state.pets.filter(pet => {
           return pet.id !== action.payload.id;
         }),
+      };
+    case GET_APPOINTMENTS:
+      return {
+        ...state,
+        appointments: [...action.payload],
+      };
+    case CREATE_APPOINTMENT:
+      return {
+        ...state,
+        appointments: [...state.appointments, ...action.payload],
+      };
+    case DELETE_APPOINTMENT:
+      return {
+        ...state,
+        appointments: state.appointments.filter(appointment => {
+          return appointment.id !== action.payload.id;
+        }),
+      };
+    case GET_BUSINESS_PROFILE:
+      return {
+        ...state,
+        businessProfile: action.payload,
+      };
+    case EDIT_BUSINESS_PROFILE_INFO:
+      return {
+        ...state,
+        businessProfile: {
+          ...state.businessProfile,
+          ...action.payload,
+        },
       };
     default:
       return state;

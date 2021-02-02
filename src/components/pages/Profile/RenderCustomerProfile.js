@@ -1,55 +1,19 @@
 import React, { useState, useEffect } from 'react';
-// import { Link } from 'react-router-dom';
-import { Row, Col, Avatar, Button, Modal } from 'antd';
 
-// import { UserOutlined } from '@ant-design/icons';
+import { Row, Col, Modal } from 'antd';
+
 import CustomerInfo from './CustomerInfo';
 import CustomerEditInfo from './CustomerEditInfo';
 import PetCard from './PetCard';
 import AppointmentCard from './AppointmentCard';
 import CustomerAddPet from './CustomerAddPet';
+import convertISODate from '../../../utils/convertiso';
 import './profile.css';
+import { StyledLink } from '../ScheduledAppointments/Styles';
 
-// Ant Design
-// import { Menu, Dropdown } from 'antd';
-// import { DownOutlined } from '@ant-design/icons';
 
-const RenderCustomerProfile = ({ userInfo, pets }) => {
-  // Dummy Data
-  const dates = [
-    {
-      id: 1,
-      date: '12-4-2020',
-      location: '123 SW Air LN 12345',
-      pet: 'Molly',
-    },
-    {
-      id: 2,
-      date: '12-5-2020',
-      location: '36 Airport Rd',
-      pet: 'Rocky',
-    },
-  ];
-  // const pets = [
-  //   {
-  //     id: 1,
-  //     pet_name: 'Rabby',
-  //     color: 'Red',
-  //     date_of_birth: '2020-11-02',
-  //     phone_number: '123456789',
-  //     image_url:
-  //       'https://i.pinimg.com/originals/29/29/62/292962d64cdc42f9e8295f5ca56ba1ce.jpg',
-  //   },
-  //   {
-  //     id: 2,
-  //     pet_name: 'Doggy',
-  //     color: 'Beige',
-  //     date_of_birth: '2010-11-02',
-  //     phone_number: '123456789',
-  //     image_url:
-  //       'https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/other/dog_cool_summer_slideshow/1800x1200_dog_cool_summer_other.jpg',
-  //   },
-  // ];
+const RenderCustomerProfile = ({ userInfo, pets, appointments }) => {
+
   const [displayUserInfoInputs, toggleUserInfoInputs] = useState(false);
   const [isModalVisible1, setIsModalVisible1] = useState(false);
   const [userFormData, setUserFormData] = useState({
@@ -116,7 +80,7 @@ const RenderCustomerProfile = ({ userInfo, pets }) => {
                 <h2>Upcoming Appointments</h2>
                 <div className="upcoming-appointments-content">
                   <Row gutter={[16, 16]}>
-                    {dates.map(date => {
+                    {appointments.map((appointment, index) => {
                       return (
                         <Col
                           xs={{ span: 24 }}
@@ -124,15 +88,20 @@ const RenderCustomerProfile = ({ userInfo, pets }) => {
                           md={{ span: 8 }}
                         >
                           <AppointmentCard
-                            key={date.id}
-                            date={date.date}
-                            location={date.location}
-                            pet={date.pet}
+                            key={index}
+                            date={convertISODate(appointment.appointment_date)}
+                            time={appointment.appointment_time}
+                            status={appointment.status}
                           />
                         </Col>
                       );
                     })}
                   </Row>
+                  <Col>
+                    <StyledLink to="/appointments/scheduled">
+                      All Appointments
+                    </StyledLink>
+                  </Col>
                 </div>
               </div>
             </Col>
@@ -162,18 +131,18 @@ const RenderCustomerProfile = ({ userInfo, pets }) => {
                       <p>Color: {pets[currentPetSelected].color}</p>
                     )}
                     {pets[currentPetSelected].date_of_birth && (
-                      <p>DOB: {pets[currentPetSelected].date_of_birth}</p>
+                      <p>
+                        DOB:{' '}
+                        {convertISODate(pets[currentPetSelected].date_of_birth)}
+                      </p>
                     )}
                   </>
                 )}
-                {/*
-                  <p>DOB: {pets[currentPetSelected].date_of_birth}</p>
-                  <p>Contact: {pets[currentPetSelected].phone_number}</p>
-                */}
               </Modal>
               <CustomerAddPet />
             </Row>
           </div>
+          {/* <Link to="/editprofile">Edit</Link> */}
         </div>
       )}
     </div>
