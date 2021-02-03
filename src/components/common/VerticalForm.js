@@ -57,6 +57,8 @@ const VerticalForm = ({ fields, layout, data, setIsModalVisible }) => {
         }
       : null;
 
+  console.log(formData);
+
   return (
     <Form {...formItemLayout} layout={formLayout} form={form}>
       {fields.map(field => {

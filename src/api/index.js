@@ -52,7 +52,7 @@ const getDSData = (url, authState) => {
     .catch(err => err);
 };
 
-// get user profile
+// get all user profile
 const apiAuthGet = authHeader => {
   return axios.get(`${apiUrl}profiles`, { headers: authHeader });
 };
@@ -118,14 +118,15 @@ const apiAuthEditAppointment = (authHeader, data) => {
 
 // update business profile info
 const apiAuthEditBusinessProfile = (authHeader, id, data) => {
-  return axios.put(`${apiUrl}/businessProfile/${id}`, data, {
+  return axios.put(`${apiUrl}businessProfile/${id}`, data, {
     headers: authHeader,
   });
 };
 
-const getProfileData = authState => {
+const getProfileData = (authState, id) => {
+  const header = getAuthHeader(authState);
   try {
-    return apiAuthGet(getAuthHeader(authState)).then(response => {
+    return apiAuthGetUser(header, id).then(response => {
       store.dispatch(setProfilesToState(response.data));
       return response.data;
     });
@@ -368,6 +369,28 @@ const editBusinessProfileInfoData = (authState, id, data) => {
   }
 };
 
+const getAllGroomersData = authState => {
+  const header = getAuthHeader(authState);
+  try {
+    return apiAuthGet(header)
+      .then(res => {
+        let groomers = res.data.filter(data => {
+          return data.user_type === 'Groomer';
+        });
+        store.dispatch(setProfilesToState(groomers));
+        return res.data;
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  } catch (e) {
+    return new Promise(() => {
+      console.log(`Error: ${e}`);
+      return [];
+    });
+  }
+};
+
 export {
   sleep,
   getExampleData,
@@ -378,6 +401,7 @@ export {
   getUserProfileData,
   getCustomerPetsData,
   createAppointmentData,
+  getAllGroomersData,
   getAppointmentData,
   getBusinessProfileData,
   editBusinessProfileInfoData,

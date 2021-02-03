@@ -26,7 +26,7 @@ export const appReducer = (state = initialState, action) => {
     case POPULATE:
       return {
         ...state,
-        profiles: action.payload,
+        profiles: [...action.payload],
       };
     case POPULATE_USER:
       return {
