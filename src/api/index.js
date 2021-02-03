@@ -100,7 +100,7 @@ const apiAuthCreateAppointment = (authHeader, data) => {
   console.log('ApiAuthCreteAPp');
   console.log('ApiAuthCreteAPp', data);
   console.log('ApiAuthCreteAPp', authHeader);
-  return axios.post(`${apiUrl}/appointments`, data, { headers: authHeader });
+  return axios.post(`${apiUrl}appointments`, data, { headers: authHeader });
 };
 
 // get business profile

@@ -31,12 +31,24 @@ function RenderGroomerAppointmentDashboard(props) {
   const [selectedDate, setSelectedDate] = useState(Date(Date.now()));
   const { authState, authService } = useOktaAuth();
   const [memoAuthService] = useMemo(() => [authService], []);
+  const [customerPet, setCustomerPet] = useState([]);
+  const [businessProfileData, setBusinessProfileData] = useState([]);
+  const [businessName, setBusinessName] = useState();
 
   console.log('PROPS', props);
 
   const { id } = useParams();
 
-  console.log('id', id);
+  useEffect(() => {
+    getPetData();
+    getBusinessData();
+  }, []);
+
+  useEffect(() => {
+    console.log({ customerPet });
+    console.log('biz info', businessName);
+    setAppointment({ ...appointment, service_provider_name: businessName });
+  }, [customerPet, businessName]);
 
   // useEffect(() => {
   //   if (id) {
@@ -44,8 +56,20 @@ function RenderGroomerAppointmentDashboard(props) {
   //   }
   // }, []);
 
+  const getPetData = async () => {
+    const petData = await getCustomerPetsData(authState);
+    setCustomerPet(petData.pets);
+  };
+
+  const getBusinessData = async () => {
+    const businessData = await getBusinessProfileData(authState, id);
+    setBusinessProfileData(businessData.services);
+    setBusinessName(businessData.business_name);
+    console.log('INSIDE FUNC', businessData);
+  };
+
   const groomer = {
-    id: '00ultwew80Onb2vOT4x6',
+    id: id,
   };
 
   var today = new Date();
@@ -55,18 +79,23 @@ function RenderGroomerAppointmentDashboard(props) {
 
   today = mm + '/' + dd + '/' + yyyy;
 
+  console.log('today', today);
+  console.log('dd', dd);
+  console.log('mm', mm);
+  console.log('yyyy', yyyy);
+
   var date = new Date();
   var minutes = date.getMinutes();
   var hour = date.getHours();
 
   const [appointment, setAppointment] = useState({
     groomer_id: groomer.id,
-    pet_id: 0,
-    location_service_id: 0,
-    appointment_date_time: 16121585,
+    pet_id: null,
+    location_service_id: null,
+    appointment_date_time: Math.floor(1812158),
     duration: 60,
     status: 'Pending',
-    service_provider_name: 'Pro Groomer',
+    service_provider_name: '',
   });
   const { Option } = Select;
 
@@ -76,49 +105,9 @@ function RenderGroomerAppointmentDashboard(props) {
   // }, [appointment]);
 
   function onSelectChange(value) {
+    console.log('Calendar selected date', value);
     setSelectedDate(value);
   }
-
-  // useEffect(() => {
-  //   memoAuthService
-  //     .getUser()
-  //     .then(info => {
-  //       createAppointmentData(authState, appointment);
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //     });
-  // });
-
-  const pets = [
-    {
-      id: 0,
-      name: 'John',
-    },
-    {
-      id: 2,
-      name: 'Jane',
-    },
-    {
-      id: 3,
-      name: 'Jessica',
-    },
-  ];
-
-  const services = [
-    {
-      id: 0,
-      name: 'Nail trimming',
-    },
-    {
-      id: 2,
-      name: 'Shampooing',
-    },
-    {
-      id: 3,
-      name: 'Combo Service',
-    },
-  ];
 
   const onChange = value => {
     setAppointment({ ...appointment, pet_id: value });
@@ -128,7 +117,9 @@ function RenderGroomerAppointmentDashboard(props) {
   };
 
   const onAppointmentTimeChange = value => {
-    setAppointment({ ...appointment, appointment_date_time: 1612158200 });
+    const newValue = value.valueOf();
+    setAppointment({ ...appointment, appointment_date_time: newValue });
+    console.log('Appt time value', newValue);
   };
 
   console.log(authState);
@@ -155,17 +146,17 @@ function RenderGroomerAppointmentDashboard(props) {
               <Form>
                 <Form.Item label="Select Pet">
                   <Select name="pet_id" onChange={e => onChange(e)}>
-                    {pets.map(pet => {
-                      return <Option value={pet.id}>{pet.name}</Option>;
+                    {customerPet.map(pet => {
+                      return <Option value={pet.id}>{pet.pet_name}</Option>;
                     })}
                   </Select>
                 </Form.Item>
                 <Form.Item label="Select Service">
                   <Select name="location_service_id" onChange={onServiceChange}>
-                    {services.map(service => {
+                    {businessProfileData.map(service => {
                       return (
                         <Select.Option value={service.id}>
-                          {service.name}
+                          {service.service_description}
                         </Select.Option>
                       );
                     })}
@@ -175,7 +166,7 @@ function RenderGroomerAppointmentDashboard(props) {
                   <TimePicker
                     defaultValue={moment(Date.now(), format)}
                     format={format}
-                    onChange={() => onAppointmentTimeChange()}
+                    onChange={onAppointmentTimeChange}
                   />
                 </Form.Item>
               </Form>

@@ -106,11 +106,7 @@ function App() {
               path="/groomer/:id/schedule"
               component={RenderGroomerAppointmentDashboard}
             />
-            <SecureRoute
-              exact
-              path="/groomer/:id"
-              component={GroomerProfilePage}
-            />
+            <SecureRoute path="/groomer/:id" component={GroomerProfilePage} />
           </Switch>
         </div>
         <Footer />
