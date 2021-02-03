@@ -10,9 +10,7 @@ import './edit-profile.css';
 const RenderEditGroomerProfile = props => {
   const { authState } = useOktaAuth();
   const [form] = Form.useForm();
-  const [formData, setFormData] = useState(
-    props.profile.business_profile || {}
-  );
+  const [formData, setFormData] = useState(props.profile || {});
   const [loading, setLoading] = useState({ loading: false, image_url: '' });
 
   const onChange = e =>
@@ -49,7 +47,7 @@ const RenderEditGroomerProfile = props => {
       Object.keys(props.profile).length > 0 &&
       Object.keys(formData).length === 0
     ) {
-      setFormData(props.profile.business_profile);
+      setFormData(props.profile);
     }
   }, [props.profile, formData]);
 
