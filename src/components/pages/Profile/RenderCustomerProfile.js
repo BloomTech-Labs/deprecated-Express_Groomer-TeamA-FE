@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+
 import { Row, Col, Modal } from 'antd';
+
 import CustomerInfo from './CustomerInfo';
 import CustomerEditInfo from './CustomerEditInfo';
 import PetCard from './PetCard';
@@ -77,6 +79,13 @@ const RenderCustomerProfile = ({ userInfo, pets, appointments }) => {
                 <div className="upcoming-appointments-content">
                   <Row gutter={[16, 16]}>
                     {appointments.map((appointment, index) => {
+                      const date = new Date(appointment.appointment_date_time);
+                      const day = date.getDate();
+                      const month = date.getMonth();
+                      const year = date.getFullYear();
+                      const hours = date.getHours();
+                      const minutes = date.getMinutes();
+                      const fulldate = `${month + 1}/${day}/${year}`;
                       return (
                         <Col
                           xs={{ span: 24 }}
@@ -85,8 +94,8 @@ const RenderCustomerProfile = ({ userInfo, pets, appointments }) => {
                         >
                           <AppointmentCard
                             key={index}
-                            date={convertISODate(appointment.appointment_date)}
-                            time={appointment.appointment_time}
+                            date={fulldate}
+                            time={`${hours}:${minutes}`}
                             status={appointment.status}
                           />
                         </Col>
