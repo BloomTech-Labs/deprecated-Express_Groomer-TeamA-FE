@@ -6,6 +6,7 @@ import { OuterDiv, StyledLink, ProfileDiv } from './Styles';
 function RenderScheduledAppointments(props) {
   console.log(props.appointments);
   console.log(props.pets);
+  console.log(props.all);
   return (
     <>
       <ProfileDiv>
@@ -16,7 +17,13 @@ function RenderScheduledAppointments(props) {
       </ProfileDiv>
       <OuterDiv>
         {props.appointments.map(item => {
-          return <Card key={item.id} entry={item} />;
+          return (
+            <Card
+              key={item.id}
+              entry={item}
+              user_type={props.currentUser.user_type}
+            />
+          );
         })}
       </OuterDiv>
     </>
@@ -27,5 +34,7 @@ export default connect(state => {
   return {
     appointments: state.appointments,
     pets: state.pets,
+    currentUser: state.currentUser,
+    all: state,
   };
 })(RenderScheduledAppointments);

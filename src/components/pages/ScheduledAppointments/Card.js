@@ -1,15 +1,15 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import {
   StyledRedButton,
   StyledButton,
   InnerDataDiv,
   OuterDataDiv,
   CardOuterDiv,
+  StyledLink,
 } from './CardStyles';
 import { Image } from 'antd';
 import { useOktaAuth } from '@okta/okta-react';
-import { deleteAppointment } from '../../../api';
+import { deleteAppointment, editAppointment } from '../../../api';
 
 function Card(props) {
   const { authState } = useOktaAuth();
@@ -21,14 +21,8 @@ function Card(props) {
   let hours = date.getHours();
   let minutes = date.getMinutes();
   let fulldate = `${month + 1}/${day}/${year}`;
-  //   let pet = null;
-  //   props.pets.forEach(i => {
-  //     if (i.id === props.entry.pet_id) {
-  //       pet = i;
-  //     }
-  //   });
 
-  //   console.log(pet);
+  console.log(props.user_type);
 
   return (
     <>
@@ -37,15 +31,30 @@ function Card(props) {
           <InnerDataDiv>{fulldate}</InnerDataDiv>
           <InnerDataDiv>{`${hours}:${minutes}`}</InnerDataDiv>
         </OuterDataDiv>
-        {/* <Image src={pet.image_url} height={150} /> AWAITING BACKEND CHANGES*/}
+        <Image src={props.entry.pet.image_url} height={150} />
         <OuterDataDiv>
-          {/* <InnerDataDiv>Name: {pet.pet_name}</InnerDataDiv> AWAITING BACKEND CHANGES*/}
+          <InnerDataDiv>Name: {props.entry.pet.name}</InnerDataDiv>
           <InnerDataDiv>Status: {props.entry.status}</InnerDataDiv>
         </OuterDataDiv>
-        <StyledButton>
-          {/* to={`/appointments/scheduled/${props.entry.id}`} COMPONENT UNDER CONSTRUCTION */}
-          Appt. Info
-        </StyledButton>
+        {props.user_type === 'Groomer' ? ( // if user_type is groomer and status is pending add approve button
+          props.entry.status === 'Pending' ? (
+            <StyledButton
+              onClick={() =>
+                editAppointment(authState, {
+                  appointment_id: props.entry.id,
+                  status: 'Approved',
+                })
+              }
+            >
+              Approve
+            </StyledButton>
+          ) : null
+        ) : (
+          <StyledLink>
+            {/* to={`/appointments/scheduled/${props.entry.id}`} COMPONENT UNDER CONSTRUCTION */}
+            Appt. Info
+          </StyledLink>
+        )}
         <StyledRedButton
           onClick={e => {
             e.preventDefault();
@@ -60,9 +69,4 @@ function Card(props) {
   );
 }
 
-// export default connect(state => {
-//   return {
-//     pets: state.pets,
-//   };
-// })(Card);
 export default Card;

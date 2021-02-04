@@ -9,6 +9,7 @@ import {
   createPet,
   editPet,
   deletePet,
+  editAppt,
   editBusinessProfileInfo,
   delAppointment,
 } from '../state/actions';
@@ -108,6 +109,11 @@ const apiAuthGetBusinessProfile = (authHeader, id) => {
 // Delete appointment
 const apiAuthDeleteAppointment = (authHeader, id) => {
   return axios.delete(`${apiUrl}appointments/${id}`, { headers: authHeader });
+};
+
+// edit appointment
+const apiAuthEditAppointment = (authHeader, data) => {
+  return axios.put(`${apiUrl}appointments`, data, { headers: authHeader });
 };
 
 // update business profile info
@@ -292,8 +298,26 @@ const deleteAppointment = (authState, id) => {
   try {
     return apiAuthDeleteAppointment(header, id)
       .then(res => {
-        store.dispatch(delAppointment(res.data[0]));
-        console.log(res.data);
+        store.dispatch(delAppointment(res.data));
+        return res.data;
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  } catch (e) {
+    return new Promise(() => {
+      console.log(`Error: ${e}`);
+      return [];
+    });
+  }
+};
+
+const editAppointment = (authState, data) => {
+  const header = getAuthHeader(authState);
+  try {
+    return apiAuthEditAppointment(header, data)
+      .then(res => {
+        store.dispatch(editAppt(res.data));
         return res.data;
       })
       .catch(err => {
@@ -385,4 +409,5 @@ export {
   deleteCustomerPet,
   getAuthHeader,
   deleteAppointment,
+  editAppointment,
 };
