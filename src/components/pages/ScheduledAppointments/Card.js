@@ -43,7 +43,7 @@ function Card(props) {
           <InnerDataDiv>Status: {props.entry.status}</InnerDataDiv>
         </OuterDataDiv>
         <StyledButton>
-          {/* to={`/appointments/scheduled/${props.entry.id}`} COMPONENT UNDER CONSTRUCTION */}
+          {/* to={`/appointments/scheduled/${props.entry.id}`} COMPONENT UNDER CONSTRUCTION PLEASE CHECK AppointmentInfo FOLDER */}
           Appt. Info
         </StyledButton>
         <StyledRedButton
