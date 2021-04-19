@@ -1,6 +1,7 @@
 import React from 'react';
-import { Layout, Row, Col, Card, Button } from 'antd';
+import { Row, Col, Card, Button } from 'antd';
 export const Services = props => {
+  console.log(props.profile);
   const groomer_services = [
     {
       service_image:
@@ -147,17 +148,15 @@ export const Services = props => {
           <div className="main-services-top">
             <h2 style={{ textAlign: 'center', margin: 0 }}>
               WELCOME TO THE{' '}
-              {Object.keys(props.profile) &&
-                props.profile.business_profile &&
-                props.profile.business_profile.business_name}
+              {Object.keys(props.profile).length > 0 &&
+                props.profile.business_name}
             </h2>
             <p></p>
           </div>
           <div className="main-services-top">
             <h3>
-              {Object.keys(props.profile) &&
-                props.profile.business_profile &&
-                props.profile.business_profile.groomer_service_heading}
+              {Object.keys(props.profile).length > 0 &&
+                props.profile.groomer_service_heading}
             </h3>
           </div>
         </Col>

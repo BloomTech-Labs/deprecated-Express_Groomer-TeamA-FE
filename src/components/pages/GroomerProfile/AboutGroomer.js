@@ -8,14 +8,11 @@ export const AboutGroomer = props => {
       <div style={{ padding: '25px', maxWidth: '900px', margin: '0 auto' }}>
         <h2 style={{ textAlign: 'center', margin: 0 }}>
           Why Choose{' '}
-          {Object.keys(props.profile) &&
-            props.profile.business_profile &&
-            props.profile.business_profile.business_name}
+          {Object.keys(props.profile).length > 0 && props.profile.business_name}
         </h2>
         <p style={{ textAlign: 'left' }} className="groomer-description">
-          {Object.keys(props.profile) &&
-            props.profile.business_profile &&
-            props.profile.business_profile.why_choose_description}
+          {Object.keys(props.profile).length > 0 &&
+            props.profile.why_choose_description}
         </p>
         <div style={{ display: 'inline-block' }}>
           <Button style={{ padding: '0 15px', margin: '15px' }}>

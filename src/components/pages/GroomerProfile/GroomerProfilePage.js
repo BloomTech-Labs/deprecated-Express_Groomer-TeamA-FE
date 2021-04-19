@@ -9,7 +9,6 @@ import { useOktaAuth } from '@okta/okta-react';
 import { getBusinessProfileData } from '../../../api';
 
 const GroomerProfilePage = props => {
-  console.log(props);
   const { id } = useParams();
   const { authState } = useOktaAuth();
   useEffect(() => {

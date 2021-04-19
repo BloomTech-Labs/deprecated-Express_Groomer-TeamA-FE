@@ -97,6 +97,11 @@ function App() {
             />
             <SecureRoute
               exact
+              path="/groomer/:id"
+              component={GroomerProfilePage}
+            />
+            <SecureRoute
+              exact
               path="/groomer-services"
               component={GroomerServicesPage}
             />

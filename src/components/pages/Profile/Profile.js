@@ -9,7 +9,6 @@ import {
   getCustomerPetsData,
   getAppointmentData,
   getBusinessProfileData,
-  editBusinessProfileInfoData,
 } from '../../../api';
 
 const Profile = props => {
