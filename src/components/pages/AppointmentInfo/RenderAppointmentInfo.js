@@ -1,5 +1,8 @@
 import React from 'react';
 import { data } from '../ScheduledAppointments/data';
+/*
+This component takes in dummy data. It is not hooked up to redux.
+*/
 import { useParams } from 'react-router-dom';
 import ApptHistoryCard from './ApptHistoryCard';
 import {
