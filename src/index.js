@@ -16,17 +16,18 @@ import { LandingPageForGroomers } from './components/pages/LandingForGroomers';
 import { ExampleListPage } from './components/pages/ExampleList';
 import { ProfileListPage } from './components/pages/ProfileList';
 import { LoginPage } from './components/pages/Login';
+import { AppointmentPage } from './components/pages/Appointments';
 import { config } from './utils/oktaConfig';
 import { LoadingSpinner } from './components/common';
 import { EditProfile } from './components/pages/EditProfile';
 import { Profile } from './components/pages/Profile';
 import GroomerProfilePage from './components/pages/GroomerProfile/GroomerProfilePage';
 import { GroomerServicesPage } from './components/pages/GroomerProfile/GroomerServicesPage';
-
+import RenderGroomerAppointmentDashboard from './components/pages/Appointments/RenderGroomerAppointmentDashboard';
 import { createStore } from 'redux';
+import { devToolsEnhancer } from 'redux-devtools-extension';
 
 import { Provider } from 'react-redux';
-import { devToolsEnhancer } from 'redux-devtools-extension';
 import { appReducer } from './state/reducers/appReducer';
 import MapBox from './components/Map/MapBox';
 import Footer from './components/Footer/Footer';
@@ -81,7 +82,7 @@ function App() {
               path="/editprofile"
               render={props => <EditProfile {...props} />}
             />
-            <SecureRoute path="/map-view" component={MapBox} />
+            {/* <SecureRoute path="/map-view" component={MapBox} /> */}
             <Route exact path="/" component={LandingPage} />{' '}
             {/** ISSUE: AFTER LOGIN USER GETS REDIRECTED TO LandingPage */}
             <Route path="/groomers" component={LandingPageForGroomers} />
@@ -97,9 +98,15 @@ function App() {
             />
             <SecureRoute
               exact
-              path="/groomer-services"
+              path="/groomer/:id/groomer-services"
               component={GroomerServicesPage}
             />
+            <SecureRoute
+              exact
+              path="/groomer/:id/schedule"
+              component={RenderGroomerAppointmentDashboard}
+            />
+            <SecureRoute path="/groomer/:id" component={GroomerProfilePage} />
           </Switch>
         </div>
         <Footer />

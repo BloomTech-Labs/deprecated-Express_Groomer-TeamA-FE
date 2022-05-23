@@ -1,8 +1,12 @@
 import React from 'react';
+import { Link, useParams, useHistory, Redirect } from 'react-router-dom';
 import { Layout, Row, Col, Card, Button } from 'antd';
 import PropTypes from 'prop-types';
 
-export const GroomerServicesPage = () => {
+export const GroomerServicesPage = props => {
+  console.log('');
+  console.log('services page props', props);
+  const { id } = useParams();
   const groomer_services = [
     {
       service_image:
@@ -74,6 +78,10 @@ export const GroomerServicesPage = () => {
     },
   ];
 
+  const pushToScheduled = () => {
+    props.history.push(`/scheduled`);
+  };
+
   return (
     <div className="container-fluid">
       <div style={{ padding: '25px', maxWidth: '900px', margin: '0 auto' }}>
@@ -114,12 +122,15 @@ export const GroomerServicesPage = () => {
                 </ul>
               </div>
               <div className="services-button-container">
-                <Button
-                  className="services-button"
-                  style={{ backgroundColor: '#2c89d9', color: 'white' }}
-                >
-                  BOOK NOW
-                </Button>
+                <Link to={`/groomer/${id}/schedule`}>
+                  <Button
+                    className="services-button"
+                    style={{ backgroundColor: '#2c89d9', color: 'white' }}
+                    // onClick={() => pushToScheduled()}
+                  >
+                    BOOK NOW
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>

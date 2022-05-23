@@ -14,6 +14,8 @@ function RenderProfileListPage(props) {
   const [searched, setSearched] = useState('');
   const [filtered, setFiltered] = useState([]);
 
+  console.log('PROPS', props);
+
   useEffect(() => {
     const filteredChars = props.data.filter(char =>
       char.name.toLowerCase().includes(searched)
@@ -41,7 +43,7 @@ function RenderProfileListPage(props) {
         {/* this is the map feature  */}
         {/* close */}
         {/* almost there  */}
-        <SearchMap />
+        {/* <SearchMap /> */}
         {/* cold*/}
         {/* colder */}
         {/* coldest  */}

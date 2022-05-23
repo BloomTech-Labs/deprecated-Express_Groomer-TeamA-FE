@@ -6,9 +6,6 @@ import { NavLinks } from './navStyles';
 export const RightNav = props => {
   const userType = useSelector(state => state.currentUser.user_type);
 
-  console.log(userType);
-  console.log(useSelector(state => state.currentUser));
-
   const groomerLinks = () => {
     return (
       <>
@@ -65,6 +62,9 @@ export const RightNav = props => {
           <Link to="/groomers" className="nav-links">
             For Groomers
           </Link>
+        </li>
+        <li>
+          <Link to="/profile-list">Profile List</Link>
         </li>
       </>
     );

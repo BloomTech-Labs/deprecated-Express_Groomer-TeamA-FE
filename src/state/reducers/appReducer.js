@@ -66,6 +66,7 @@ export const appReducer = (state = initialState, action) => {
         appointments: [...action.payload],
       };
     case CREATE_APPOINTMENT:
+      console.log('STATE', state);
       return {
         ...state,
         appointments: [...state.appointments, ...action.payload],

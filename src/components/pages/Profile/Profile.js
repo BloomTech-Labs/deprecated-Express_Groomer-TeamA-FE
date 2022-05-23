@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { useOktaAuth } from '@okta/okta-react';
 import RenderGroomerProfile from './RenderGroomerProfile';
@@ -39,6 +40,7 @@ const Profile = props => {
 
   return (
     <div>
+      <Link to="/profile-list">Profile List</Link>
       {Object.keys(props.currentUser).length ? (
         props.currentUser.user_type === 'Groomer' ? (
           <RenderGroomerProfile
